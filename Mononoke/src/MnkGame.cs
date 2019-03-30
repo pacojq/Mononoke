@@ -1,22 +1,22 @@
 using System;
 using System.IO;
 using System.Reflection;
-using System.Runtime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Mononoke.Core;
+using Mononoke.Graphics;
 using Mononoke.Input;
 
-namespace Mononoke.Core
+namespace Mononoke
 {
-	public class MkGame : Game
+	public class MnkGame : Game
     {
         
         
         #region // - - - - - Properties - - - - - //
         
-        public static MkGame Instance { get; private set; }
-        public static GraphicsDeviceManager Graphics { get; private set; }
+        public static MnkGame Instance { get; private set; }
         
         public static int Width { get; private set; }
         public static int Height { get; private set; }
@@ -24,6 +24,20 @@ namespace Mononoke.Core
         // time
         public static float DeltaTime { get; private set; }
         public static float RawDeltaTime { get; private set; }
+        
+        
+        public static string ContentDirectory
+        {
+#if PS4
+            get { return Path.Combine("/app0/", Instance.Content.RootDirectory); }
+#elif NSWITCH
+            get { return Path.Combine("rom:/", Instance.Content.RootDirectory); }
+#elif XBOXONE
+            get { return Instance.Content.RootDirectory; }
+#else
+            get { return Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"Content"/*Instance.Content.RootDirectory*/); }
+#endif
+        }
         
         #endregion
 
@@ -43,13 +57,13 @@ namespace Mononoke.Core
         public float TimeRate = 1f;
         public float FreezeTimer;
         public int FPS;
+        private int _fpsCounter = 0;
         private TimeSpan counterElapsed = TimeSpan.Zero;
 
         private Scene _scene;
         
         
-        private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
+        private GraphicsDeviceManager _graphics;
         
 
         #endregion
@@ -57,7 +71,7 @@ namespace Mononoke.Core
         
 
 
-        public MkGame(int width, int height, int windowWidth, int windowHeight, string windowTitle, bool fullscreen)
+        public MnkGame(int width, int height, int windowWidth, int windowHeight, string windowTitle, bool fullscreen)
         {
             Instance = this;
 
@@ -65,8 +79,30 @@ namespace Mononoke.Core
             Width = width;
             Height = height;
             
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            
+            _graphics = new GraphicsDeviceManager(this);
+            //_graphics.DeviceReset += OnGraphicsReset;
+            //_graphics.DeviceCreated += OnGraphicsCreate;
+            
+            Window.AllowUserResizing = true;
+            //Window.ClientSizeChanged += OnClientSizeChanged;
+
+            if (fullscreen)
+            {
+                _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+                _graphics.IsFullScreen = true;
+            }
+            else
+            {
+                _graphics.PreferredBackBufferWidth = windowWidth;
+                _graphics.PreferredBackBufferHeight = windowHeight;
+                _graphics.IsFullScreen = false;
+            }
+            _graphics.ApplyChanges();
+            
+            
+            Content.RootDirectory = @"Content";
         }
         
         
@@ -84,6 +120,8 @@ namespace Mononoke.Core
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            
+            MnkInput.Initialize();
         }
 
         /// <summary>
@@ -92,10 +130,17 @@ namespace Mononoke.Core
         /// </summary>
         protected override void LoadContent()
         {
+            base.LoadContent();
+            
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            //spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            Console.WriteLine("Content: " + this.Content.RootDirectory);
+            
             // TODO: use this.Content to load your game content here
+            MnkGraphics.Initialize(GraphicsDevice);
+            
+            
         }
 
         /// <summary>
@@ -107,6 +152,8 @@ namespace Mononoke.Core
             // TODO: Unload any non ContentManager content here
         }
 
+        
+        
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -124,7 +171,7 @@ namespace Mononoke.Core
 
             
             //Update input
-            MkInput.Update();
+            MnkInput.Update();
             
 
             // Update scene
@@ -150,13 +197,53 @@ namespace Mononoke.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            Render();
+            base.Draw(gameTime);
+            
+            //Frame counter
+            _fpsCounter++;
+            counterElapsed += gameTime.ElapsedGameTime;
+            if (counterElapsed >= TimeSpan.FromSeconds(1))
+            {
+#if DEBUG
+                Window.Title = Title + " " + _fpsCounter.ToString() + " fps - " + (GC.GetTotalMemory(false) / 1048576f).ToString("F") + " MB";
+#endif
+                FPS = _fpsCounter;
+                _fpsCounter = 0;
+                counterElapsed -= TimeSpan.FromSeconds(1);
+            }
+            
+        }
+
+
+        private void Render()
+        {
+            if (_scene != null)
+                _scene.BeforeRender();
+
+            GraphicsDevice.SetRenderTarget(null);
+            //GraphicsDevice.Viewport = Viewport;
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-
-            base.Draw(gameTime);
+            if (_scene != null)
+            {
+                MnkGraphics.SpriteBatch.Begin();
+                _scene.Render();
+                MnkGraphics.SpriteBatch.End();
+                _scene.AfterRender();
+            }
         }
         
+
+
+
+
+
+        public void LoadScene(Scene scene)
+        {
+            // TODO loading and unloading stuff
+            _scene = scene;
+        }
         
         
         

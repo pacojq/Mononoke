@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace Mononoke.Core
 {
-	public class Scene : IEnumerable<Entity>, IEnumerable
+	public abstract class Scene : IEnumerable<Entity>, IEnumerable
     {
         
         
@@ -42,8 +42,8 @@ namespace Mononoke.Core
         public virtual void BeforeUpdate()
         {
             if (!Paused)
-                TimeActive += MkGame.DeltaTime;
-            RawTimeActive += MkGame.RawDeltaTime;
+                TimeActive += MnkGame.DeltaTime;
+            RawTimeActive += MnkGame.RawDeltaTime;
         }
         
         

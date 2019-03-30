@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Mononoke.Components.Exceptions;
 using Mononoke.Physics;
 
 namespace Mononoke.Core
@@ -112,24 +113,30 @@ namespace Mononoke.Core
 
         public void Add(Component component)
         {
+            if (component.Entity != null)
+                throw new InvalidComponentStateException("Cannot add a component that is already linked to an entity.");
+            
             Components.Add(component);
+            component.Entity = this;
         }
 
         public void Remove(Component component)
         {
             Components.Remove(component);
+            component.Entity = null;
         }
 
         public void Add(params Component[] components)
         {
             foreach (var c in components)
-                Components.Add(c);
+                Add(c);
+            
         }
 
         public void Remove(params Component[] components)
         {
             foreach (var c in components)
-                Components.Remove(c);
+                Remove(c);
         }
 
         public T Get<T>() where T : Component

@@ -12,8 +12,8 @@
         <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+        <PlatformTarget>x86</PlatformTarget>
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
@@ -22,8 +22,8 @@
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+        <PlatformTarget>x86</PlatformTarget>
         <DebugType>pdbonly</DebugType>
         <Optimize>true</Optimize>
         <OutputPath>bin\Release\</OutputPath>
@@ -48,21 +48,36 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="src\Components\Colliders\BoxCollider.cs" />
+        <Compile Include="src\Components\Colliders\CircleCollider.cs" />
+        <Compile Include="src\Components\Colliders\Collider.cs" />
+        <Compile Include="src\Components\Exceptions\InvalidComponentStateException.cs" />
+        <Compile Include="src\Components\Graphics\SpriteRenderer.cs" />
+        <Compile Include="src\Components\Graphics\TextRenderer.cs" />
         <Compile Include="src\Core\Component.cs" />
         <Compile Include="src\Core\Entity.cs" />
-        <Compile Include="src\Core\MkGame.cs" />
         <Compile Include="src\Core\Scene.cs" />
-        <Compile Include="src\Input\MkInput.cs" />
-        <Compile Include="src\Physics\Collider.cs" />
+        <Compile Include="src\Graphics\MnkGraphics.cs" />
+        <Compile Include="src\Input\KeyboardInput.cs" />
+        <Compile Include="src\Input\MnkInput.cs" />
+        <Compile Include="src\MnkGame.cs" />
+        <Compile Include="src\Physics\ICollider.cs" />
+        <Compile Include="src\Utils\MnkMath.cs" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="Content\Mononoke\MononokeDefault.xnb" />
+      <Content Include="Content\Mononoke\MononokeDefault.spritefont" />
       <Content Include="lib\Microsoft.Xna.Framework.dll" />
       <Content Include="lib\Microsoft.Xna.Framework.Game.dll" />
       <Content Include="lib\Microsoft.Xna.Framework.Graphics.dll" />
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="src\Components" />
-    </ItemGroup>
+	
+	<ItemGroup>
+	  <Content Include="Content\**\*">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+	
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
