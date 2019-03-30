@@ -12,12 +12,14 @@ namespace Sandbox
 			{
 				
 #if DEBUG
+				/*
 				int tickCount = 0;
 				game.OnUpdate += () =>
 				{
 					Console.WriteLine("Tick " + tickCount);
 					tickCount++;
 				};
+				*/
 #endif
 				game.OnEnd += () =>
 				{

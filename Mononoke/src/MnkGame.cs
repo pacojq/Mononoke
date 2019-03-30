@@ -149,6 +149,8 @@ namespace Mononoke
         /// </summary>
         protected override void UnloadContent()
         {
+            OnEnd();
+            
             // TODO: Unload any non ContentManager content here
         }
 
@@ -206,7 +208,7 @@ namespace Mononoke
             if (counterElapsed >= TimeSpan.FromSeconds(1))
             {
 #if DEBUG
-                Window.Title = Title + " " + _fpsCounter.ToString() + " fps - " + (GC.GetTotalMemory(false) / 1048576f).ToString("F") + " MB";
+                Window.Title = $"{Title} [{_fpsCounter} fps -  {(GC.GetTotalMemory(false) / 1048576f):F} MB]";
 #endif
                 FPS = _fpsCounter;
                 _fpsCounter = 0;

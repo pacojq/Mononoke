@@ -34,13 +34,7 @@ namespace Mononoke.Components.Graphics
         
         public override void Render()
         {
-            if (MnkGraphics.SpriteBatch == null)
-            {
-                Console.WriteLine("Null SpriteBatch!");
-                return;
-            }
-
-            MnkGraphics.SpriteBatch.DrawString(Font, Text, LocalPosition, Color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+            MnkGraphics.SpriteBatch.DrawString(Font, Text, Position, Color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
         }
     }
 }

@@ -40,6 +40,9 @@
         <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553">
           <HintPath>..\Mononoke\lib\Microsoft.Xna.Framework.Game.dll</HintPath>
         </Reference>
+        <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553">
+          <HintPath>..\Mononoke\lib\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />

@@ -9,7 +9,7 @@ namespace Mononoke.Core
 		
 		public Vector2 LocalPosition = Vector2.Zero;
 		
-		public Vector2 AbsolutePosition
+		public Vector2 Position
 		{
 			get
 			{

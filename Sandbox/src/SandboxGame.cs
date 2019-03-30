@@ -9,7 +9,7 @@ namespace Sandbox
     public class SandboxGame : MnkGame
     {
         
-        public const int ScreenWidth = 640;
+        public const int ScreenWidth = 480;
         public const int ScreenHeight = 320;
         
         public SandboxGame() :

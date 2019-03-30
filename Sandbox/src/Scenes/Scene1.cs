@@ -1,3 +1,6 @@
+using System;
+using Microsoft.Xna.Framework;
+using Mononoke;
 using Mononoke.Core;
 using Sandbox.Entities;
 
@@ -7,8 +10,9 @@ namespace Sandbox.Scenes
     {
         public Scene1()
         {
-            // Add(new DummyText());
-            Add(new DummyPlayer());
+            var p = new DummyPlayer();
+            Add(p);
+            
         }
     }
 }
