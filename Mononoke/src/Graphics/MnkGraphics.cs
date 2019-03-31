@@ -9,7 +9,7 @@ using Mononoke.Utils;
 
 namespace Mononoke.Graphics
 {
-    public static class MnkGraphics
+    public class MnkGraphics
     {
        
         public static GraphicsDevice GraphicsDevice { get; private set; }
@@ -17,8 +17,18 @@ namespace Mononoke.Graphics
         public static SpriteFont DefaultFont { get; private set; }
 
 
+        private static MnkGraphics _instance;
+        
+        
 
         internal static void Initialize(GraphicsDevice graphicsDevice)
+        {
+            if (_instance == null)
+                _instance = new MnkGraphics(graphicsDevice);
+        }
+
+
+        private MnkGraphics(GraphicsDevice graphicsDevice)
         {
             SpriteBatch = new SpriteBatch(graphicsDevice);
             DefaultFont = MnkGame.Instance.Content.Load<SpriteFont>(@"Mononoke\MononokeDefault");
