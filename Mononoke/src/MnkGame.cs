@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Mononoke.Core;
+using Mononoke.ECS;
 using Mononoke.Graphics;
 using Mononoke.Input;
 
@@ -117,11 +118,10 @@ namespace Mononoke
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
             
             MnkInput.Initialize();
+            MnkEcs.Initialize();
         }
 
         /// <summary>

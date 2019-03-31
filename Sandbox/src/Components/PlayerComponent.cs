@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Mononoke.Core;
 using Mononoke.Input;
@@ -11,17 +12,21 @@ namespace Sandbox.Components
         {
             base.Update();
 
+            Vector2 pos = this.Entity.Position;
+            
             if (MnkInput.Keyboard.IsKeyHeld(Keys.Right))
-                Entity.Position.X++;
+                pos.X++;
             
             if (MnkInput.Keyboard.IsKeyHeld(Keys.Left))
-                Entity.Position.X--;
+                pos.X--;
             
             if (MnkInput.Keyboard.IsKeyHeld(Keys.Down))
-                Entity.Position.Y++;
+                pos.Y++;
             
             if (MnkInput.Keyboard.IsKeyHeld(Keys.Up))
-                Entity.Position.Y--;
+                pos.Y--;
+
+            this.Entity.Position = pos;
         }
         
     }

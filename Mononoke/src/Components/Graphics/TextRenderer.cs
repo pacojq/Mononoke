@@ -6,7 +6,7 @@ using Mononoke.Graphics;
 
 namespace Mononoke.Components.Graphics
 {
-    public class TextRenderer : Component
+    public class TextRenderer : Component, IRenderizableComponent
     {
         public enum HorizontalAlign { Left, Center, Right };
         public enum VerticalAlign { Top, Center, Bottom };
@@ -32,7 +32,7 @@ namespace Mononoke.Components.Graphics
         
         
         
-        public override void Render()
+        public void Render()
         {
             MnkGraphics.SpriteBatch.DrawString(Font, Text, Position, Color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
         }

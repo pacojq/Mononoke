@@ -7,7 +7,7 @@ using Mononoke.Graphics;
 
 namespace Mononoke.Components.Graphics
 {
-    public class SpriteRenderer : Component
+    public class SpriteRenderer : Component, IRenderizableComponent
     {
         public Sprite Sprite;
 
@@ -32,7 +32,7 @@ namespace Mononoke.Components.Graphics
         
         
         
-        public override void Render()
+        public void Render()
         {
             if (Sprite == null)
                 return;
