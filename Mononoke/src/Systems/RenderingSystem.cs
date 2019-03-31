@@ -13,11 +13,6 @@ namespace Mononoke.Systems
         }
 
 
-        
-        public override void BeforeUpdate()
-        {
-            
-        }
 
         protected override void UpdateEntity(Filter e)
         {

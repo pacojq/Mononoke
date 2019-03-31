@@ -36,12 +36,12 @@ namespace Mononoke.Core
 
 		public virtual void OnBinding(IEntity entity)
 		{
-			
+			// To be implemented by each individual component
 		}
 		
 		public virtual void OnUnbinding(IEntity entity)
 		{
-			
+			// To be implemented by each individual component
 		}
 		
 		

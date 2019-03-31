@@ -115,8 +115,9 @@ namespace Mononoke.Core
 
         public void Unbind(IComponent component)
         {
-            Components.Remove(component);
             component.Entity = null;
+            component.OnUnbinding(this);
+            Components.Remove(component);
         }
 
         public void Bind(params IComponent[] components)

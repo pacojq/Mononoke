@@ -43,7 +43,7 @@ namespace Mononoke.Core
 
 
 
-        public abstract void BeforeUpdate();
+        public virtual void BeforeUpdate() { }
         
         public void Update()
         {
