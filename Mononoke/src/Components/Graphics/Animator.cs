@@ -4,7 +4,7 @@ using Mononoke.Graphics;
 
 namespace Mononoke.Components.Graphics
 {
-    public class Animator : Component
+    public class Animator : Component, IUpdatableComponent
     {
 
         public SpriteRenderer Renderer;
@@ -30,10 +30,8 @@ namespace Mononoke.Components.Graphics
         }
 
 
-        public override void Update()
+        public void Update()
         {
-            base.Update();
-
             _actualImageIndex += CurrentAnimation.Speed;
             _actualImageIndex %= CurrentAnimation.FrameCount;
             ImageIndex = (int) Math.Floor(_actualImageIndex);

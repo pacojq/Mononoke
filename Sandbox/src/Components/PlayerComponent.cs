@@ -1,11 +1,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Mononoke.Components;
 using Mononoke.Core;
 using Mononoke.Input;
 
 namespace Sandbox.Components
 {
-    public class PlayerComponent : Component
+    public class PlayerComponent : Component, IUpdatableComponent
     {
         
         public override void Update()

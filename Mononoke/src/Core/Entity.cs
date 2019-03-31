@@ -90,7 +90,7 @@ namespace Mononoke.Core
         {
             foreach (IComponent c in Components)
             {
-                c.Update();   
+                c.Update();
             }
         }
         
