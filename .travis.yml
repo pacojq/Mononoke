@@ -1,5 +1,6 @@
 language: csharp
 solution: Mononoke.sln
+os: windows
 install:
   - nuget restore Mononoke.sln
   - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
