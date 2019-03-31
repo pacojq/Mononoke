@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Mononoke.ECS;
+using Mononoke.Systems;
 
 namespace Mononoke.Core
 {
 	public abstract class Scene : IEnumerable<Entity>, IEnumerable
     {
+
+        private RenderingSystem _renderingSystem;
         
         
         public float TimeActive{ get; private set; }
@@ -22,6 +26,7 @@ namespace Mononoke.Core
         public Scene()
         {
             Entities = new List<Entity>();
+            _renderingSystem = MnkEcs.GetSystem<RenderingSystem>();
         }
         
         
@@ -73,10 +78,7 @@ namespace Mononoke.Core
 
         public virtual void Render()
         {
-            foreach (Entity e in Entities)
-            {
-                e.Render();
-            }
+            _renderingSystem.Update();
         }
 
         public virtual void AfterRender()
@@ -94,6 +96,7 @@ namespace Mononoke.Core
         public void Add(Entity entity)
         {
             Entities.Add(entity);
+            MnkEcs.Current.AddEntity(entity);
         }
 
         public void Remove(Entity entity)
@@ -128,6 +131,7 @@ namespace Mononoke.Core
         }
 
         #endregion
+        
 
     }
 }

@@ -1,12 +1,25 @@
 using Microsoft.Xna.Framework;
+using Mononoke.Components.Exceptions;
+using Mononoke.ECS;
 
 namespace Mononoke.Core
 {
-	public abstract class Component
+	public abstract class Component : IComponent
 	{
-		public Entity Entity { get; internal set; }
-		
-		
+
+		private IEntity _entity;
+		public IEntity Entity
+		{
+			get => _entity;
+			set
+			{
+				if (_entity != null)
+					throw new InvalidComponentStateException("Cannot set a new entity to a bound component.");
+				_entity = value;
+			}
+		}
+
+
 		public Vector2 LocalPosition = Vector2.Zero;
 		
 		public Vector2 Position
@@ -21,14 +34,14 @@ namespace Mononoke.Core
 
 
 
-		public virtual void OnBinding(Entity entity)
+		public virtual void OnBinding(IEntity entity)
 		{
-			
+			// To be implemented by each individual component
 		}
 		
-		public virtual void OnUnbinding(Entity entity)
+		public virtual void OnUnbinding(IEntity entity)
 		{
-			
+			// To be implemented by each individual component
 		}
 		
 		
@@ -38,9 +51,5 @@ namespace Mononoke.Core
 		}
 
 
-		public virtual void Render()
-		{
-			
-		}
 	}
 }

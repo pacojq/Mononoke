@@ -2,26 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Mononoke.Components.Exceptions;
+using Mononoke.ECS;
 using Mononoke.Physics;
 
 namespace Mononoke.Core
 {
-	public class Entity : IEnumerable<Component>
+	public class Entity : IEntity, IEnumerable<IComponent>
     {
         
         #region // - - - - - Properties - - - - - //
         
 
         public Scene Scene { get; private set; }
-        public List<Component> Components { get; private set; }
+        
+        public List<IComponent> Components { get; private set; }
         
         
+        public Vector2 Position { get; set; }
+
+
         // Left as a property just in case we want to
         // do something with the scene on depth set
         public int Depth
         {
-            get { return _depth; }
-            set { _depth = value; }
+            get => _depth;
+            set => _depth = value;
         }
 
         /// <summary>
@@ -29,8 +34,8 @@ namespace Mononoke.Core
         /// </summary>
         public float X
         {
-            get { return Position.X; }
-            set { Position.X = value; }
+            get => Position.X;
+            set => Position += new Vector2(value, 0);
         }
 
         /// <summary>
@@ -38,8 +43,8 @@ namespace Mononoke.Core
         /// </summary>
         public float Y
         {
-            get { return Position.Y; }
-            set { Position.Y = value; }
+            get => Position.Y;
+            set => Position += new Vector2(0, value);
         }
         
         #endregion
@@ -56,8 +61,6 @@ namespace Mononoke.Core
         public bool Visible = true;
         public bool Collidable = true;
         
-        public Vector2 Position;
-        
         internal int _depth = 0;
         
         
@@ -69,7 +72,7 @@ namespace Mononoke.Core
         public Entity(Vector2 position)
         {
             Position = position;
-            Components = new List<Component>();
+            Components = new List<IComponent>();
         }
 
         // Util constructor
@@ -85,36 +88,24 @@ namespace Mononoke.Core
         /// </summary>
         public void Update()
         {
-            foreach (Component c in Components)
+            foreach (IComponent c in Components)
             {
                 c.Update();   
             }
         }
+        
+        
+        
+        
+        
+        
+        
+        #region // - - - - - IComponent Management - - - - - //
 
-        /// <summary>
-        /// This method will be skipped if the entity is not <see cref="Visible"/>
-        /// </summary>
-        public virtual void Render()
-        {
-            foreach (Component c in Components)
-            {
-                c.Render();   
-            }
-        }
-
-        
-        
-        
-        
-        
-        
-        
-        #region // - - - - - Component Management - - - - - //
-
-        public void Bind(Component component)
+        public void Bind(IComponent component)
         {
             if (component.Entity != null)
-                throw new InvalidComponentStateException("Cannot add a component that is already linked to an entity.");
+                throw new InvalidComponentStateException("Cannot add a component that is already bound to an entity.");
             
             Components.Add(component);
             component.OnBinding(this);
@@ -122,26 +113,27 @@ namespace Mononoke.Core
         }
         
 
-        public void Unbind(Component component)
+        public void Unbind(IComponent component)
         {
-            Components.Remove(component);
             component.Entity = null;
+            component.OnUnbinding(this);
+            Components.Remove(component);
         }
 
-        public void Bind(params Component[] components)
+        public void Bind(params IComponent[] components)
         {
             foreach (var c in components)
                 Bind(c);
             
         }
 
-        public void Unbind(params Component[] components)
+        public void Unbind(params IComponent[] components)
         {
             foreach (var c in components)
                 Unbind(c);
         }
 
-        public T Get<T>() where T : Component
+        public T Get<T>() where T : class, IComponent
         {
             foreach (var c in Components)
                 if (c is T)
@@ -149,7 +141,7 @@ namespace Mononoke.Core
             return null;
         }
 
-        public IEnumerator<Component> GetEnumerator()
+        public IEnumerator<IComponent> GetEnumerator()
         {
             return Components.GetEnumerator();
         }

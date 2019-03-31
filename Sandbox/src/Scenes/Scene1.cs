@@ -10,9 +10,15 @@ namespace Sandbox.Scenes
     {
         public Scene1()
         {
-            var p = new DummyPlayer();
-            Add(p);
-            
+            Random rand = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                var p = new DummyPlayer();
+                Add(p);
+                p.X = rand.Next(MnkGame.Width);
+                p.Y = rand.Next(MnkGame.Height);
+            }
+
         }
     }
 }

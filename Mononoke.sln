@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mononoke", "Mononoke\Monono
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.csproj", "{45E9C426-1F5C-46EE-ABF8-86DF53C00549}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopotam.Ecs", "..\..\Desktop\ecs-master\Leopotam.Ecs.csproj", "{18CE94F8-3951-4118-89F5-899D2AD9ABEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mononoke.Tests", "Mononoke.Tests\Mononoke.Tests.csproj", "{D2B0D061-202D-496F-A85F-DBF8B89468D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{45E9C426-1F5C-46EE-ABF8-86DF53C00549}.Release|Any CPU.Build.0 = Release|x86
 		{45E9C426-1F5C-46EE-ABF8-86DF53C00549}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{45E9C426-1F5C-46EE-ABF8-86DF53C00549}.Debug|Any CPU.Build.0 = Debug|x86
+		{18CE94F8-3951-4118-89F5-899D2AD9ABEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18CE94F8-3951-4118-89F5-899D2AD9ABEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18CE94F8-3951-4118-89F5-899D2AD9ABEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18CE94F8-3951-4118-89F5-899D2AD9ABEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2B0D061-202D-496F-A85F-DBF8B89468D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2B0D061-202D-496F-A85F-DBF8B89468D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2B0D061-202D-496F-A85F-DBF8B89468D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2B0D061-202D-496F-A85F-DBF8B89468D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
