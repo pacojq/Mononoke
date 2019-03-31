@@ -20,7 +20,16 @@ namespace Mononoke.Core
 		}
 
 
+
+		public virtual void OnBinding(Entity entity)
+		{
+			
+		}
 		
+		public virtual void OnUnbinding(Entity entity)
+		{
+			
+		}
 		
 		
 		public virtual void Update()

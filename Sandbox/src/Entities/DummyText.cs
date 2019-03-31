@@ -8,7 +8,7 @@ namespace Sandbox.Entities
     {
         public DummyText()
         {
-            Add(new TextRenderer("Hi there!", new Vector2()));
+            Bind(new TextRenderer("Hi there!", new Vector2()));
         }
         
     }

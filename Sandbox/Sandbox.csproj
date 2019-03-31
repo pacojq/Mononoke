@@ -50,6 +50,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="src\Components\PlayerComponent.cs" />
         <Compile Include="src\Entities\DummyPlayer.cs" />
         <Compile Include="src\Entities\DummyText.cs" />
         <Compile Include="src\Entities\Solid.cs" />

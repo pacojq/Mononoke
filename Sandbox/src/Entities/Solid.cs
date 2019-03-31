@@ -10,7 +10,7 @@ namespace Sandbox.Entities
         public Solid()
         {
             //Add(new SpriteRenderer());
-            Add(new BoxCollider(32, 32));
+            Bind(new BoxCollider(32, 32));
         }
     }
 }

@@ -6,6 +6,7 @@ using Mononoke.Components.Graphics;
 using Mononoke.Core;
 using Mononoke.Graphics;
 using Mononoke.Input;
+using Sandbox.Components;
 
 namespace Sandbox.Entities
 {
@@ -27,26 +28,12 @@ namespace Sandbox.Entities
             _renderer = new SpriteRenderer( sprites[0] );
             _animator = new Animator(_renderer, contr);
             
-            Add(_renderer);
-            Add(_animator);
-            Add(new BoxCollider(32, 32));
+            Bind(_renderer);
+            Bind(_animator);
+            Bind(new BoxCollider(32, 32));
+            Bind(new PlayerComponent());
         }
 
-        public override void Update()
-        {
-            base.Update();
-
-            if (MnkInput.Keyboard.IsKeyHeld(Keys.Right))
-                _renderer.LocalPosition.X++;
-            
-            if (MnkInput.Keyboard.IsKeyHeld(Keys.Left))
-                _renderer.LocalPosition.X--;
-            
-            if (MnkInput.Keyboard.IsKeyHeld(Keys.Down))
-                _renderer.LocalPosition.Y++;
-            
-            if (MnkInput.Keyboard.IsKeyHeld(Keys.Up))
-                _renderer.LocalPosition.Y--;
-        }
+        
     }
 }

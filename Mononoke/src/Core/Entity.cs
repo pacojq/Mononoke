@@ -83,7 +83,7 @@ namespace Mononoke.Core
         /// Don't perform any rendering calls here.
         /// This method will be skipped if the entity is not <see cref="Active"/>
         /// </summary>
-        public virtual void Update()
+        public void Update()
         {
             foreach (Component c in Components)
             {
@@ -111,32 +111,34 @@ namespace Mononoke.Core
         
         #region // - - - - - Component Management - - - - - //
 
-        public void Add(Component component)
+        public void Bind(Component component)
         {
             if (component.Entity != null)
                 throw new InvalidComponentStateException("Cannot add a component that is already linked to an entity.");
             
             Components.Add(component);
+            component.OnBinding(this);
             component.Entity = this;
         }
+        
 
-        public void Remove(Component component)
+        public void Unbind(Component component)
         {
             Components.Remove(component);
             component.Entity = null;
         }
 
-        public void Add(params Component[] components)
+        public void Bind(params Component[] components)
         {
             foreach (var c in components)
-                Add(c);
+                Bind(c);
             
         }
 
-        public void Remove(params Component[] components)
+        public void Unbind(params Component[] components)
         {
             foreach (var c in components)
-                Remove(c);
+                Unbind(c);
         }
 
         public T Get<T>() where T : Component
