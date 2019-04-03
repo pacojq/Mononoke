@@ -77,6 +77,8 @@
         <Compile Include="src\Input\MnkInput.cs" />
         <Compile Include="src\MnkGame.cs" />
         <Compile Include="src\Physics\ICollider.cs" />
+        <Compile Include="src\Physics\Space.cs" />
+        <Compile Include="src\Systems\CollisionSystem.cs" />
         <Compile Include="src\Systems\RenderingSystem.cs" />
         <Compile Include="src\Utils\MnkMath.cs" />
     </ItemGroup>

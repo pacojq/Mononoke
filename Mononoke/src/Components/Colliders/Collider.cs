@@ -9,6 +9,8 @@ namespace Mononoke.Components.Colliders
 		public float Width { get; protected set; }
 		public float Height { get; protected set; }
 		
+		public bool IsTrigger { get; protected set; }
+		
 		public float Top { get; protected set; }
 		public float Bottom { get; protected set; }
 		public float Left { get; protected set; }
