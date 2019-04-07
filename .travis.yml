@@ -1,4 +1,6 @@
 language: csharp
+mono: latest
+
 solution: Mononoke.sln
 install:
   - nuget restore Mononoke.sln
