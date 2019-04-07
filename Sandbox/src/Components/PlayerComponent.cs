@@ -9,10 +9,8 @@ namespace Sandbox.Components
     public class PlayerComponent : Component, IUpdatableComponent
     {
         
-        public override void Update()
+        public void Update()
         {
-            base.Update();
-
             Vector2 pos = this.Entity.Position;
             
             if (MnkInput.Keyboard.IsKeyHeld(Keys.Right))
