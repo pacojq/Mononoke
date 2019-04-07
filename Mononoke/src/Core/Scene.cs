@@ -63,7 +63,6 @@ namespace Mononoke.Core
             {
                 e.Update();
             }
-            
         }
 
         public virtual void AfterUpdate()

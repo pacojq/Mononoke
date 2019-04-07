@@ -55,7 +55,8 @@
         <Compile Include="src\Components\Graphics\Animator.cs" />
         <Compile Include="src\Components\Graphics\SpriteRenderer.cs" />
         <Compile Include="src\Components\Graphics\TextRenderer.cs" />
-        <Compile Include="src\Components\RenderizableComponent.cs" />
+        <Compile Include="src\Components\IRenderizableComponent.cs" />
+        <Compile Include="src\Components\IUpdatableComponent.cs" />
         <Compile Include="src\Core\Component.cs" />
         <Compile Include="src\Core\Entity.cs" />
         <Compile Include="src\Core\Scene.cs" />

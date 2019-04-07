@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Mononoke.Core;
@@ -30,35 +31,37 @@ namespace Mononoke.ECS
         /// to out filter struct.
         /// </summary>
         /// <param name="entity"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <returns>A struct with the matching components</returns>
         public T Filter(IEntity entity)
         {
             Type structType = typeof(T);
-
-            // Create the struct
-            object result = Activator.CreateInstance(structType);
             FieldInfo[] fields = structType.GetFields();
 
             // Get the Entity matching components
-            IComponent[] filtered = FilterComponents(entity);
+            IComponent[] match = FilterComponents(entity);
+            
+            
+            // Create the struct
+            object obj = Activator.CreateInstance(structType);
             
             // Give values to the struct fields
             foreach (FieldInfo field in fields)
             {
                 Type fType = field.FieldType;
-                var comp = filtered.First(c => EcsUtil.Filter(c.GetType(), fType));
-                field.SetValue(result, comp);
+                var comp = match.First(c => EcsUtil.Filter(c.GetType(), fType));
+                field.SetValue(obj, comp);
             }
-
-            return (T) result;
+            
+            // Return the struct
+            return (T) obj;
         }
         
         
         
         private IComponent[] FilterComponents(IEntity entity)
         {
+            
+        
             IComponent[] result = new IComponent[_types.Length];
             int count = 0;
 

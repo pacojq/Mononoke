@@ -44,11 +44,6 @@ namespace Mononoke.Core
 			// To be implemented by each individual component
 		}
 		
-		
-		public virtual void Update()
-		{
-			
-		}
 
 
 	}

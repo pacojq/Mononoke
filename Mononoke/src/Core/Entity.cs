@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Mononoke.Components;
 using Mononoke.Components.Exceptions;
 using Mononoke.ECS;
 using Mononoke.Physics;
@@ -16,6 +17,7 @@ namespace Mononoke.Core
         public Scene Scene { get; private set; }
         
         public List<IComponent> Components { get; private set; }
+        public List<IUpdatableComponent> UpdatableComponents { get; private set; }
         
         
         public Vector2 Position { get; set; }
@@ -73,6 +75,7 @@ namespace Mononoke.Core
         {
             Position = position;
             Components = new List<IComponent>();
+            UpdatableComponents = new List<IUpdatableComponent>();
         }
 
         // Util constructor
@@ -88,9 +91,9 @@ namespace Mononoke.Core
         /// </summary>
         public void Update()
         {
-            foreach (IComponent c in Components)
+            foreach (IUpdatableComponent c in UpdatableComponents)
             {
-                c.Update();   
+                c.Update();
             }
         }
         
@@ -108,6 +111,9 @@ namespace Mononoke.Core
                 throw new InvalidComponentStateException("Cannot add a component that is already bound to an entity.");
             
             Components.Add(component);
+            if (component is IUpdatableComponent uc)
+                UpdatableComponents.Add(uc);
+            
             component.OnBinding(this);
             component.Entity = this;
         }
@@ -118,6 +124,9 @@ namespace Mononoke.Core
             component.Entity = null;
             component.OnUnbinding(this);
             Components.Remove(component);
+
+            if (component is IUpdatableComponent uc)
+                UpdatableComponents.Remove(uc);
         }
 
         public void Bind(params IComponent[] components)
