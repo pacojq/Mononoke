@@ -6,37 +6,36 @@ using Mononoke.ECS;
 
 namespace Mononoke.Core
 {
-    public abstract class System<T> : ISystem where T : struct
+    public abstract class EcsSystem<T> : ISystem where T : IComponent
     {
 
         private T[] _entities;
         private int _entityCount;
 
         
-        private EcsFilter<T> _ecsFilter;
+        //private EcsFilter<T> _ecsFilter;
 
 
-        internal System()
+        public EcsSystem()
         {
             _entities = new T[256];
             _entityCount = 0;
-            _ecsFilter = new EcsFilter<T>();
+            //_ecsFilter = new EcsFilter<T>();
         }
 
 
-
-        
 
         public bool Accept(IEntity entity)
         {
             if (entity == null)
                 return false;
-            
-            if (!_ecsFilter.Accept(entity))
+
+            T comp = entity.GetComponent<T>();
+            if (comp == null)
                 return false;
-            
+                
             // TODO check resizing
-            _entities[_entityCount] = _ecsFilter.Filter(entity);
+            _entities[_entityCount] = comp;
             _entityCount++;
             return true;
         }

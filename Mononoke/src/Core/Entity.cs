@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -15,8 +16,10 @@ namespace Mononoke.Core
         
 
         public Scene Scene { get; private set; }
-        
-        public List<IComponent> Components { get; private set; }
+
+
+
+        public IEnumerable<IComponent> Components => _components.Values;
         public List<IUpdatableComponent> UpdatableComponents { get; private set; }
         
         
@@ -64,7 +67,9 @@ namespace Mononoke.Core
         public bool Collidable = true;
         
         internal int _depth = 0;
-        
+
+
+        private Dictionary<Type, IComponent> _components;
         
         #endregion
         
@@ -74,7 +79,7 @@ namespace Mononoke.Core
         public Entity(Vector2 position)
         {
             Position = position;
-            Components = new List<IComponent>();
+            _components = new Dictionary<Type, IComponent>();
             UpdatableComponents = new List<IUpdatableComponent>();
         }
 
@@ -109,8 +114,14 @@ namespace Mononoke.Core
         {
             if (component.Entity != null)
                 throw new InvalidComponentStateException("Cannot add a component that is already bound to an entity.");
+
+            Type t = component.GetType();
             
-            Components.Add(component);
+            // Check it's no repeated
+            if (_components.ContainsKey(t))
+                throw new InvalidComponentStateException("An entity can only have one component of a type.");
+            
+            _components.Add(t, component);
             if (component is IUpdatableComponent uc)
                 UpdatableComponents.Add(uc);
             
@@ -123,7 +134,9 @@ namespace Mononoke.Core
         {
             component.Entity = null;
             component.OnUnbinding(this);
-            Components.Remove(component);
+            
+            Type t = component.GetType();
+            _components.Remove(t);
 
             if (component is IUpdatableComponent uc)
                 UpdatableComponents.Remove(uc);
@@ -142,12 +155,12 @@ namespace Mononoke.Core
                 Unbind(c);
         }
 
-        public T Get<T>() where T : class, IComponent
+        public T GetComponent<T>() where T : IComponent
         {
             foreach (var c in Components)
                 if (c is T)
-                    return c as T;
-            return null;
+                    return (T) c;
+            return default(T);
         }
 
         public IEnumerator<IComponent> GetEnumerator()

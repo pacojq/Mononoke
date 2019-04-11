@@ -42,8 +42,6 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="ECS\EcsTests.cs" />
-        <Compile Include="ECS\EcsTypes.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
