@@ -59,6 +59,7 @@
         <Compile Include="src\Components\IUpdatableComponent.cs" />
         <Compile Include="src\Core\Component.cs" />
         <Compile Include="src\Core\Entity.cs" />
+        <Compile Include="src\Core\Layer.cs" />
         <Compile Include="src\Core\Scene.cs" />
         <Compile Include="src\Core\System.cs" />
         <Compile Include="src\Core\Transform.cs" />

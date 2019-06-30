@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Mononoke.ECS;
+using Mononoke.Layers;
 using Mononoke.Systems;
 
 namespace Mononoke.Core
@@ -11,11 +12,14 @@ namespace Mononoke.Core
     {
 
         private RenderingSystem _renderingSystem;
+
+        private List<Layer> _layers;
+        public Layer DefaultLayer { get; }
         
         
         public float TimeActive{ get; private set; }
         public float RawTimeActive { get; private set; }
-        public List<Entity> Entities { get; private set; }
+        public List<Entity> Entities { get; }
         
         
         
@@ -26,6 +30,11 @@ namespace Mononoke.Core
         public Scene()
         {
             Entities = new List<Entity>();
+            
+            _layers = new List<Layer>();
+            DefaultLayer = new Layer();
+            _layers.Add(DefaultLayer);
+            
             _renderingSystem = MnkEcs.GetSystem<RenderingSystem>();
         }
         
@@ -94,7 +103,13 @@ namespace Mononoke.Core
 
         public void Add(Entity entity)
         {
+            Add(entity, DefaultLayer);
+        }
+        
+        public void Add(Entity entity, Layer layer)
+        {
             Entities.Add(entity);
+            layer.Add(entity);
             MnkEcs.Current.AddEntity(entity);
         }
 
