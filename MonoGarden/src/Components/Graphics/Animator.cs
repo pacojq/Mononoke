@@ -1,10 +1,10 @@
 using System;
-using MononokeEngine.ECS;
-using MononokeEngine.Graphics;
+using MonoGarden.Core;
+using MonoGarden.Graphics;
 
-namespace MononokeEngine.Components.Graphics
+namespace MonoGarden.Components.Graphics
 {
-    public class AnimationComponent : Component
+    public class Animator : Component, IUpdatableComponent
     {
 
         public SpriteRenderer Renderer;
@@ -19,7 +19,7 @@ namespace MononokeEngine.Components.Graphics
         
         
         
-        public AnimationComponent(SpriteRenderer renderer, AnimationController controller)
+        public Animator(SpriteRenderer renderer, AnimationController controller)
         {
             Renderer = renderer;
             Controller = controller;
@@ -30,7 +30,7 @@ namespace MononokeEngine.Components.Graphics
         }
 
 
-        public override void Update()
+        public void Update()
         {
             _actualImageIndex += CurrentAnimation.Speed;
             _actualImageIndex %= CurrentAnimation.FrameCount;

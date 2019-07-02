@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MononokeEngine.Components.Colliders;
 using MononokeEngine.Components.Graphics;
 using MononokeEngine.ECS;
 using MononokeEngine.Graphics;
+using MononokeEngine.Physics.Colliders;
 using Sandbox.Components;
 
 namespace Sandbox.Entities

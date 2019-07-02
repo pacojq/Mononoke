@@ -1,5 +1,5 @@
-using MononokeEngine.Components.Colliders;
 using MononokeEngine.ECS;
+using MononokeEngine.Physics.Colliders;
 
 namespace Sandbox.Entities
 {

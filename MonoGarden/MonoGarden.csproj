@@ -7,8 +7,8 @@
         <ProjectGuid>{419D62D0-9FF6-4C89-8E2E-BAFD0781FBB1}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>MononokeEngine</RootNamespace>
-        <AssemblyName>MononokeEngine</AssemblyName>
+        <RootNamespace>MonoGarden</RootNamespace>
+        <AssemblyName>MonoGarden</AssemblyName>
         <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
@@ -48,57 +48,39 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="src\Components\Colliders\BoxCollider.cs" />
+        <Compile Include="src\Components\Colliders\CircleCollider.cs" />
+        <Compile Include="src\Components\Colliders\Collider.cs" />
         <Compile Include="src\Components\Exceptions\InvalidComponentStateException.cs" />
-        <Compile Include="src\Components\Graphics\AnimationComponent.cs" />
+        <Compile Include="src\Components\Graphics\Animator.cs" />
         <Compile Include="src\Components\Graphics\SpriteRenderer.cs" />
         <Compile Include="src\Components\Graphics\TextRenderer.cs" />
-        <Compile Include="src\ECS\Component.cs" />
-        <Compile Include="src\ECS\Components\Transform.cs" />
-        <Compile Include="src\ECS\EcsSystem.cs" />
+        <Compile Include="src\Components\IRenderizableComponent.cs" />
+        <Compile Include="src\Components\IUpdatableComponent.cs" />
+        <Compile Include="src\Core\Component.cs" />
+        <Compile Include="src\Core\Entity.cs" />
+        <Compile Include="src\Core\Layer.cs" />
+        <Compile Include="src\Core\Scene.cs" />
+        <Compile Include="src\Core\System.cs" />
+        <Compile Include="src\Core\Transform.cs" />
+        <Compile Include="src\ECS\EcsFilter.cs" />
         <Compile Include="src\ECS\EcsWorld.cs" />
-        <Compile Include="src\ECS\Entity.cs" />
-        <Compile Include="src\ECS\EntityExtensions.cs" />
         <Compile Include="src\ECS\IComponent.cs" />
+        <Compile Include="src\ECS\IEntity.cs" />
         <Compile Include="src\ECS\ISystem.cs" />
-        <Compile Include="src\ECS\EcsManager.cs" />
+        <Compile Include="src\ECS\MnkEcs.cs" />
+        <Compile Include="src\ECS\EcsUtil.cs" />
         <Compile Include="src\Graphics\Animation.cs" />
         <Compile Include="src\Graphics\AnimationController.cs" />
-        <Compile Include="src\Graphics\GraphicsManager.cs" />
+        <Compile Include="src\Graphics\MnkGraphics.cs" />
         <Compile Include="src\Graphics\Sprite.cs" />
         <Compile Include="src\Graphics\Atlas.cs" />
-        <Compile Include="src\Graphics\Tiles\AnimatedTile.cs" />
-        <Compile Include="src\Graphics\Tiles\Tile.cs" />
-        <Compile Include="src\Graphics\Tiles\TileMap.cs" />
         <Compile Include="src\Input\KeyboardInput.cs" />
-        <Compile Include="src\Input\InputManager.cs" />
-        <Compile Include="src\MononokeGame.cs" />
-        <Compile Include="src\Mononoke.cs" />
-        <Compile Include="src\Physics\Collider.cs" />
-        <Compile Include="src\Physics\Colliders\BoxCollider.cs" />
-        <Compile Include="src\Physics\Colliders\CircleCollider.cs" />
-        <Compile Include="src\Physics\Colliders\LineCollider.cs" />
-        <Compile Include="src\Physics\Colliders\MaskCollider.cs" />
-        <Compile Include="src\Physics\Colliders\PointCollider.cs" />
-        <Compile Include="src\Physics\EntityExtensions.cs" />
-        <Compile Include="src\Physics\RayCast.cs" />
-        <Compile Include="src\Physics\Space.cs" />
-        <Compile Include="src\Scenes\Layer.cs" />
-        <Compile Include="src\Scenes\Scene.cs" />
-        <Compile Include="src\Scenes\SceneManager.cs" />
-        <Compile Include="src\Utils\DataStructures\Heaps\BinaryHeap.cs" />
-        <Compile Include="src\Utils\DataStructures\Heaps\HeapNode.cs" />
-        <Compile Include="src\Utils\DataStructures\Heaps\IBinaryHeap.cs" />
-        <Compile Include="src\Utils\Grid.cs" />
-        <Compile Include="src\Utils\Math.cs" />
-        <Compile Include="src\Utils\Pathfinding\AStar\AStarGrid.cs" />
-        <Compile Include="src\Utils\Pathfinding\AStar\AStarNode.cs" />
-        <Compile Include="src\Utils\Pathfinding\AStar\AStarPathfinder.cs" />
-        <Compile Include="src\Utils\Pathfinding\IGrid.cs" />
-        <Compile Include="src\Utils\Pathfinding\IPathfinder.cs" />
-        <Compile Include="src\Utils\Pathfinding\JPS\JpsGrid.cs" />
-        <Compile Include="src\Utils\Pathfinding\JPS\JpsNode.cs" />
-        <Compile Include="src\Utils\Pathfinding\JPS\JpsPathfinder.cs" />
-        <Compile Include="src\Utils\Pathfinding\Vec2.cs" />
+        <Compile Include="src\Input\MnkInput.cs" />
+        <Compile Include="src\MnkGame.cs" />
+        <Compile Include="src\Physics\ICollider.cs" />
+        <Compile Include="src\Systems\RenderingSystem.cs" />
+        <Compile Include="src\Utils\MnkMath.cs" />
     </ItemGroup>
     <ItemGroup>
       <Content Include="Content\Mononoke\MononokeDefault.xnb" />
@@ -106,8 +88,6 @@
       <Content Include="lib\Microsoft.Xna.Framework.dll" />
       <Content Include="lib\Microsoft.Xna.Framework.Game.dll" />
       <Content Include="lib\Microsoft.Xna.Framework.Graphics.dll" />
-      <Content Include="src\ECS\README.txt" />
-      <Content Include="src\README.txt" />
     </ItemGroup>
 	
 	<ItemGroup>

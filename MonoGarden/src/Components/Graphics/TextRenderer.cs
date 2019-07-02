@@ -1,10 +1,12 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MononokeEngine.ECS;
+using MonoGarden.Core;
+using MonoGarden.Graphics;
 
-namespace MononokeEngine.Components.Graphics
+namespace MonoGarden.Components.Graphics
 {
-    public class TextRenderer : Component
+    public class TextRenderer : Component, IRenderizableComponent
     {
         public enum HorizontalAlign { Left, Center, Right };
         public enum VerticalAlign { Top, Center, Bottom };
@@ -22,7 +24,7 @@ namespace MononokeEngine.Components.Graphics
         {
             this.Text = text;
             LocalPosition = position;
-            Font = Mononoke.Graphics.DefaultFont;
+            Font = MnkGraphics.DefaultFont;
             Color = Color.Black;
             HorizontalOrigin = HorizontalAlign.Left;
             VerticalOrigin = VerticalAlign.Top;
@@ -30,9 +32,9 @@ namespace MononokeEngine.Components.Graphics
         
         
         
-        public override void Render()
+        public void Render()
         {
-            Mononoke.Graphics.SpriteBatch.DrawString(Font, Text, Position, Color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+            MnkGraphics.SpriteBatch.DrawString(Font, Text, Position, Color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
         }
     }
 }

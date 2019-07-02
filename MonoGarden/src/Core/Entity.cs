@@ -1,40 +1,26 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using MononokeEngine.Components;
-using MononokeEngine.Components.Exceptions;
-using MononokeEngine.ECS.Components;
-using MononokeEngine.Scenes;
+using MonoGarden.Components;
+using MonoGarden.Components.Exceptions;
+using MonoGarden.ECS;
+using MonoGarden.Physics;
 
-namespace MononokeEngine.ECS
+namespace MonoGarden.Core
 {
-	public class Entity : IEnumerable<IComponent>
+	public class Entity : IEntity, IEnumerable<IComponent>
     {
         
         #region // - - - - - Properties - - - - - //
         
 
-        public Scene Scene { get; internal set; }
-
+        public Scene Scene { get; private set; }
         
-        public Transform Transform { get; }
+        public List<IComponent> Components { get; private set; }
+        public List<IUpdatableComponent> UpdatableComponents { get; private set; }
         
         
-        /// <summary>
-        /// Shortcut to get <see cref="Transform"/>.Position
-        /// </summary>
-        public Vector2 Position
-        {
-            get => Transform.Position;
-            set => Transform.Position = value;
-        }
-
-
-        public IEnumerable<IComponent> Components => _components.Values;
-        
-
-        
+        public Vector2 Position { get; set; }
 
 
         // Left as a property just in case we want to
@@ -78,9 +64,7 @@ namespace MononokeEngine.ECS
         public bool Collidable = true;
         
         internal int _depth = 0;
-
-
-        private Dictionary<Type, IComponent> _components;
+        
         
         #endregion
         
@@ -90,10 +74,8 @@ namespace MononokeEngine.ECS
         public Entity(Vector2 position)
         {
             Position = position;
-            _components = new Dictionary<Type, IComponent>();
-            
-            Transform = new Transform();
-            Bind(Transform);
+            Components = new List<IComponent>();
+            UpdatableComponents = new List<IUpdatableComponent>();
         }
 
         // Util constructor
@@ -109,20 +91,9 @@ namespace MononokeEngine.ECS
         /// </summary>
         public void Update()
         {
-            foreach (IComponent c in Components)
+            foreach (IUpdatableComponent c in UpdatableComponents)
             {
-                if (c.Active)
-                    c.Update();
-            }
-        }
-        
-        
-        public void Render()
-        {
-            foreach (IComponent c in Components)
-            {
-                if (c.Visible)
-                    c.Render();
+                c.Update();
             }
         }
         
@@ -138,14 +109,12 @@ namespace MononokeEngine.ECS
         {
             if (component.Entity != null)
                 throw new InvalidComponentStateException("Cannot add a component that is already bound to an entity.");
-
-            Type t = component.GetType();
             
-            // Check it's no repeated
-            if (_components.ContainsKey(t))
-                throw new InvalidComponentStateException("An entity can only have one component of a type.");
+            Components.Add(component);
+            if (component is IUpdatableComponent uc)
+                UpdatableComponents.Add(uc);
             
-            _components.Add(t, component);
+            component.OnBinding(this);
             component.Entity = this;
         }
         
@@ -153,9 +122,11 @@ namespace MononokeEngine.ECS
         public void Unbind(IComponent component)
         {
             component.Entity = null;
-            
-            Type t = component.GetType();
-            _components.Remove(t);
+            component.OnUnbinding(this);
+            Components.Remove(component);
+
+            if (component is IUpdatableComponent uc)
+                UpdatableComponents.Remove(uc);
         }
 
         public void Bind(params IComponent[] components)
@@ -169,6 +140,14 @@ namespace MononokeEngine.ECS
         {
             foreach (var c in components)
                 Unbind(c);
+        }
+
+        public T Get<T>() where T : class, IComponent
+        {
+            foreach (var c in Components)
+                if (c is T)
+                    return c as T;
+            return null;
         }
 
         public IEnumerator<IComponent> GetEnumerator()

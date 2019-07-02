@@ -1,19 +1,14 @@
 using Microsoft.Xna.Framework;
-using MononokeEngine.Components.Exceptions;
+using MonoGarden.Components.Exceptions;
+using MonoGarden.ECS;
 
-namespace MononokeEngine.ECS
+namespace MonoGarden.Core
 {
 	public abstract class Component : IComponent
 	{
 
-		private Entity _entity;
-		
-		
-		public bool Active { get; set; }
-		public bool Visible { get; set; }
-		
-
-		public Entity Entity
+		private IEntity _entity;
+		public IEntity Entity
 		{
 			get => _entity;
 			set
@@ -24,7 +19,6 @@ namespace MononokeEngine.ECS
 			}
 		}
 
-		
 
 		public Vector2 LocalPosition = Vector2.Zero;
 		
@@ -37,18 +31,20 @@ namespace MononokeEngine.ECS
 				return LocalPosition;
 			}
 		}
-		
-		
-		
-		public virtual void Update()
-		{
-			
-		}
 
-		public virtual void Render()
+
+
+		public virtual void OnBinding(IEntity entity)
 		{
-			
+			// To be implemented by each individual component
 		}
+		
+		public virtual void OnUnbinding(IEntity entity)
+		{
+			// To be implemented by each individual component
+		}
+		
+
 
 	}
 }

@@ -6,7 +6,7 @@ using MononokeEngine.Input;
 
 namespace Sandbox.Components
 {
-    public class PlayerComponent : Component, IUpdatableComponent
+    public class PlayerComponent : Component
     {
 
         private KeyboardInput _input;
@@ -17,7 +17,7 @@ namespace Sandbox.Components
         }
         
         
-        public void Update()
+        public override void Update()
         {
             Vector2 pos = this.Entity.Position;
             

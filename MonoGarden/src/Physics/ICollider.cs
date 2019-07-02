@@ -1,14 +1,12 @@
 using Microsoft.Xna.Framework;
-using MononokeEngine.Components.Colliders;
+using MonoGarden.Components.Colliders;
 
-namespace MononokeEngine.Physics
+namespace MonoGarden.Physics
 {
     public interface ICollider
     {
         float Width { get; }
         float Height { get; }
-        
-        bool IsTrigger { get; }
         
         float Top { get; }
         float Bottom { get; }
@@ -22,7 +20,7 @@ namespace MononokeEngine.Physics
         bool Collide(Vector2 point);
         bool Collide(Rectangle rect);
         
-        // Mononoke colliders
+        // MonoGarden colliders
         bool Collide(BoxCollider other);
         bool Collide(CircleCollider other);
     }

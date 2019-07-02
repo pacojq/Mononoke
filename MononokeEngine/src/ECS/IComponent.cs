@@ -8,6 +8,10 @@ namespace MononokeEngine.ECS
         bool Visible { get; }
         
         Entity Entity { get; set; }
+
+
+        void Update();
         
+        void Render();
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using MononokeEngine.Systems;
 
 namespace MononokeEngine.ECS
 {
@@ -11,7 +10,6 @@ namespace MononokeEngine.ECS
         public IEnumerable<EcsWorld> Worlds { get; }
         
         private IDictionary<Type, ISystem> _systems;
-        private ISystem _renderingSystem;
 
 
 
@@ -24,11 +22,6 @@ namespace MononokeEngine.ECS
         {
             // TODO
             _systems = new Dictionary<Type, ISystem>();
-            
-            // Rendering system is initialized and cannot be added to worlds
-            AddSystem<RenderingSystem>();
-            _renderingSystem = GetSystem<RenderingSystem>();
-            
             
             Current = DefaultWorld();
             
@@ -43,7 +36,6 @@ namespace MononokeEngine.ECS
             EcsWorld world = new EcsWorld();
             // TODO default stuff
             
-            world.AddSystem(_renderingSystem);
             return world;
         }
         

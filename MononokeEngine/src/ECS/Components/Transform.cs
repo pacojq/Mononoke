@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
-using MononokeEngine.ECS;
 
-namespace MononokeEngine.Components
+namespace MononokeEngine.ECS.Components
 {
     public class Transform : IComponent
     {
@@ -12,5 +11,16 @@ namespace MononokeEngine.Components
         public bool Active => true;
         public bool Visible => false;
         public Entity Entity { get; set; }
+        
+        
+        public void Update()
+        {
+            
+        }
+
+        public void Render()
+        {
+            
+        }
     }
 }

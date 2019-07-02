@@ -1,6 +1,6 @@
-using MononokeEngine.ECS;
+using MonoGarden.ECS;
 
-namespace MononokeEngine.Components
+namespace MonoGarden.Components
 {
     public interface IRenderizableComponent : IComponent
     {

@@ -1,11 +1,13 @@
+
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MononokeEngine.ECS;
-using MononokeEngine.Graphics;
+using MonoGarden.Core;
+using MonoGarden.Graphics;
 
-namespace MononokeEngine.Components.Graphics
+namespace MonoGarden.Components.Graphics
 {
-    public class SpriteRenderer : Component
+    public class SpriteRenderer : Component, IRenderizableComponent
     {
         public Sprite Sprite;
 
@@ -30,12 +32,12 @@ namespace MononokeEngine.Components.Graphics
         
         
         
-        public override void Render()
+        public void Render()
         {
             if (Sprite == null)
                 return;
 
-            Mononoke.Graphics.SpriteBatch.Draw(
+            MnkGraphics.SpriteBatch.Draw(
                 Sprite.Texture, 
                 Position, 
                 Sprite.ClipRect, 

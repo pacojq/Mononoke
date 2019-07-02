@@ -1,15 +1,13 @@
 using Microsoft.Xna.Framework;
-using MononokeEngine.ECS;
-using MononokeEngine.Physics;
+using MonoGarden.Core;
+using MonoGarden.Physics;
 
-namespace MononokeEngine.Components.Colliders
+namespace MonoGarden.Components.Colliders
 {
 	public abstract class Collider : Component, ICollider
 	{
 		public float Width { get; protected set; }
 		public float Height { get; protected set; }
-		
-		public bool IsTrigger { get; protected set; }
 		
 		public float Top { get; protected set; }
 		public float Bottom { get; protected set; }

@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using MononokeEngine.ECS;
+using Microsoft.Xna.Framework;
+using MonoGarden.ECS;
+using MonoGarden.Layers;
+using MonoGarden.Systems;
 
-namespace MononokeEngine.Scenes
+namespace MonoGarden.Core
 {
 	public abstract class Scene : IEnumerable<Entity>, IEnumerable
     {
 
+        private RenderingSystem _renderingSystem;
 
         private List<Layer> _layers;
         public Layer DefaultLayer { get; }
@@ -29,6 +34,8 @@ namespace MononokeEngine.Scenes
             _layers = new List<Layer>();
             DefaultLayer = new Layer();
             _layers.Add(DefaultLayer);
+            
+            _renderingSystem = MnkEcs.GetSystem<RenderingSystem>();
         }
         
         
@@ -49,8 +56,8 @@ namespace MononokeEngine.Scenes
         public virtual void BeforeUpdate()
         {
             if (!Paused)
-                TimeActive += MononokeGame.DeltaTime;
-            RawTimeActive += MononokeGame.RawDeltaTime;
+                TimeActive += MnkGame.DeltaTime;
+            RawTimeActive += MnkGame.RawDeltaTime;
         }
         
         
@@ -79,10 +86,7 @@ namespace MononokeEngine.Scenes
 
         public virtual void Render()
         {
-            foreach (Entity e in Entities)
-            {
-                e.Render();
-            }
+            _renderingSystem.Update();
         }
 
         public virtual void AfterRender()
@@ -106,7 +110,7 @@ namespace MononokeEngine.Scenes
         {
             Entities.Add(entity);
             layer.Add(entity);
-            Mononoke.Ecs.Current.AddEntity(entity);
+            MnkEcs.Current.AddEntity(entity);
         }
 
         public void Remove(Entity entity)
