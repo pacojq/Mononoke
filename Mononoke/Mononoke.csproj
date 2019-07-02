@@ -63,6 +63,9 @@
         <Compile Include="src\Core\Scene.cs" />
         <Compile Include="src\Core\System.cs" />
         <Compile Include="src\Core\Transform.cs" />
+        <Compile Include="src\DataStructures\Heaps\BinaryHeap.cs" />
+        <Compile Include="src\DataStructures\Heaps\HeapNode.cs" />
+        <Compile Include="src\DataStructures\Heaps\IBinaryHeap.cs" />
         <Compile Include="src\ECS\EcsFilter.cs" />
         <Compile Include="src\ECS\EcsWorld.cs" />
         <Compile Include="src\ECS\IComponent.cs" />
@@ -78,6 +81,15 @@
         <Compile Include="src\Input\KeyboardInput.cs" />
         <Compile Include="src\Input\MnkInput.cs" />
         <Compile Include="src\MnkGame.cs" />
+        <Compile Include="src\Pathfinding\AStar\AStarNode.cs" />
+        <Compile Include="src\Pathfinding\AStar\AStarGrid.cs" />
+        <Compile Include="src\Pathfinding\AStar\AStarPathfinder.cs" />
+        <Compile Include="src\Pathfinding\IGrid.cs" />
+        <Compile Include="src\Pathfinding\IPathfinder.cs" />
+        <Compile Include="src\Pathfinding\JPS\JpsGrid.cs" />
+        <Compile Include="src\Pathfinding\JPS\JpsPathfinder.cs" />
+        <Compile Include="src\Pathfinding\JPS\JpsNode.cs" />
+        <Compile Include="src\Pathfinding\Vec2.cs" />
         <Compile Include="src\Physics\ICollider.cs" />
         <Compile Include="src\Systems\RenderingSystem.cs" />
         <Compile Include="src\Utils\MnkMath.cs" />
