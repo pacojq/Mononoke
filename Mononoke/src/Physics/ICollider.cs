@@ -8,6 +8,8 @@ namespace Mononoke.Physics
         float Width { get; }
         float Height { get; }
         
+        bool IsTrigger { get; }
+        
         float Top { get; }
         float Bottom { get; }
         float Left { get; }
