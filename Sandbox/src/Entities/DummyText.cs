@@ -1,6 +1,6 @@
-using Mononoke.Components.Graphics;
-using Mononoke.Core;
 using Microsoft.Xna.Framework;
+using MononokeEngine.Components.Graphics;
+using MononokeEngine.ECS;
 
 namespace Sandbox.Entities
 {

@@ -1,28 +1,36 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Mononoke.Components;
-using Mononoke.Core;
-using Mononoke.Input;
+using MononokeEngine.Components;
+using MononokeEngine.ECS;
+using MononokeEngine.Input;
 
 namespace Sandbox.Components
 {
     public class PlayerComponent : Component, IUpdatableComponent
     {
+
+        private KeyboardInput _input;
+
+        public PlayerComponent()
+        {
+            _input = MononokeEngine.Mononoke.Input.Keyboard;
+        }
+        
         
         public void Update()
         {
             Vector2 pos = this.Entity.Position;
             
-            if (MnkInput.Keyboard.IsKeyHeld(Keys.Right))
+            if (_input.IsKeyHeld(Keys.Right))
                 pos.X++;
             
-            if (MnkInput.Keyboard.IsKeyHeld(Keys.Left))
+            if (_input.IsKeyHeld(Keys.Left))
                 pos.X--;
             
-            if (MnkInput.Keyboard.IsKeyHeld(Keys.Down))
+            if (_input.IsKeyHeld(Keys.Down))
                 pos.Y++;
             
-            if (MnkInput.Keyboard.IsKeyHeld(Keys.Up))
+            if (_input.IsKeyHeld(Keys.Up))
                 pos.Y--;
 
             this.Entity.Position = pos;

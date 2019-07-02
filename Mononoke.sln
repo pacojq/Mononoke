@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mononoke", "Mononoke\Mononoke.csproj", "{419D62D0-9FF6-4C89-8E2E-BAFD0781FBB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MononokeEngine", "MononokeEngine\MononokeEngine.csproj", "{419D62D0-9FF6-4C89-8E2E-BAFD0781FBB1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.csproj", "{45E9C426-1F5C-46EE-ABF8-86DF53C00549}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mononoke.Tests", "Mononoke.Tests\Mononoke.Tests.csproj", "{D2B0D061-202D-496F-A85F-DBF8B89468D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MononokeEngine.Tests", "MononokeEngine.Tests\MononokeEngine.Tests.csproj", "{D2B0D061-202D-496F-A85F-DBF8B89468D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

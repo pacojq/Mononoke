@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
-using Mononoke;
-using Mononoke.Core;
+using MononokeEngine;
+using MononokeEngine.Scenes;
 using Sandbox.Entities;
 
 namespace Sandbox.Scenes
@@ -15,8 +15,8 @@ namespace Sandbox.Scenes
             {
                 var p = new DummyPlayer();
                 Add(p);
-                p.X = rand.Next(MnkGame.Width);
-                p.Y = rand.Next(MnkGame.Height);
+                p.X = rand.Next(MononokeGame.Width);
+                p.Y = rand.Next(MononokeGame.Height);
             }
 
         }

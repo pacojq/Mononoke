@@ -4,16 +4,17 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{45E9C426-1F5C-46EE-ABF8-86DF53C00549}</ProjectGuid>
-        <OutputType>Exe</OutputType>
+        <ProjectGuid>{D2B0D061-202D-496F-A85F-DBF8B89468D1}</ProjectGuid>
+        <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>Sandbox</RootNamespace>
-        <AssemblyName>Sandbox</AssemblyName>
+        <RootNamespace>Mononoke.Tests</RootNamespace>
+        <AssemblyName>MononokeEngine.Tests</AssemblyName>
         <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-        <PlatformTarget>x86</PlatformTarget>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
@@ -21,60 +22,37 @@
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
-        <Prefer32bit>false</Prefer32bit>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-        <PlatformTarget>x86</PlatformTarget>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugType>pdbonly</DebugType>
         <Optimize>true</Optimize>
         <OutputPath>bin\Release\</OutputPath>
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
-        <Prefer32bit>false</Prefer32bit>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553">
           <HintPath>..\Mononoke\lib\Microsoft.Xna.Framework.dll</HintPath>
         </Reference>
-        <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553">
-          <HintPath>..\Mononoke\lib\Microsoft.Xna.Framework.Game.dll</HintPath>
-        </Reference>
-        <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553">
-          <HintPath>..\Mononoke\lib\Microsoft.Xna.Framework.Graphics.dll</HintPath>
-        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
+        <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+            <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="src\Components\PlayerComponent.cs" />
-        <Compile Include="src\Entities\DummyPlayer.cs" />
-        <Compile Include="src\Entities\DummyText.cs" />
-        <Compile Include="src\Entities\Solid.cs" />
-        <Compile Include="src\Program.cs" />
-        <Compile Include="src\SandboxGame.cs" />
-        <Compile Include="src\Scenes\Scene1.cs" />
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Content" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Content Include="Content\**\*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-
     <ItemGroup>
       <ProjectReference Include="..\MononokeEngine\MononokeEngine.csproj">
         <Project>{419d62d0-9ff6-4c89-8e2e-bafd0781fbb1}</Project>
         <Name>MononokeEngine</Name>
       </ProjectReference>
     </ItemGroup>
-    
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,11 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Mononoke.Components.Colliders;
-using Mononoke.Components.Graphics;
-using Mononoke.Core;
-using Mononoke.Graphics;
-using Mononoke.Input;
+using MononokeEngine.Components.Colliders;
+using MononokeEngine.Components.Graphics;
+using MononokeEngine.ECS;
+using MononokeEngine.Graphics;
 using Sandbox.Components;
 
 namespace Sandbox.Entities
@@ -20,7 +19,7 @@ namespace Sandbox.Entities
         {
             Sprite[] sprites = new Sprite[4];
             for (int i = 1; i <= 4; i++)
-                sprites[i - 1] = MnkGraphics.LoadSprite("char0" + i);
+                sprites[i - 1] = GraphicsManager.LoadSprite("char0" + i);
             
             Animation anim = new Animation(sprites, "walk");
             AnimationController contr = new AnimationController(anim);

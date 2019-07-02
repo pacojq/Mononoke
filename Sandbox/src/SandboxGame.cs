@@ -1,12 +1,11 @@
 using System;
 using Microsoft.Xna.Framework;
-using Mononoke;
-using Mononoke.Core;
+using MononokeEngine;
 using Sandbox.Scenes;
 
 namespace Sandbox
 {
-    public class SandboxGame : MnkGame
+    public class SandboxGame : MononokeGame
     {
         
         public const int ScreenWidth = 480;

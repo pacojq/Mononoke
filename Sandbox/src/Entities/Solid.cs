@@ -1,7 +1,5 @@
-using Mononoke.Components.Colliders;
-using Mononoke.Components.Graphics;
-using Mononoke.Core;
-using Mononoke.Physics;
+using MononokeEngine.Components.Colliders;
+using MononokeEngine.ECS;
 
 namespace Sandbox.Entities
 {
