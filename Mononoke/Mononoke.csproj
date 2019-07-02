@@ -61,18 +61,17 @@
         <Compile Include="src\Core\Entity.cs" />
         <Compile Include="src\Core\Layer.cs" />
         <Compile Include="src\Core\Scene.cs" />
-        <Compile Include="src\Core\System.cs" />
         <Compile Include="src\Core\Transform.cs" />
         <Compile Include="src\DataStructures\Heaps\BinaryHeap.cs" />
         <Compile Include="src\DataStructures\Heaps\HeapNode.cs" />
         <Compile Include="src\DataStructures\Heaps\IBinaryHeap.cs" />
-        <Compile Include="src\ECS\EcsFilter.cs" />
+        <Compile Include="src\ECS\EcsSystem.cs" />
+        <Compile Include="src\ECS\EcsUtil.cs" />
         <Compile Include="src\ECS\EcsWorld.cs" />
         <Compile Include="src\ECS\IComponent.cs" />
         <Compile Include="src\ECS\IEntity.cs" />
         <Compile Include="src\ECS\ISystem.cs" />
         <Compile Include="src\ECS\MnkEcs.cs" />
-        <Compile Include="src\ECS\EcsUtil.cs" />
         <Compile Include="src\Graphics\Animation.cs" />
         <Compile Include="src\Graphics\AnimationController.cs" />
         <Compile Include="src\Graphics\MnkGraphics.cs" />
@@ -100,6 +99,7 @@
       <Content Include="lib\Microsoft.Xna.Framework.dll" />
       <Content Include="lib\Microsoft.Xna.Framework.Game.dll" />
       <Content Include="lib\Microsoft.Xna.Framework.Graphics.dll" />
+      <Content Include="src\ECS\README.txt" />
     </ItemGroup>
 	
 	<ItemGroup>

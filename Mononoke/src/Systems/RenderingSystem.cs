@@ -1,22 +1,14 @@
-using System;
+
 using Mononoke.Components;
-using Mononoke.ECS;
+using Mononoke.Core;
 
 namespace Mononoke.Systems
 {
-    public class RenderingSystem : Core.System<RenderingSystem.Filter>
+    public class RenderingSystem : EcsSystem<IRenderizableComponent>
     {
-
-        public struct Filter
+        protected override void UpdateEntity(IRenderizableComponent entity)
         {
-            public IRenderizableComponent Renderizable;
-        }
-
-
-
-        protected override void UpdateEntity(Filter e)
-        {
-            e.Renderizable.Render();
+            entity.Render();
         }
     }
     
