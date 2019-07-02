@@ -4,7 +4,7 @@ using MononokeEngine.Graphics;
 
 namespace MononokeEngine.Components.Graphics
 {
-    public class Animator : Component, IUpdatableComponent
+    public class AnimationComponent : Component, IUpdatableComponent
     {
 
         public SpriteRenderer Renderer;
@@ -19,7 +19,7 @@ namespace MononokeEngine.Components.Graphics
         
         
         
-        public Animator(SpriteRenderer renderer, AnimationController controller)
+        public AnimationComponent(SpriteRenderer renderer, AnimationController controller)
         {
             Renderer = renderer;
             Controller = controller;

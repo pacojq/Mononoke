@@ -6,12 +6,12 @@ namespace MononokeEngine.Graphics
     public class Sprite
     {
         
-        public Texture2D Texture { get; private set; }
-        public Rectangle ClipRect { get; private set; }
+        public Texture2D Texture { get; }
+        public Rectangle ClipRect { get; }
             
-        public Vector2 DrawOffset { get; private set; }
-        public int Width { get; private set; }
-        public int Height { get; private set; }
+        public Vector2 DrawOffset { get; set; }
+        public int Width { get; }
+        public int Height { get; }
         
         
         

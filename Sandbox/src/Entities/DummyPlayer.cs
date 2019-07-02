@@ -13,7 +13,7 @@ namespace Sandbox.Entities
     {
         
         private SpriteRenderer _renderer;
-        private Animator _animator;
+        private AnimationComponent _animationComponent;
         
         public DummyPlayer()
         {
@@ -25,10 +25,10 @@ namespace Sandbox.Entities
             AnimationController contr = new AnimationController(anim);
             
             _renderer = new SpriteRenderer( sprites[0] );
-            _animator = new Animator(_renderer, contr);
+            _animationComponent = new AnimationComponent(_renderer, contr);
             
             Bind(_renderer);
-            Bind(_animator);
+            Bind(_animationComponent);
             Bind(new BoxCollider(32, 32));
             Bind(new PlayerComponent());
         }

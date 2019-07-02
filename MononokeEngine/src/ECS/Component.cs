@@ -7,6 +7,12 @@ namespace MononokeEngine.ECS
 	{
 
 		private Entity _entity;
+		
+		
+		public bool Active { get; set; }
+		public bool Visible { get; set; }
+		
+
 		public Entity Entity
 		{
 			get => _entity;
