@@ -2,17 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using MononokeEngine.Components;
-using MononokeEngine.Components.Exceptions;
-using MononokeEngine.ECS.Components;
+using MononokeEngine.Graphics;
+using MononokeEngine.Physics;
 using MononokeEngine.Scenes;
 
 namespace MononokeEngine.ECS
 {
-	public class Entity : IEnumerable<IComponent>
+	public class Entity : IEnumerable<Component>
     {
-        
-        #region // - - - - - Properties - - - - - //
         
 
         public Scene Scene { get; internal set; }
@@ -31,8 +28,10 @@ namespace MononokeEngine.ECS
         }
 
 
-        public IEnumerable<IComponent> Components => _components.Values;
+        public IEnumerable<Component> Components => _components;
+        private readonly List<Component> _components;
         
+        private readonly List<Graphic> _graphics;
 
         
 
@@ -44,6 +43,8 @@ namespace MononokeEngine.ECS
             get => _depth;
             set => _depth = value;
         }
+        
+        internal int _depth = 0;
 
         /// <summary>
         /// Shortcut to get and set <see cref="Position"/>.X
@@ -63,43 +64,47 @@ namespace MononokeEngine.ECS
             set => Position += new Vector2(0, value);
         }
         
-        #endregion
 
 
-
-        
-
-        #region // - - - - - Fields - - - - - //
-
-        
         
         public bool Active = true;
         public bool Visible = true;
         public bool Collidable = true;
         
-        internal int _depth = 0;
 
 
-        private Dictionary<Type, IComponent> _components;
         
-        #endregion
         
         
         
 
         public Entity(Vector2 position)
         {
-            Position = position;
-            _components = new Dictionary<Type, IComponent>();
+            _components = new List<Component>();
+            _graphics = new List<Graphic>();
+            
             
             Transform = new Transform();
             Bind(Transform);
+            
+            Position = position;
         }
 
         // Util constructor
         public Entity() : this(Vector2.Zero) { }
         
         
+        
+        
+        
+        public void BeforeUpdate()
+        {
+            foreach (Component c in Components)
+            {
+                if (c.Active)
+                    c.BeforeUpdate();
+            }
+        }
         
 
         /// <summary>
@@ -109,7 +114,7 @@ namespace MononokeEngine.ECS
         /// </summary>
         public void Update()
         {
-            foreach (IComponent c in Components)
+            foreach (Component c in Components)
             {
                 if (c.Active)
                     c.Update();
@@ -117,12 +122,23 @@ namespace MononokeEngine.ECS
         }
         
         
+        
+        public void AfterUpdate()
+        {
+            foreach (Component c in Components)
+            {
+                if (c.Active)
+                    c.AfterUpdate();
+            }
+        }
+        
+        
         public void Render()
         {
-            foreach (IComponent c in Components)
+            foreach (Graphic g in _graphics)
             {
-                if (c.Visible)
-                    c.Render();
+                if (g.Visible)
+                    g.Render();
             }
         }
         
@@ -134,44 +150,45 @@ namespace MononokeEngine.ECS
         
         #region // - - - - - IComponent Management - - - - - //
 
-        public void Bind(IComponent component)
+        public void Bind(Component component)
         {
             if (component.Entity != null)
                 throw new InvalidComponentStateException("Cannot add a component that is already bound to an entity.");
 
             Type t = component.GetType();
             
-            // Check it's no repeated
-            if (_components.ContainsKey(t))
-                throw new InvalidComponentStateException("An entity can only have one component of a type.");
+            _components.Add(component);
+            if (component is Graphic)
+                _graphics.Add((Graphic) component);
             
-            _components.Add(t, component);
             component.Entity = this;
         }
         
 
-        public void Unbind(IComponent component)
+        public void Unbind(Component component)
         {
             component.Entity = null;
             
             Type t = component.GetType();
-            _components.Remove(t);
+            _components.Remove(component);
+            if (component is Graphic)
+                _graphics.Remove((Graphic) component);
         }
 
-        public void Bind(params IComponent[] components)
+        public void Bind(params Component[] components)
         {
             foreach (var c in components)
                 Bind(c);
             
         }
 
-        public void Unbind(params IComponent[] components)
+        public void Unbind(params Component[] components)
         {
             foreach (var c in components)
                 Unbind(c);
         }
 
-        public IEnumerator<IComponent> GetEnumerator()
+        public IEnumerator<Component> GetEnumerator()
         {
             return Components.GetEnumerator();
         }

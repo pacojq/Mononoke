@@ -1,10 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MononokeEngine.ECS;
 
-namespace MononokeEngine.Components.Graphics
+namespace MononokeEngine.Graphics.Components
 {
-    public class TextRenderer : Component
+    public class TextRenderer : Graphic
     {
         public enum HorizontalAlign { Left, Center, Right };
         public enum VerticalAlign { Top, Center, Bottom };

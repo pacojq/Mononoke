@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MononokeEngine.ECS;
+using MononokeEngine.Physics;
 
 namespace MononokeEngine.Scenes
 {
@@ -16,7 +17,7 @@ namespace MononokeEngine.Scenes
         public float RawTimeActive { get; private set; }
         public List<Entity> Entities { get; }
         
-        
+        public Space Space { get; }
         
         public bool Paused;
         
@@ -25,6 +26,7 @@ namespace MononokeEngine.Scenes
         public Scene()
         {
             Entities = new List<Entity>();
+            Space = new Space();
             
             _layers = new List<Layer>();
             DefaultLayer = new Layer();
@@ -51,6 +53,11 @@ namespace MononokeEngine.Scenes
             if (!Paused)
                 TimeActive += MononokeGame.DeltaTime;
             RawTimeActive += MononokeGame.RawDeltaTime;
+            
+            foreach (Entity e in Entities)
+            {
+                e.BeforeUpdate();
+            }
         }
         
         
@@ -60,6 +67,8 @@ namespace MononokeEngine.Scenes
         {
             if (Paused)
                 return;
+            
+            Space.Update();
         
             foreach (Entity e in Entities)
             {
@@ -69,9 +78,14 @@ namespace MononokeEngine.Scenes
 
         public virtual void AfterUpdate()
         {
-            
+            foreach (Entity e in Entities)
+            {
+                e.AfterUpdate();
+            }
         }
 
+        
+        
         public virtual void BeforeRender()
         {
             

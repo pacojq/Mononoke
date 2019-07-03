@@ -1,18 +1,15 @@
 using Microsoft.Xna.Framework;
-using MononokeEngine.Components.Exceptions;
 
 namespace MononokeEngine.ECS
 {
-	public abstract class Component : IComponent
+	public abstract class Component
 	{
 
 		private Entity _entity;
 		
 		
 		public bool Active { get; set; }
-		public bool Visible { get; set; }
 		
-
 		public Entity Entity
 		{
 			get => _entity;
@@ -37,18 +34,32 @@ namespace MononokeEngine.ECS
 				return LocalPosition;
 			}
 		}
+
+
+
+		public Component()
+		{
+			Active = true;
+		}
 		
 		
+		
+		
+		public virtual void BeforeUpdate()
+		{
+			
+		}
 		
 		public virtual void Update()
 		{
 			
 		}
-
-		public virtual void Render()
+		
+		public virtual void AfterUpdate()
 		{
 			
 		}
+
 
 	}
 }

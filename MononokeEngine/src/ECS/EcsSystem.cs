@@ -1,6 +1,6 @@
 namespace MononokeEngine.ECS
 {
-    public abstract class EcsSystem<T> : ISystem where T : IComponent
+    public abstract class EcsSystem<T> : ISystem where T : Component
     {
 
         private T[] _entities;

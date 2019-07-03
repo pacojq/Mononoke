@@ -1,11 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MononokeEngine.ECS;
-using MononokeEngine.Graphics;
 
-namespace MononokeEngine.Components.Graphics
+namespace MononokeEngine.Graphics.Components
 {
-    public class SpriteRenderer : Component
+    public class SpriteRenderer : Graphic
     {
         public Sprite Sprite;
 

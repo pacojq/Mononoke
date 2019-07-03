@@ -6,7 +6,7 @@ namespace MononokeEngine.ECS
     public static class EntityExtensions
     {
         
-        public static T GetComponent<T>(this Entity e) where T : IComponent
+        public static T GetComponent<T>(this Entity e) where T : Component
         {
             foreach (var c in e.Components)
                 if (CheckComponent(c, typeof(T)))
@@ -19,7 +19,7 @@ namespace MononokeEngine.ECS
         /// Determines whether a type is the same as another type.
         /// It will also check inheritance and interface implementation.
         /// </summary>
-        private static bool CheckComponent(IComponent comp, Type target)
+        private static bool CheckComponent(Component comp, Type target)
         {
             Type actual = comp.GetType();
             

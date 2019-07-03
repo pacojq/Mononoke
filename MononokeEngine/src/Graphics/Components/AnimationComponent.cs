@@ -1,8 +1,7 @@
 using System;
 using MononokeEngine.ECS;
-using MononokeEngine.Graphics;
 
-namespace MononokeEngine.Components.Graphics
+namespace MononokeEngine.Graphics.Components
 {
     public class AnimationComponent : Component
     {

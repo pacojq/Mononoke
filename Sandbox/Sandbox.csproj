@@ -51,15 +51,12 @@
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="src\Components\PlayerComponent.cs" />
+        <Compile Include="src\Entities\DummyBox.cs" />
         <Compile Include="src\Entities\DummyPlayer.cs" />
         <Compile Include="src\Entities\DummyText.cs" />
-        <Compile Include="src\Entities\Solid.cs" />
         <Compile Include="src\Program.cs" />
         <Compile Include="src\SandboxGame.cs" />
         <Compile Include="src\Scenes\Scene1.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Content" />
     </ItemGroup>
 
     <ItemGroup>

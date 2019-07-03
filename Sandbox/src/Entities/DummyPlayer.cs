@@ -1,9 +1,10 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MononokeEngine.Components.Graphics;
 using MononokeEngine.ECS;
 using MononokeEngine.Graphics;
+using MononokeEngine.Graphics.Components;
 using MononokeEngine.Physics.Colliders;
 using Sandbox.Components;
 
@@ -29,6 +30,13 @@ namespace Sandbox.Entities
             
             Bind(_renderer);
             Bind(_animationComponent);
+
+            var col = new BoxCollider(32, 32);
+            col.OnCollisionEnter += other =>
+            {
+                Console.WriteLine("Collision enter!");
+            }; 
+            
             Bind(new BoxCollider(32, 32));
             Bind(new PlayerComponent());
         }

@@ -1,6 +1,6 @@
 using System;
 
-namespace MononokeEngine.Components.Exceptions
+namespace MononokeEngine.ECS
 {
     public class InvalidComponentStateException : Exception
     {

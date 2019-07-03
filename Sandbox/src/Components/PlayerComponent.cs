@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MononokeEngine.Components;
 using MononokeEngine.ECS;
 using MononokeEngine.Input;
 
