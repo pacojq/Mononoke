@@ -8,6 +8,5 @@ namespace MononokeEngine.Physics.Colliders
             Width = width;
             Height = height;
         }
-        
     }
 }
