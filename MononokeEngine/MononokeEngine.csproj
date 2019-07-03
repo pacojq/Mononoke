@@ -32,6 +32,7 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="Microsoft.CSharp" />
         <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553">
           <HintPath>lib\Microsoft.Xna.Framework.dll</HintPath>
         </Reference>
@@ -78,6 +79,7 @@
         <Compile Include="src\Physics\Colliders\LineCollider.cs" />
         <Compile Include="src\Physics\Colliders\MaskCollider.cs" />
         <Compile Include="src\Physics\Colliders\PointCollider.cs" />
+        <Compile Include="src\Physics\CollisionChecks.cs" />
         <Compile Include="src\Physics\EntityExtensions.cs" />
         <Compile Include="src\Physics\RayCast.cs" />
         <Compile Include="src\Physics\Space.cs" />

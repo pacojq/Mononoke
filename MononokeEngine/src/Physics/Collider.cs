@@ -58,8 +58,13 @@ namespace MononokeEngine.Physics
 			OnCollisionExit = other => { };
 		}
 
-
-
+		
+		public virtual bool PlaceMeeting(Collider other)
+		{
+			return CollisionChecks.PlaceMeeting(this, other);
+		}
+		
+		
 
 		
 		// Executed just after the physics update
