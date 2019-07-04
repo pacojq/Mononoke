@@ -33,16 +33,17 @@ namespace MononokeEngine.Graphics.Components
             if (Sprite == null)
                 return;
 
-            Mononoke.Graphics.SpriteBatch.Draw(
-                Sprite.Texture, 
-                Position, 
-                Sprite.ClipRect, 
-                Color.White, 
-                Rotation,
-                Vector2.Zero, // TODO origin
-                Scale, 
-                Flip, 
-                0);
+            Mononoke.Graphics.Draw.SpriteExt(
+                    Sprite, 
+                    Position, 
+                    Color.White, 
+                    Rotation, 
+                    Vector2.Zero, 
+                    Scale, 
+                    Flip, 
+                    0
+                );
+            
         }
     }
 }

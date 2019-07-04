@@ -17,7 +17,6 @@ namespace MononokeEngine
     {
         
         
-        #region // - - - - - Properties - - - - - //
         
         public static MononokeGame Instance { get; private set; }
         
@@ -29,20 +28,8 @@ namespace MononokeEngine
         public static float RawDeltaTime { get; private set; }
         
         
-        public static string ContentDirectory
-        {
-#if PS4
-            get { return Path.Combine("/app0/", Instance.Content.RootDirectory); }
-#elif NSWITCH
-            get { return Path.Combine("rom:/", Instance.Content.RootDirectory); }
-#elif XBOXONE
-            get { return Instance.Content.RootDirectory; }
-#else
-            get { return Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"Content"/*Instance.Content.RootDirectory*/); }
-#endif
-        }
         
-        #endregion
+        
 
 
 
@@ -204,6 +191,10 @@ namespace MononokeEngine
             Render();
             base.Draw(gameTime);
             
+            // Now we actually render
+            Mononoke.Graphics.Render();
+            
+            
             //Frame counter
             _fpsCounter++;
             counterElapsed += gameTime.ElapsedGameTime;
@@ -220,6 +211,9 @@ namespace MononokeEngine
         }
 
 
+        /// <summary>
+        /// Here's the point well all game components perform render calls
+        /// </summary>
         private void Render()
         {
             if (_scene != null)
@@ -231,9 +225,7 @@ namespace MononokeEngine
 
             if (_scene != null)
             {
-                Mononoke.Graphics.SpriteBatch.Begin();
                 _scene.Render();
-                Mononoke.Graphics.SpriteBatch.End();
                 _scene.AfterRender();
             }
         }
