@@ -68,6 +68,7 @@ namespace MononokeEngine.Scenes
             if (Paused)
                 return;
             
+            // Update the space
             Space.Update();
         
             foreach (Entity e in Entities)
@@ -119,13 +120,25 @@ namespace MononokeEngine.Scenes
         public void Add(Entity entity, Layer layer)
         {
             Entities.Add(entity);
+            entity.Scene = this;
+            
             layer.Add(entity);
+            
+            Space.AddEntity(entity);
+            foreach (var col in entity.GetComponents<Collider>())
+                Space.AddCollider(col);
+            
             Mononoke.Ecs.Current.AddEntity(entity);
         }
 
         public void Remove(Entity entity)
         {
             Entities.Remove(entity);
+            
+            foreach (var col in entity.GetComponents<Collider>())
+                Space.RemoveCollider(col);
+            
+            Space.RemoveEntity(entity);
         }
 
         public void Add(params Entity[] entities)

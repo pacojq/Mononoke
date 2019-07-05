@@ -26,8 +26,15 @@ namespace MononokeEngine.ECS
             get => Transform.Position;
             set => Transform.Position = value;
         }
+        
+        
+        /// <summary>
+        /// The position of the Entity in the previous frame.
+        /// </summary>
+        public Vector2 PreviousPosition { get; private set; }
 
 
+        
         public IEnumerable<Component> Components => _components;
         private readonly List<Component> _components;
         
@@ -46,14 +53,24 @@ namespace MononokeEngine.ECS
         
         internal int _depth = 0;
 
+        
+        
+        
         /// <summary>
         /// Shortcut to get and set <see cref="Position"/>.X
         /// </summary>
         public float X
         {
             get => Position.X;
-            set => Position += new Vector2(value, 0);
+            set => Position = new Vector2(value, Position.Y);
         }
+        
+        /// <summary>
+        /// Shortcut to get and set <see cref="PreviousPosition"/>.X
+        /// </summary>
+        public float PreviousX => PreviousPosition.X;
+        
+        
 
         /// <summary>
         /// Shortcut to get and set <see cref="Position"/>.Y
@@ -61,15 +78,21 @@ namespace MononokeEngine.ECS
         public float Y
         {
             get => Position.Y;
-            set => Position += new Vector2(0, value);
+            set => Position = new Vector2(Position.X, value);
         }
+
+        /// <summary>
+        /// Shortcut to get and set <see cref="PreviousPosition"/>.Y
+        /// </summary>
+        public float PreviousY => PreviousPosition.Y;
         
 
 
         
-        public bool Active = true;
-        public bool Visible = true;
-        public bool Collidable = true;
+        public bool Active { get; set; }
+        public bool Visible { get; set; }
+        public bool Collidable { get; set; }
+    
         
 
 
@@ -88,6 +111,11 @@ namespace MononokeEngine.ECS
             Bind(Transform);
             
             Position = position;
+            PreviousPosition = position;
+
+            Active = true;
+            Visible = true;
+            Collidable = true;
         }
 
         // Util constructor
@@ -130,6 +158,8 @@ namespace MononokeEngine.ECS
                 if (c.Active)
                     c.AfterUpdate();
             }
+
+            PreviousPosition = Position;
         }
         
         
@@ -156,11 +186,17 @@ namespace MononokeEngine.ECS
                 throw new InvalidComponentStateException("Cannot add a component that is already bound to an entity.");
 
             Type t = component.GetType();
-            
             _components.Add(component);
+            
             if (component is Graphic)
                 _graphics.Add((Graphic) component);
-            
+
+            if (Scene != null)
+            {
+                if (component is Collider)
+                    Scene.Space.AddCollider((Collider) component);   
+            }
+
             component.Entity = this;
         }
         
@@ -171,8 +207,15 @@ namespace MononokeEngine.ECS
             
             Type t = component.GetType();
             _components.Remove(component);
+            
             if (component is Graphic)
                 _graphics.Remove((Graphic) component);
+
+            if (Scene != null)
+            {
+                if (component is Collider)
+                    Scene.Space.RemoveCollider((Collider) component);
+            }
         }
 
         public void Bind(params Component[] components)

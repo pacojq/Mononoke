@@ -18,10 +18,10 @@ namespace MononokeEngine.Physics
 		public bool IsTrigger { get; set; }
 
 
-		public virtual float Top { get; protected set; }
-		public virtual float Bottom { get; protected set; }
-		public virtual float Left { get; protected set; }
-		public virtual float Right { get; protected set; }
+		public virtual float Top { get; }
+		public virtual float Bottom { get; }
+		public virtual float Left { get; }
+		public virtual float Right { get; }
 		
 		
 		public virtual float CenterX { get; protected set; }
