@@ -113,6 +113,8 @@
         <Compile Include="src\Utils\Pathfinding\JPS\JpsPathfinder.cs" />
         <Compile Include="src\Utils\Pathfinding\Vec2.cs" />
         <Compile Include="src\Utils\Random.cs" />
+        <Compile Include="src\Utils\Terminal\ITerminalCommand.cs" />
+        <Compile Include="src\Utils\Terminal\TerminalManager.cs" />
         <Compile Include="src\Utils\Util.cs" />
     </ItemGroup>
     <ItemGroup>
