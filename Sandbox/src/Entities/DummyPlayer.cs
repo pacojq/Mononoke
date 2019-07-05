@@ -39,6 +39,7 @@ namespace Sandbox.Entities
             
             Bind(new BoxCollider(32, 32));
             Bind(new PlayerComponent());
+            Bind(new RectDrawer(32, 32));
         }
 
         

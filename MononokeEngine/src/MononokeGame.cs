@@ -216,6 +216,9 @@ namespace MononokeEngine
         /// </summary>
         private void Render()
         {
+            Mononoke.Graphics.Open();
+            
+            
             if (_scene != null)
                 _scene.BeforeRender();
 
@@ -228,6 +231,9 @@ namespace MononokeEngine
                 _scene.Render();
                 _scene.AfterRender();
             }
+
+
+            Mononoke.Graphics.Close();
         }
         
 

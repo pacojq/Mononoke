@@ -10,18 +10,27 @@ namespace MononokeEngine.Graphics
 {
     public class GraphicsManager
     {
+        
+        /// <summary>
+        /// A texture which is just a white pixel.
+        /// </summary>
+        public Texture Pixel { get; private set; }
+        
+        
+        
        
         internal GraphicsDevice GraphicsDevice { get; private set; }
         internal SpriteBatch SpriteBatch { get; private set; }
         public SpriteFont DefaultFont { get; private set; }
 
+        
+        /// <summary>
+        /// Draw helper.
+        /// </summary>
         public Draw Draw { get; private set; }
        
 
-        internal GraphicsManager()
-        {
-            
-        }
+        internal GraphicsManager() { }
 
         internal void Initialize(GraphicsDevice graphicsDevice)
         {
@@ -31,14 +40,27 @@ namespace MononokeEngine.Graphics
             
             Draw = new Draw(GraphicsDevice, SpriteBatch);
             Draw.Font = DefaultFont;
+            Draw.Color = Color.White;
+            
+            Pixel = new Texture(1, 1, Color.White);
             
             Console.WriteLine("GraphicsManager initialized!");
         }
 
+        
+        internal void Open()
+        {
+            Draw.Open();
+        }
 
         internal void Render()
         {
             Draw.Render();
+        }
+        
+        internal void Close()
+        {
+            Draw.Close();
         }
         
         

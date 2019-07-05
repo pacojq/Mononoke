@@ -1,0 +1,11 @@
+
+TODO list:
+
+    = PHYSICS!
+    
+    = Pathfinding module
+        - Let's start with Dijkstra
+
+    = A Terminal module. 
+        - We can open the terminal in-game and execute commands.
+        - Each concrete game can extend the terminal with its own commands.

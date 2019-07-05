@@ -64,14 +64,18 @@
         <Compile Include="src\Graphics\Components\SpriteRenderer.cs" />
         <Compile Include="src\Graphics\Components\TextRenderer.cs" />
         <Compile Include="src\Graphics\Drawing\Commands\DrawLine.cs" />
+        <Compile Include="src\Graphics\Drawing\Commands\DrawRect.cs" />
+        <Compile Include="src\Graphics\Drawing\Commands\DrawRectOutline.cs" />
         <Compile Include="src\Graphics\Drawing\Commands\DrawSprite.cs" />
         <Compile Include="src\Graphics\Drawing\Commands\SetFont.cs" />
         <Compile Include="src\Graphics\Drawing\Draw.cs" />
         <Compile Include="src\Graphics\Drawing\IDrawCommand.cs" />
         <Compile Include="src\Graphics\Graphic.cs" />
         <Compile Include="src\Graphics\GraphicsManager.cs" />
+        <Compile Include="src\Graphics\MononokeGraphicsException.cs" />
         <Compile Include="src\Graphics\Sprite.cs" />
         <Compile Include="src\Graphics\Atlas.cs" />
+        <Compile Include="src\Graphics\Texture.cs" />
         <Compile Include="src\Graphics\Tiles\AnimatedTile.cs" />
         <Compile Include="src\Graphics\Tiles\Tile.cs" />
         <Compile Include="src\Graphics\Tiles\TileMap.cs" />
@@ -118,6 +122,7 @@
       <Content Include="lib\Microsoft.Xna.Framework.Graphics.dll" />
       <Content Include="src\ECS\README.txt" />
       <Content Include="src\README.txt" />
+      <Content Include="src\TODO.txt" />
     </ItemGroup>
 	
 	<ItemGroup>
