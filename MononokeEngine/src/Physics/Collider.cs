@@ -16,6 +16,8 @@ namespace MononokeEngine.Physics
 		public virtual float Height { get; protected set; }
 		
 		public bool IsTrigger { get; set; }
+		
+		public Vector2 Center { get; set; }
 
 
 		public virtual float Top { get; }
@@ -46,8 +48,10 @@ namespace MononokeEngine.Physics
 		
 		
 
-		public Collider()
+		public Collider(Vector2 center)
 		{
+			Center = center;
+			
 			_onEnter = new List<Collider>();
 			_onStay = new List<Collider>();
 			_onExit = new List<Collider>();
@@ -58,7 +62,10 @@ namespace MononokeEngine.Physics
 			OnCollisionExit = other => { };
 		}
 
-		
+		public Collider() : this(Vector2.Zero) { }
+
+
+
 		public virtual bool PlaceMeeting(Collider other)
 		{
 			return CollisionChecks.PlaceMeeting(this, other);
@@ -133,10 +140,10 @@ namespace MononokeEngine.Physics
 			foreach (var col in _onExit)
 				OnCollisionExit(col);
 		}
-		
-		
-		
-		
-		
+
+
+		internal abstract void DebugDraw();
+
+
 	}
 }

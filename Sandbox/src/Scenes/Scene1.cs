@@ -19,8 +19,8 @@ namespace Sandbox.Scenes
             Add(b);
             b.X = Random.Next(MononokeGame.Width);
             b.Y = Random.Next(MononokeGame.Height);
-            
 
+            Space.EnableDebugDraw = true;
         }
     }
 }

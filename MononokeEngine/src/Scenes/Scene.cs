@@ -98,6 +98,8 @@ namespace MononokeEngine.Scenes
             {
                 e.Render();
             }
+            
+            Space.DebugDraw();
         }
 
         public virtual void AfterRender()

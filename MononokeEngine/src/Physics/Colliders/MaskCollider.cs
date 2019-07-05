@@ -6,6 +6,9 @@ namespace MononokeEngine.Physics.Colliders
     /// </summary>
     public class MaskCollider : Collider
     {
-        
+        internal override void DebugDraw()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

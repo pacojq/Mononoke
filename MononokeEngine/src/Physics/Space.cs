@@ -13,6 +13,9 @@ namespace MononokeEngine.Physics
 	/// </summary>
 	public class Space
 	{
+		
+		public bool EnableDebugDraw { get; set; }
+		
 		public Vector2 Gravity { get; set; }
 
 
@@ -78,6 +81,20 @@ namespace MononokeEngine.Physics
 			}
 		}
 
+
+
+		internal void DebugDraw()
+		{
+			if (!EnableDebugDraw)
+				return;
+
+			foreach (var col in _colliders)
+				col.DebugDraw();
+		}
+		
+		
+		
+		
 		
 		
 		
