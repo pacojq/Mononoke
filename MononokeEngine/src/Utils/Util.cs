@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+
 namespace MononokeEngine.Utils
 {
     public static class Util
@@ -13,5 +15,20 @@ namespace MononokeEngine.Utils
             a = b;
             b = temp;
         }
+        
+        
+        
+        
+        
+        public static void Approach(ref Vector2 pos, Vector2 target, float percent)
+        {
+            pos += (target - pos) * percent;
+        }
+        
+        public static void Approach(ref float n, float target, float percent)
+        {
+            n += (target - n) * percent;
+        }
+        
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using Microsoft.Xna.Framework;
 using MononokeEngine;
 using Sandbox.Scenes;
 

@@ -1,3 +1,5 @@
+using System.IO;
+using System.Reflection;
 using MononokeEngine.ECS;
 using MononokeEngine.Graphics;
 using MononokeEngine.Input;
@@ -8,6 +10,24 @@ namespace MononokeEngine
     public static class Mononoke
     {
 
+        
+        
+        public static string ContentDirectory
+        {
+#if PS4
+            get { return Path.Combine("/app0/", Instance.Content.RootDirectory); }
+#elif NSWITCH
+            get { return Path.Combine("rom:/", Instance.Content.RootDirectory); }
+#elif XBOXONE
+            get { return MononokeGame.Instance.Content.RootDirectory; }
+#else
+            get { return Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"Content"); }
+#endif
+        }
+        
+        
+        
+        
         public static SceneManager Scenes
         {
             get

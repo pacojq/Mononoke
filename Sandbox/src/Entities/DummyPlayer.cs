@@ -1,7 +1,4 @@
 using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MononokeEngine.ECS;
 using MononokeEngine.Graphics;
 using MononokeEngine.Graphics.Components;
@@ -39,6 +36,7 @@ namespace Sandbox.Entities
             
             Bind(new BoxCollider(32, 32));
             Bind(new PlayerComponent());
+            Bind(new RectDrawer(32, 32));
         }
 
         
