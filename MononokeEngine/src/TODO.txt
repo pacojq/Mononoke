@@ -1,0 +1,19 @@
+
+TODO list:
+
+    = PHYSICS!
+        - Let's not deal with speeds. Just update collisions.
+        - Maybe it's enough using the update method of colliders. Idk.
+    
+    = Pathfinding module
+        - Let's start with Dijkstra
+        
+    = Input module
+
+    = A Terminal module
+        - We can open the terminal in-game and execute commands.
+        - Each concrete game can extend the terminal with its own commands.
+        
+    = Particle system
+    
+    = Alarm system and coroutines
