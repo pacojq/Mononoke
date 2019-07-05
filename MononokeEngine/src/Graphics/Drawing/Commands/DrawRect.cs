@@ -1,6 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MononokeEngine.Utils;
 
 namespace MononokeEngine.Graphics.Drawing.Commands
 {
@@ -18,8 +16,8 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         
         public void Execute()
         {
-            Texture px = Mononoke.Graphics.Pixel;
-            Mononoke.Graphics.SpriteBatch.Draw(px.Texture2D, _rect, px.ClipRect, _color);
+            Sprite px = Mononoke.Graphics.Pixel;
+            Mononoke.Graphics.SpriteBatch.Draw(px.Texture, _rect, px.ClipRect, _color);
         }
     }
 }

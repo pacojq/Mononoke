@@ -14,7 +14,7 @@ namespace MononokeEngine.Graphics
         /// <summary>
         /// A texture which is just a white pixel.
         /// </summary>
-        public Texture Pixel { get; private set; }
+        public Sprite Pixel { get; private set; }
         
         
         
@@ -42,7 +42,7 @@ namespace MononokeEngine.Graphics
             Draw.Font = DefaultFont;
             Draw.Color = Color.White;
             
-            Pixel = new Texture(1, 1, Color.White);
+            Pixel = new Sprite(1, 1, Color.White);
             
             Console.WriteLine("GraphicsManager initialized!");
         }

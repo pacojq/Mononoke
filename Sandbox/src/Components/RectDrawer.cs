@@ -1,9 +1,5 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using MononokeEngine;
-using MononokeEngine.ECS;
 using MononokeEngine.Graphics;
-using MononokeEngine.Input;
 
 namespace Sandbox.Components
 {

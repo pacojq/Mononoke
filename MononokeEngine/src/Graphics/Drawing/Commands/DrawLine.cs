@@ -22,10 +22,10 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         {
             var angle = Math.PointDirection(_p0, _p1);
             var dist = Math.PointDistance(_p0, _p1);
-            Texture px = Mononoke.Graphics.Pixel;
+            Sprite px = Mononoke.Graphics.Pixel;
             
             Mononoke.Graphics.SpriteBatch.Draw(
-                    px.Texture2D, 
+                    px.Texture, 
                     _p0, 
                     px.ClipRect, 
                     _color,

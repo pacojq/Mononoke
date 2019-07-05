@@ -80,9 +80,13 @@ namespace MononokeEngine.Graphics.Drawing
         
         
         
+        // ================================ UTIL ================================ //
+
         
-        
-        
+        public void SetColor(Color color)
+        {
+            _commands.Enqueue(new SetColor(color, this));
+        }
         
 
         public void SetFont(SpriteFont font)
@@ -90,9 +94,6 @@ namespace MononokeEngine.Graphics.Drawing
             _commands.Enqueue(new SetFont(font, this));
         }
 
-        
-        
-        
         
         
         
