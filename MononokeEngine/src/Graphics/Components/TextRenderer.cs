@@ -29,7 +29,7 @@ namespace MononokeEngine.Graphics.Components
         
         
         
-        public override void Render()
+        protected override void RenderImpl()
         {
             Mononoke.Graphics.SpriteBatch.DrawString(Font, Text, Position, Color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
         }

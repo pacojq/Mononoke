@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MononokeEngine.ECS;
+using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Physics
 {
@@ -20,19 +21,22 @@ namespace MononokeEngine.Physics
 
 
 
+		private Scene _scene;
+
 		private readonly List<Entity> _entities;
 		private readonly List<Collider> _colliders;
 		
 		
 
-		public Space(Vector2 gravity)
+		public Space(Scene scene, Vector2 gravity)
 		{
+			_scene = scene;
 			Gravity = gravity;
 			_entities = new List<Entity>();
 			_colliders = new List<Collider>();
 		}
 		
-		public Space() : this(Vector2.Zero) { }
+		public Space(Scene scene) : this(scene, Vector2.Zero) { }
 		
 		
 		
@@ -89,7 +93,9 @@ namespace MononokeEngine.Physics
 				return;
 
 			foreach (var col in _colliders)
-				col.DebugDraw();
+				foreach (var c in _scene.ActiveCameras)
+					if (col.IsOnCameraBounds(c))
+						col.DebugDraw();
 		}
 		
 		

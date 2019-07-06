@@ -60,8 +60,9 @@
         <Compile Include="src\ECS\EcsManager.cs" />
         <Compile Include="src\Graphics\Animation.cs" />
         <Compile Include="src\Graphics\AnimationController.cs" />
-        <Compile Include="src\Graphics\Camera.cs" />
         <Compile Include="src\Graphics\Components\AnimationComponent.cs" />
+        <Compile Include="src\Graphics\Components\LineRenderer.cs" />
+        <Compile Include="src\Graphics\Components\RectRenderer.cs" />
         <Compile Include="src\Graphics\Components\SpriteRenderer.cs" />
         <Compile Include="src\Graphics\Components\TextRenderer.cs" />
         <Compile Include="src\Graphics\Drawing\Commands\DrawLine.cs" />
@@ -95,6 +96,7 @@
         <Compile Include="src\Physics\RayCast.cs" />
         <Compile Include="src\Physics\Space.cs" />
         <Compile Include="src\Physics\Transform.cs" />
+        <Compile Include="src\Scenes\Camera.cs" />
         <Compile Include="src\Scenes\Layer.cs" />
         <Compile Include="src\Scenes\Scene.cs" />
         <Compile Include="src\Scenes\SceneManager.cs" />

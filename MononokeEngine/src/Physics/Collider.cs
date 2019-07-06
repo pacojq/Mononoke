@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MononokeEngine.ECS;
 using MononokeEngine.Physics.Colliders;
+using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Physics
 {
@@ -142,7 +143,17 @@ namespace MononokeEngine.Physics
 		}
 
 
+		
+		
+		
+		// ================== DEBUG UTILITIES ================== //
+		
 		internal abstract void DebugDraw();
+
+		internal virtual bool IsOnCameraBounds(Camera camera)
+		{
+			return true;
+		}
 
 
 	}

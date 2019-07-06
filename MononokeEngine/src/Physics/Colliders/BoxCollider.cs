@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Physics.Colliders
 {
@@ -25,6 +26,10 @@ namespace MononokeEngine.Physics.Colliders
         
         
         
+        
+        
+        
+        
         internal override void DebugDraw()
         {
             if (!Entity.Active)
@@ -36,6 +41,28 @@ namespace MononokeEngine.Physics.Colliders
             
             Mononoke.Graphics.Draw.RectExt(Position.X-2, Position.Y-2, 4, 4, col, false);
             Mononoke.Graphics.Draw.RectExt(Left, Top, Width, Height, col, true);
+        }
+        
+        
+        internal override bool IsOnCameraBounds(Camera camera)
+        {
+            float x = camera.Position.X;
+            float y = camera.Position.Y;
+        
+            if (Left > x + camera.Width)
+                return false;
+        
+            if (Top > y + camera.Height)
+                return false;
+        
+            if (Right < x)
+                return false;
+        
+            if (Bottom < y)
+                return false;
+
+            return true;
+            
         }
     }
 }

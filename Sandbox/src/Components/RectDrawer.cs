@@ -14,7 +14,7 @@ namespace Sandbox.Components
             _height = height;
         }
         
-        public override void Render()
+        protected override void RenderImpl()
         {
             Mononoke.Graphics.Draw.Rect(Entity.X, Entity.Y, _width, _height, true);
         }

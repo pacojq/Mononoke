@@ -38,7 +38,19 @@ namespace MononokeEngine.ECS
         public IEnumerable<Component> Components => _components;
         private readonly List<Component> _components;
         
+        
+        /// <summary>
+        /// An enumeration of the Graphic components bind to the entity.
+        /// </summary>
+        public IEnumerable<Graphic> Graphics => _graphics;
         private readonly List<Graphic> _graphics;
+        
+        
+        /// <summary>
+        /// An enumeration of the Collider components bind to the entity.
+        /// </summary>
+        public IEnumerable<Collider> Colliders => _colliders;
+        private readonly List<Collider> _colliders;
 
         
 
@@ -105,6 +117,7 @@ namespace MononokeEngine.ECS
         {
             _components = new List<Component>();
             _graphics = new List<Graphic>();
+            _colliders = new List<Collider>();
             
             
             Transform = new Transform();
@@ -191,9 +204,10 @@ namespace MononokeEngine.ECS
             if (component is Graphic)
                 _graphics.Add((Graphic) component);
 
-            if (Scene != null)
+            if (component is Collider)
             {
-                if (component is Collider)
+                _colliders.Add((Collider) component);
+                if (Scene != null)
                     Scene.Space.AddCollider((Collider) component);   
             }
 
@@ -211,9 +225,10 @@ namespace MononokeEngine.ECS
             if (component is Graphic)
                 _graphics.Remove((Graphic) component);
 
-            if (Scene != null)
+            if (component is Collider)
             {
-                if (component is Collider)
+                _colliders.Remove((Collider) component);
+                if (Scene != null)
                     Scene.Space.RemoveCollider((Collider) component);
             }
         }

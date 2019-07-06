@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using MononokeEngine.ECS;
+using MononokeEngine.Graphics;
 using MononokeEngine.Physics;
 
 namespace MononokeEngine.Scenes
@@ -11,6 +15,18 @@ namespace MononokeEngine.Scenes
 
         private List<Layer> _layers;
         public Layer DefaultLayer { get; }
+        
+        
+        
+        private List<Camera> _cameras;
+
+        public IEnumerable<Camera> Cameras => _cameras;
+        
+        
+        public IEnumerable<Camera> ActiveCameras => Cameras.Where(c => c.Active);
+        
+        public Camera MainCamera { get; set; }
+        
         
         
         public float TimeActive{ get; private set; }
@@ -26,7 +42,12 @@ namespace MononokeEngine.Scenes
         public Scene()
         {
             Entities = new List<Entity>();
-            Space = new Space();
+            Space = new Space(this);
+            
+            _cameras = new List<Camera>();
+            MainCamera = new Camera(MononokeGame.Width, MononokeGame.Height);
+            _cameras.Add(MainCamera);
+            
             
             _layers = new List<Layer>();
             DefaultLayer = new Layer();
@@ -89,17 +110,40 @@ namespace MononokeEngine.Scenes
         
         public virtual void BeforeRender()
         {
+            Camera[] cameras = ActiveCameras.ToArray();
+            
+            // Check which entities will render
+            foreach (Entity e in Entities)
+            {
+                foreach (var graphic in e.Graphics)
+                {
+                    var cam = cameras.FirstOrDefault(c => graphic.IsOnCameraBounds(c));
+                    graphic.WillRenderThisFrame = cam != null;
+                }
+            }
             
         }
 
         public virtual void Render()
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            
             foreach (Entity e in Entities)
             {
                 e.Render();
             }
             
+            sw.Stop();
+            Console.WriteLine("Render ticks: {0}", sw.ElapsedTicks);
+#if DEBUG            
+            sw.Restart();
+            
             Space.DebugDraw();
+            
+            sw.Stop();
+            Console.WriteLine("Debug render ticks: {0}", sw.ElapsedTicks);
+#endif
         }
 
         public virtual void AfterRender()
@@ -127,7 +171,7 @@ namespace MononokeEngine.Scenes
             layer.Add(entity);
             
             Space.AddEntity(entity);
-            foreach (var col in entity.GetComponents<Collider>())
+            foreach (var col in entity.Colliders)
                 Space.AddCollider(col);
             
             Mononoke.Ecs.Current.AddEntity(entity);
@@ -137,7 +181,7 @@ namespace MononokeEngine.Scenes
         {
             Entities.Remove(entity);
             
-            foreach (var col in entity.GetComponents<Collider>())
+            foreach (var col in entity.Colliders)
                 Space.RemoveCollider(col);
             
             Space.RemoveEntity(entity);
