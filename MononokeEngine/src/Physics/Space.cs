@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using MononokeEngine.ECS;
 using MononokeEngine.Scenes;
@@ -53,8 +54,10 @@ namespace MononokeEngine.Physics
 			
 			
 			// Check collisions
-			foreach (var col in _colliders)
-				UpdateCollider(col);
+			//foreach (var col in _colliders)
+			//	UpdateCollider(col);
+			
+			Parallel.ForEach(_colliders, UpdateCollider);
 		}
 
 
@@ -92,10 +95,12 @@ namespace MononokeEngine.Physics
 			if (!EnableDebugDraw)
 				return;
 
-			foreach (var col in _colliders)
+			Parallel.ForEach(_colliders, col =>
+			{
 				foreach (var c in _scene.ActiveCameras)
 					if (col.IsOnCameraBounds(c))
 						col.DebugDraw();
+			});
 		}
 		
 		
