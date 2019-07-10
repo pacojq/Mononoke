@@ -126,23 +126,13 @@ namespace MononokeEngine.Scenes
 
         public virtual void Render()
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            
             foreach (Entity e in Entities)
             {
                 e.Render();
             }
             
-            sw.Stop();
-            Console.WriteLine("Render ticks: {0}", sw.ElapsedTicks);
 #if DEBUG            
-            sw.Restart();
-            
             Space.DebugDraw();
-            
-            sw.Stop();
-            Console.WriteLine("Debug render ticks: {0}", sw.ElapsedTicks);
 #endif
         }
 

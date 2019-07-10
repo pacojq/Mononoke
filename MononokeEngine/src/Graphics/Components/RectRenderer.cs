@@ -8,13 +8,13 @@ namespace MononokeEngine.Graphics.Components
     /// <summary>
     /// TODO
     /// </summary>
-    public class RectRenderer : Graphic
+    public class RectRenderer : GraphicComponent
     {
         
         public Rectangle Rect { get; set; }
         
         
-        protected override void RenderImpl()
+        protected override void Draw()
         {
             throw new System.NotImplementedException();
         }

@@ -3,7 +3,7 @@ using MononokeEngine.Graphics;
 
 namespace Sandbox.Components
 {
-    public class RectDrawer : Graphic
+    public class RectDrawer : GraphicComponent
     {
         private float _width;
         private float _height;
@@ -14,7 +14,7 @@ namespace Sandbox.Components
             _height = height;
         }
         
-        protected override void RenderImpl()
+        protected override void Draw()
         {
             Mononoke.Graphics.Draw.Rect(Entity.X, Entity.Y, _width, _height, true);
         }

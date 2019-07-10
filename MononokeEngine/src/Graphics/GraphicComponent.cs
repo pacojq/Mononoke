@@ -3,7 +3,7 @@ using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Graphics
 {
-    public abstract class Graphic : Component
+    public abstract class GraphicComponent : Component
     {
         public bool Visible { get; set; }
 
@@ -16,7 +16,7 @@ namespace MononokeEngine.Graphics
         internal bool WillRenderThisFrame { get; set; }
 
 
-        public Graphic()
+        public GraphicComponent()
         {
             Visible = true;
         }
@@ -30,10 +30,10 @@ namespace MononokeEngine.Graphics
             if (!Active)
                 return;
             
-            RenderImpl();
+            Draw();
         }
         
-        protected abstract void RenderImpl();
+        protected abstract void Draw();
 
 
         /// <summary>

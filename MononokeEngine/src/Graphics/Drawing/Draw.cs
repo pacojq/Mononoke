@@ -148,6 +148,12 @@ namespace MononokeEngine.Graphics.Drawing
         
         // ================================ SPRITES ================================ //
         
+        
+        public void Sprite(Sprite sprite, float x, float y)
+        {
+            Sprite(sprite, new Vector2(x, y));
+        }
+        
         public void Sprite(Sprite sprite, Vector2 position)
         {
             SpriteExt(sprite, position, Color.White, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
