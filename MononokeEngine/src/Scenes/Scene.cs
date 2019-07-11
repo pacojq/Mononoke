@@ -13,12 +13,13 @@ namespace MononokeEngine.Scenes
     {
 
 
-        private List<Layer> _layers;
+        private readonly List<Layer> _layers;
+        public IEnumerable<Layer> Layers => _layers;
         public Layer DefaultLayer { get; }
         
         
         
-        private List<Camera> _cameras;
+        private readonly List<Camera> _cameras;
 
         public IEnumerable<Camera> Cameras => _cameras;
         
@@ -91,10 +92,17 @@ namespace MononokeEngine.Scenes
             
             // Update the space
             Space.Update();
-        
+
+            // ... then the entities
             foreach (Entity e in Entities)
             {
                 e.Update();
+            }
+            
+            // ...and finally the layers
+            foreach (Layer layer in _layers)
+            {
+                layer.Update();
             }
         }
 
@@ -110,17 +118,6 @@ namespace MononokeEngine.Scenes
         
         public virtual void BeforeRender()
         {
-            Camera[] cameras = ActiveCameras.ToArray();
-            
-            // Check which entities will render
-            foreach (Entity e in Entities)
-            {
-                foreach (var graphic in e.Graphics)
-                {
-                    var cam = cameras.FirstOrDefault(c => graphic.IsOnCameraBounds(c));
-                    graphic.WillRenderThisFrame = cam != null;
-                }
-            }
             
         }
 
@@ -159,6 +156,7 @@ namespace MononokeEngine.Scenes
             entity.Scene = this;
             
             layer.Add(entity);
+            entity.Layer = layer;
             
             Space.AddEntity(entity);
             foreach (var col in entity.Colliders)

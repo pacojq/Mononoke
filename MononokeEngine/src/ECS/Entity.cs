@@ -13,6 +13,8 @@ namespace MononokeEngine.ECS
         
 
         public Scene Scene { get; internal set; }
+        
+        public Layer Layer { get; internal set; }
 
         
         public Transform Transform { get; }
@@ -21,7 +23,7 @@ namespace MononokeEngine.ECS
         /// <summary>
         /// Shortcut to get <see cref="Transform"/>.Position
         /// </summary>
-        public Vector2 Position
+        public virtual Vector2 Position
         {
             get => Transform.Position;
             set => Transform.Position = value;
@@ -71,7 +73,7 @@ namespace MononokeEngine.ECS
         /// <summary>
         /// Shortcut to get and set <see cref="Position"/>.X
         /// </summary>
-        public float X
+        public virtual float X
         {
             get => Position.X;
             set => Position = new Vector2(value, Position.Y);
@@ -87,7 +89,7 @@ namespace MononokeEngine.ECS
         /// <summary>
         /// Shortcut to get and set <see cref="Position"/>.Y
         /// </summary>
-        public float Y
+        public virtual float Y
         {
             get => Position.Y;
             set => Position = new Vector2(Position.X, value);
@@ -200,15 +202,19 @@ namespace MononokeEngine.ECS
 
             Type t = component.GetType();
             _components.Add(component);
-            
+
             if (component is GraphicComponent)
-                _graphics.Add((GraphicComponent) component);
+            {
+                GraphicComponent graphic = (GraphicComponent) component;
+                Layer?.AddGraphic(graphic);
+                _graphics.Add(graphic);
+            }
 
             if (component is Collider)
             {
                 _colliders.Add((Collider) component);
                 if (Scene != null)
-                    Scene.Space.AddCollider((Collider) component);   
+                    Scene.Space.AddCollider((Collider) component);
             }
 
             component.Entity = this;
@@ -221,9 +227,13 @@ namespace MononokeEngine.ECS
             
             Type t = component.GetType();
             _components.Remove(component);
-            
+
             if (component is GraphicComponent)
-                _graphics.Remove((GraphicComponent) component);
+            {
+                GraphicComponent graphic = (GraphicComponent) component;
+                Layer?.RemoveGraphic(graphic);
+                _graphics.Remove(graphic);
+            }
 
             if (component is Collider)
             {

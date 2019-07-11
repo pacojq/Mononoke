@@ -21,7 +21,7 @@ namespace Sandbox
             // TODO: Add your initialization logic here
             base.Initialize();
 
-            LoadScene(new Scene1());
+            Mononoke.Scenes.Load(new Scene1());
         }
         
         protected override void LoadContent()

@@ -51,7 +51,6 @@ namespace MononokeEngine
         private int _fpsCounter = 0;
         private TimeSpan counterElapsed = TimeSpan.Zero;
 
-        private Scene _scene;
         
         
         private GraphicsDeviceManager _graphics;
@@ -166,16 +165,17 @@ namespace MononokeEngine
             
             //Update input
             Mononoke.Input.Update();
-            
+
+            Scene scene = Mononoke.Scenes.Current;
 
             // Update scene
             if (FreezeTimer > 0)
                 FreezeTimer = Math.Max(FreezeTimer - RawDeltaTime, 0);
-            else if (_scene != null)
+            else if (scene != null)
             {
-                _scene.BeforeUpdate();
-                _scene.Update();
-                _scene.AfterUpdate();
+                scene.BeforeUpdate();
+                scene.Update();
+                scene.AfterUpdate();
             }
 
             // User's custom on update method
@@ -220,19 +220,20 @@ namespace MononokeEngine
         private void Render()
         {
             Mononoke.Graphics.Open();
+
+            Scene scene = Mononoke.Scenes.Current;
             
-            
-            if (_scene != null)
-                _scene.BeforeRender();
+            if (scene != null)
+                scene.BeforeRender();
 
             GraphicsDevice.SetRenderTarget(null);
             //GraphicsDevice.Viewport = Viewport;
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            if (_scene != null)
+            if (scene != null)
             {
-                _scene.Render();
-                _scene.AfterRender();
+                scene.Render();
+                scene.AfterRender();
             }
 
 
@@ -240,15 +241,6 @@ namespace MononokeEngine
         }
         
 
-
-
-
-
-        public void LoadScene(Scene scene)
-        {
-            // TODO loading and unloading stuff
-            _scene = scene;
-        }
         
         
         

@@ -37,26 +37,5 @@ namespace MononokeEngine.Graphics.Components
             Mononoke.Graphics.Draw.SpriteExt(Sprite, Position, Color.White, Rotation, Vector2.Zero, Scale, Flip, 0);
         }
         
-        
-        public override bool IsOnCameraBounds(Camera camera)
-        {
-            float x = camera.Position.X;
-            float y = camera.Position.Y;
-        
-            if (Position.X > x + camera.Width)
-                return false;
-        
-            if (Position.Y > y + camera.Height)
-                return false;
-        
-            if (Position.X + Sprite.Width < x )
-                return false;
-        
-            if (Position.Y + Sprite.Height < y)
-                return false;
-
-            return true;
-            
-        }
     }
 }
