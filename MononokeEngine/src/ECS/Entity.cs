@@ -44,8 +44,8 @@ namespace MononokeEngine.ECS
         /// <summary>
         /// An enumeration of the Graphic components bind to the entity.
         /// </summary>
-        public IEnumerable<Graphic> Graphics => _graphics;
-        private readonly List<Graphic> _graphics;
+        public IEnumerable<GraphicComponent> Graphics => _graphics;
+        private readonly List<GraphicComponent> _graphics;
         
         
         /// <summary>
@@ -118,7 +118,7 @@ namespace MononokeEngine.ECS
         public Entity(Vector2 position)
         {
             _components = new List<Component>();
-            _graphics = new List<Graphic>();
+            _graphics = new List<GraphicComponent>();
             _colliders = new List<Collider>();
             
             
@@ -180,7 +180,7 @@ namespace MononokeEngine.ECS
         
         public void Render()
         {
-            foreach (Graphic g in _graphics)
+            foreach (GraphicComponent g in _graphics)
             {
                 if (g.Visible)
                     g.Render();

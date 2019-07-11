@@ -4,7 +4,7 @@ using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Graphics.Components
 {
-    public class SpriteRenderer : Graphic
+    public class SpriteRenderer : GraphicComponent
     {
         public Sprite Sprite;
 
@@ -29,7 +29,7 @@ namespace MononokeEngine.Graphics.Components
         
         
         
-        protected override void RenderImpl()
+        protected override void Draw()
         {
             if (Sprite == null)
                 return;

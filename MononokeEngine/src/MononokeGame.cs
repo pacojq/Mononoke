@@ -125,6 +125,8 @@ namespace MononokeEngine
             //spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Console.WriteLine("Content: " + this.Content.RootDirectory);
+
+            // TODO load all content with this.Content.Load<>("");
             
             Mononoke.Graphics.Initialize(this.GraphicsDevice);
             

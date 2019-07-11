@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MononokeEngine.Graphics.Components
 {
-    public class TextRenderer : Graphic
+    public class TextRenderer : GraphicComponent
     {
         public enum HorizontalAlign { Left, Center, Right };
         public enum VerticalAlign { Top, Center, Bottom };
@@ -29,7 +29,7 @@ namespace MononokeEngine.Graphics.Components
         
         
         
-        protected override void RenderImpl()
+        protected override void Draw()
         {
             Mononoke.Graphics.SpriteBatch.DrawString(Font, Text, Position, Color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
         }

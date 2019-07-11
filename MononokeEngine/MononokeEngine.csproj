@@ -73,7 +73,7 @@
         <Compile Include="src\Graphics\Drawing\Commands\SetFont.cs" />
         <Compile Include="src\Graphics\Drawing\Draw.cs" />
         <Compile Include="src\Graphics\Drawing\IDrawCommand.cs" />
-        <Compile Include="src\Graphics\Graphic.cs" />
+        <Compile Include="src\Graphics\GraphicComponent.cs" />
         <Compile Include="src\Graphics\GraphicsManager.cs" />
         <Compile Include="src\Graphics\MononokeGraphicsException.cs" />
         <Compile Include="src\Graphics\Rendering\BasicRenderer.cs" />
