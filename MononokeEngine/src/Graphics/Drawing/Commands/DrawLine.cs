@@ -12,28 +12,36 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         private readonly Vector2 _p1;
         private readonly Color _color;
 
+        private readonly float _angle;
+        private readonly float _dist;
+        
+
         public DrawLine(Vector2 p0, Vector2 p1, Color color)
         {
             _p0 = p0;
             _p1 = p1;
             _color = color;
+            
+            _angle = Math.PointDirection(_p0, _p1);
+            _dist = Math.PointDistance(_p0, _p1);
         }
         
         
-        public override void Execute()
+        public override void Execute(Camera cam)
         {
-            var angle = Math.PointDirection(_p0, _p1);
-            var dist = Math.PointDistance(_p0, _p1);
+            Vector2 relP0 = cam.GetRenderPosition(_p0);
             Sprite px = Mononoke.Graphics.Pixel;
+            
+            // Draw a scaled pixel
             
             Mononoke.Graphics.SpriteBatch.Draw(
                     px.Texture, 
-                    _p0, 
+                    relP0, 
                     px.ClipRect, 
                     _color,
-                    angle, 
+                    _angle, 
                     Vector2.Zero,
-                    new Vector2(dist, 1), 
+                    new Vector2(_dist, 1), 
                     SpriteEffects.None, 
                     0
                 );

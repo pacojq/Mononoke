@@ -40,7 +40,7 @@ namespace MononokeEngine.Graphics.Core
                 {
                     if (!cmd.Accept(cam, renderer))
                         continue;
-                    cmd.Execute();
+                    cmd.Execute(cam);
                 }
             }
         }

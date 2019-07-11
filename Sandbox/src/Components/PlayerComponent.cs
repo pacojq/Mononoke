@@ -18,6 +18,7 @@ namespace Sandbox.Components
         
         public override void Update()
         {
+            /*
             Vector2 pos = this.Entity.Position;
             
             if (_input.IsKeyHeld(Keys.Right))
@@ -33,6 +34,7 @@ namespace Sandbox.Components
                 pos.Y--;
 
             this.Entity.Position = pos;
+            */
         }
         
     }

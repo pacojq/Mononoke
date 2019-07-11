@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Graphics.Drawing.Commands
 {
@@ -8,31 +9,33 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         private readonly int _border;
         
         
-        private readonly Rectangle _top;
-        private readonly Rectangle _bot;
-        private readonly Rectangle _right;
-        private readonly Rectangle _left;
         
 
         public DrawRectOutline(Rectangle rect, Color color, int border = 1) : base(rect, color)
         {
             _color = color;
-            
-            _top = new Rectangle(rect.X, rect.Y, rect.Width, border);
-            _bot = new Rectangle(rect.X, rect.Y + rect.Height - border, rect.Width, border);
-            _right = new Rectangle(rect.X + rect.Width - border, rect.Y, border, rect.Height);
-            _left = new Rectangle(rect.X, rect.Y, border, rect.Height);
+            _border = border;
         }
         
         
-        public override void Execute()
+        public override void Execute(Camera cam)
         {
             Sprite px = Mononoke.Graphics.Pixel;
             
-            Mononoke.Graphics.SpriteBatch.Draw(px.Texture, _top, px.ClipRect, _color);
-            Mononoke.Graphics.SpriteBatch.Draw(px.Texture, _bot, px.ClipRect, _color);
-            Mononoke.Graphics.SpriteBatch.Draw(px.Texture, _right, px.ClipRect, _color);
-            Mononoke.Graphics.SpriteBatch.Draw(px.Texture, _left, px.ClipRect, _color);
+            Rectangle rect = new Rectangle(Rect.X, Rect.Y, Rect.Width, Rect.Height);
+            Vector2 rel = cam.GetRenderPosition(new Vector2(rect.X, rect.Y));
+            rect.X = (int) rel.X;
+            rect.Y = (int) rel.Y;
+            
+            var top = new Rectangle(rect.X, rect.Y, rect.Width, _border);
+            var bot = new Rectangle(rect.X, rect.Y + rect.Height - _border, rect.Width, _border);
+            var right = new Rectangle(rect.X + rect.Width - _border, rect.Y, _border, rect.Height);
+            var left = new Rectangle(rect.X, rect.Y, _border, rect.Height);
+            
+            Mononoke.Graphics.SpriteBatch.Draw(px.Texture, top, px.ClipRect, _color);
+            Mononoke.Graphics.SpriteBatch.Draw(px.Texture, bot, px.ClipRect, _color);
+            Mononoke.Graphics.SpriteBatch.Draw(px.Texture, right, px.ClipRect, _color);
+            Mononoke.Graphics.SpriteBatch.Draw(px.Texture, left, px.ClipRect, _color);
         }
     }
 }

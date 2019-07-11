@@ -7,7 +7,7 @@ namespace MononokeEngine.Graphics.Drawing
     {
         GraphicComponent Graphic { get; set; }
         
-        void Execute();
+        void Execute(Camera cam);
 
         bool Accept(Camera cam, IRenderer renderer);
     }

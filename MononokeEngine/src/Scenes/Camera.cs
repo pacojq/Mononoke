@@ -12,6 +12,7 @@ namespace MononokeEngine.Scenes
     {
     
         public Vector2 Position { get; set; }
+        public Vector2 Offset { get; set; }
         
         public int Width { get; set; }
 
@@ -29,6 +30,13 @@ namespace MononokeEngine.Scenes
         }
         
         public Camera(int width, int height) : this(Vector2.Zero, width, height) { }
-        
+
+
+
+
+        internal Vector2 GetRenderPosition(Vector2 pos)
+        {
+            return pos - Position + Offset;
+        }
     }
 }

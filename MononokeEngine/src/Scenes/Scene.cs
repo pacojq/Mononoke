@@ -118,17 +118,6 @@ namespace MononokeEngine.Scenes
         
         public virtual void BeforeRender()
         {
-            Camera[] cameras = ActiveCameras.ToArray();
-            
-            // Check which entities will render
-            foreach (Entity e in Entities)
-            {
-                foreach (var graphic in e.Graphics)
-                {
-                    var cam = cameras.FirstOrDefault(c => graphic.IsOnCameraBounds(c));
-                    graphic.WillRenderThisFrame = cam != null;
-                }
-            }
             
         }
 

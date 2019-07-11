@@ -1,14 +1,29 @@
+using Microsoft.Xna.Framework;
 using MononokeEngine;
+using MononokeEngine.ECS;
 using MononokeEngine.Scenes;
 using MononokeEngine.Utils;
+using Sandbox.Components;
 using Sandbox.Entities;
 
 namespace Sandbox.Scenes
 {
     public class Scene1 : Scene
     {
+        
         public Scene1()
         {
+            Entity cameraControllerEntity = new Entity();
+            cameraControllerEntity.Bind(new CameraController());
+            cameraControllerEntity.Bind(new CameraControllerDrawer());
+            
+            Add(cameraControllerEntity);
+            
+            MainCamera.Width /= 2;
+            MainCamera.Height /= 2;
+            var offset = new Vector2(MainCamera.Width / 2f, MainCamera.Height / 2f);
+            MainCamera.Offset = offset;
+            
 
             for (int i = 0; i < 100; i++)
             {
@@ -27,5 +42,6 @@ namespace Sandbox.Scenes
 
             //Space.EnableDebugDraw = true;
         }
+
     }
 }

@@ -8,8 +8,9 @@ namespace MononokeEngine.Graphics.Drawing.Commands
     internal class DrawSprite : AbstractDrawCommand
     {
 
-        private readonly Sprite _sprite;
-        private readonly Vector2 _position;
+        public Sprite Sprite { get; }
+        public Vector2 Position { get; }
+        
         private readonly Color _color;
         private readonly float _rotation;
         private readonly Vector2 _origin;
@@ -21,8 +22,8 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         public DrawSprite(Sprite sprite, Vector2 position, Color color, float rotation, Vector2 origin,
                 Vector2 scale, SpriteEffects effects, float layerDepth)
         {
-            _sprite = sprite;
-            _position = position;
+            Sprite = sprite;
+            Position = position;
             _color = color;
             _rotation = rotation;
             _origin = origin;
@@ -33,12 +34,14 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         
         
         
-        public override void Execute()
+        public override void Execute(Camera cam)
         {
+            Vector2 position = cam.GetRenderPosition(Position);
+                          
             Mononoke.Graphics.SpriteBatch.Draw(
-                    _sprite.Texture, 
-                    _position, 
-                    _sprite.ClipRect, 
+                    Sprite.Texture, 
+                    position, 
+                    Sprite.ClipRect, 
                     _color, 
                     _rotation,
                     _origin,
