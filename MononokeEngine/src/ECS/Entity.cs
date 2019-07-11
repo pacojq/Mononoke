@@ -206,7 +206,7 @@ namespace MononokeEngine.ECS
             if (component is GraphicComponent)
             {
                 GraphicComponent graphic = (GraphicComponent) component;
-                Layer.AddGraphic(graphic);
+                Layer?.AddGraphic(graphic);
                 _graphics.Add(graphic);
             }
 
@@ -231,7 +231,7 @@ namespace MononokeEngine.ECS
             if (component is GraphicComponent)
             {
                 GraphicComponent graphic = (GraphicComponent) component;
-                Layer.RemoveGraphic(graphic);
+                Layer?.RemoveGraphic(graphic);
                 _graphics.Remove(graphic);
             }
 

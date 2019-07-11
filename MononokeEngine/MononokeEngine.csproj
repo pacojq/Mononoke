@@ -65,21 +65,22 @@
         <Compile Include="src\Graphics\Components\RectRenderer.cs" />
         <Compile Include="src\Graphics\Components\SpriteRenderer.cs" />
         <Compile Include="src\Graphics\Components\TextRenderer.cs" />
+        <Compile Include="src\Graphics\Core\GameRenderer.cs" />
+        <Compile Include="src\Graphics\Core\Rendering\BasicRenderer.cs" />
+        <Compile Include="src\Graphics\Core\Rendering\Chunks\Chunk.cs" />
+        <Compile Include="src\Graphics\Core\Rendering\Chunks\ChunkRenderer.cs" />
+        <Compile Include="src\Graphics\Core\Rendering\IRenderer.cs" />
+        <Compile Include="src\Graphics\Core\Rendering\RenderType.cs" />
+        <Compile Include="src\Graphics\Drawing\AbstractDrawCommand.cs" />
         <Compile Include="src\Graphics\Drawing\Commands\DrawLine.cs" />
         <Compile Include="src\Graphics\Drawing\Commands\DrawRect.cs" />
         <Compile Include="src\Graphics\Drawing\Commands\DrawRectOutline.cs" />
         <Compile Include="src\Graphics\Drawing\Commands\DrawSprite.cs" />
-        <Compile Include="src\Graphics\Drawing\Commands\SetColor.cs" />
-        <Compile Include="src\Graphics\Drawing\Commands\SetFont.cs" />
         <Compile Include="src\Graphics\Drawing\Draw.cs" />
         <Compile Include="src\Graphics\Drawing\IDrawCommand.cs" />
         <Compile Include="src\Graphics\GraphicComponent.cs" />
         <Compile Include="src\Graphics\GraphicsManager.cs" />
         <Compile Include="src\Graphics\MononokeGraphicsException.cs" />
-        <Compile Include="src\Graphics\Rendering\BasicRenderer.cs" />
-        <Compile Include="src\Graphics\Rendering\Chunks\Chunk.cs" />
-        <Compile Include="src\Graphics\Rendering\Chunks\ChunkRenderer.cs" />
-        <Compile Include="src\Graphics\Rendering\IRenderer.cs" />
         <Compile Include="src\Graphics\Sprite.cs" />
         <Compile Include="src\Graphics\Atlas.cs" />
         <Compile Include="src\Graphics\Tiles\AnimatedTile.cs" />
@@ -128,7 +129,7 @@
       <Content Include="lib\Microsoft.Xna.Framework.Game.dll" />
       <Content Include="lib\Microsoft.Xna.Framework.Graphics.dll" />
       <Content Include="src\ECS\README.txt" />
-      <Content Include="src\Graphics\TODO.txt" />
+      <Content Include="src\Graphics\Core\TODO.txt" />
       <Content Include="src\README.txt" />
       <Content Include="src\TODO.txt" />
     </ItemGroup>

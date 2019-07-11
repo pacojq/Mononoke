@@ -1,4 +1,4 @@
-namespace MononokeEngine.Graphics.Rendering.Chunks
+namespace MononokeEngine.Graphics.Core.Rendering.Chunks
 {
     public class Chunk
     {

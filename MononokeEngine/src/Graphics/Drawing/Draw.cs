@@ -8,8 +8,8 @@ namespace MononokeEngine.Graphics.Drawing
 {
     
     /// <summary>
-    /// ALl rendering stuff will go through this class.
-    /// 
+    /// Through the Draw class we can request draw commands to be executed during the
+    /// rendering phase.
     /// </summary>
     public class Draw
     {
@@ -22,23 +22,20 @@ namespace MononokeEngine.Graphics.Drawing
         private readonly GraphicsDevice _graphicsDevice;
         private readonly SpriteBatch _spriteBatch;
 
+        /// <summary>
+        /// The component that is performing the current Draw call.
+        /// </summary>
+        private GraphicComponent _currentGraphicComponent;
+
         private bool _open = false;
 
 
-        /// <summary>
-        /// The command queue is cleaned up before every Render call.
-        /// When the active <see cref="MononokeEngine.Scenes.Scene"/> executes
-        /// its Render method, the queue will be filled with drawing commands.
-        /// </summary>
-        private Queue<IDrawCommand> _commands;
         
         
         internal Draw(GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
         {
             _graphicsDevice = graphicsDevice;
             _spriteBatch = spriteBatch;
-            
-            _commands = new Queue<IDrawCommand>();
         }
 
         private void Enqueue(IDrawCommand cmd)
@@ -46,7 +43,8 @@ namespace MononokeEngine.Graphics.Drawing
             if (!_open)
                 throw new MononokeGraphicsException("All Draw calls must be executed in the Render events.");
 
-            _commands.Enqueue(cmd);
+            cmd.Graphic = _currentGraphicComponent;
+            _currentGraphicComponent.Entity.Layer.AddDrawCommand(cmd);
         }
 
 
@@ -60,23 +58,17 @@ namespace MononokeEngine.Graphics.Drawing
             _open = false;
         }
         
-        /// <summary>
-        /// Executes all <see cref="IDrawCommand"/> commands in the queue.
-        /// </summary>
-        internal void Render()
-        {
-            _spriteBatch.Begin();
-
-            while (_commands.Count > 0)
-            {
-                IDrawCommand cmd = _commands.Dequeue();
-                
-                cmd.Execute();
-            }
-            
-            _spriteBatch.End();
-        }
         
+        
+        
+        /// <summary>
+        /// Used to specify to which <see cref="GraphicComponent"/> is requesting the draw commands.
+        /// </summary>
+        /// <param name="graphic"></param>
+        internal void SetCurrentGraphicComponent(GraphicComponent graphic)
+        {
+            _currentGraphicComponent = graphic;
+        }
         
         
         
@@ -87,13 +79,13 @@ namespace MononokeEngine.Graphics.Drawing
         
         public void SetColor(Color color)
         {
-            _commands.Enqueue(new SetColor(color, this));
+            Color = color;
         }
         
 
         public void SetFont(SpriteFont font)
         {
-            _commands.Enqueue(new SetFont(font, this));
+            Font = font;
         }
 
         
@@ -168,5 +160,7 @@ namespace MononokeEngine.Graphics.Drawing
                     new DrawSprite(sprite, position, color, rotation, origin, scale, effects, layerDepth)
                 );
         }
+
+        
     }
 }

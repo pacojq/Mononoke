@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MononokeEngine.Graphics.Drawing.Commands;
 using MononokeEngine.Scenes;
 
-namespace MononokeEngine.Graphics.Rendering
+namespace MononokeEngine.Graphics.Core.Rendering
 {
     
     /// <summary>
@@ -57,9 +57,5 @@ namespace MononokeEngine.Graphics.Rendering
             return true;
         }
 
-        public bool WillDraw(Camera cam, SetColor rect)
-        {
-            return true;
-        }
     }
 }

@@ -29,7 +29,8 @@ namespace MononokeEngine.Graphics
 
             if (!Active)
                 return;
-            
+
+            Mononoke.Graphics.Draw.SetCurrentGraphicComponent(this);
             Draw();
         }
         

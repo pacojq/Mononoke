@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MononokeEngine.Graphics.Drawing.Commands;
 using MononokeEngine.Scenes;
 
-namespace MononokeEngine.Graphics.Rendering
+namespace MononokeEngine.Graphics.Core.Rendering
 {
     internal interface IRenderer
     {
@@ -27,7 +27,6 @@ namespace MononokeEngine.Graphics.Rendering
         
         bool WillDraw(Camera cam, DrawRect rect);
         
-        bool WillDraw(Camera cam, SetColor rect);
         
     }
 }

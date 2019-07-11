@@ -13,12 +13,13 @@ namespace MononokeEngine.Scenes
     {
 
 
-        private List<Layer> _layers;
+        private readonly List<Layer> _layers;
+        public IEnumerable<Layer> Layers => _layers;
         public Layer DefaultLayer { get; }
         
         
         
-        private List<Camera> _cameras;
+        private readonly List<Camera> _cameras;
 
         public IEnumerable<Camera> Cameras => _cameras;
         

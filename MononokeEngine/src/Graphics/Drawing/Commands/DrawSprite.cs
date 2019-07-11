@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MononokeEngine.Graphics.Rendering;
+using MononokeEngine.Graphics.Core.Rendering;
 using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Graphics.Drawing.Commands
 {
-    internal class DrawSprite : IDrawCommand
+    internal class DrawSprite : AbstractDrawCommand
     {
 
         private readonly Sprite _sprite;
@@ -33,7 +33,7 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         
         
         
-        public void Execute()
+        public override void Execute()
         {
             Mononoke.Graphics.SpriteBatch.Draw(
                     _sprite.Texture, 
@@ -48,7 +48,7 @@ namespace MononokeEngine.Graphics.Drawing.Commands
                 );
         }
 
-        public bool Accept(Camera cam, IRenderer renderer)
+        public override bool Accept(Camera cam, IRenderer renderer)
         {
             return renderer.WillDraw(cam, this);
         }

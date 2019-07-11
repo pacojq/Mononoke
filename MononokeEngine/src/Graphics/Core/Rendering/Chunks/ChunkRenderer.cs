@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MononokeEngine.Graphics.Drawing.Commands;
 using MononokeEngine.Scenes;
 
-namespace MononokeEngine.Graphics.Rendering.Chunks
+namespace MononokeEngine.Graphics.Core.Rendering.Chunks
 {
     
     /// <summary>
@@ -65,9 +65,5 @@ namespace MononokeEngine.Graphics.Rendering.Chunks
             throw new System.NotImplementedException();
         }
 
-        public bool WillDraw(Camera cam, SetColor rect)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

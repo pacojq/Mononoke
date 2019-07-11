@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using MononokeEngine.ECS;
 using MononokeEngine.Graphics;
-using MononokeEngine.Graphics.Rendering;
+using MononokeEngine.Graphics.Core.Rendering;
+using MononokeEngine.Graphics.Drawing;
 
 namespace MononokeEngine.Scenes
 {
@@ -19,14 +20,25 @@ namespace MononokeEngine.Scenes
 		private HashSet<Scene> _scenes;
 
 
-		internal IRenderer _renderer;
+		
+		// ====================== RENDERING ====================== //
+		
+		internal IRenderer Renderer { get; private set; }
+
+		internal IEnumerable<IDrawCommand> DrawCommands => _drawCommands;
+
+		private List<IDrawCommand> _drawCommands;
 		
 		
+
+
 		public Layer(int depth = 0)
 		{
 			Depth = depth;
 			_entities = new List<Entity>();
-			_renderer = new BasicRenderer();
+			
+			Renderer = new BasicRenderer();
+			_drawCommands = new List<IDrawCommand>();
 		}
 
 
@@ -35,7 +47,7 @@ namespace MononokeEngine.Scenes
 
 		internal void Update()
 		{
-			_renderer.Update();
+			Renderer.Update();
 		}
 		
 		
@@ -66,9 +78,9 @@ namespace MononokeEngine.Scenes
 		
 		
 		
-		
-		
-		
+		// ====================== ENTITIES ====================== //
+
+
 		internal void Add(Entity entity)
 		{
 			_entities.Add(entity);
@@ -76,12 +88,7 @@ namespace MononokeEngine.Scenes
 				AddGraphic(graphic);
 		}
 
-		internal void AddGraphic(GraphicComponent graphic)
-		{
-			_renderer.AddGraphic(graphic);
-		}
-		
-		
+
 		internal bool Remove(Entity entity)
 		{
 			foreach (var graphic in entity.Graphics)
@@ -89,15 +96,40 @@ namespace MononokeEngine.Scenes
 			return _entities.Remove(entity);
 		}
 		
-		internal void RemoveGraphic(GraphicComponent graphic)
-		{
-			_renderer.RemoveGraphic(graphic);
-		}
-
 
 		public bool Contains(Entity entity)
 		{
 			return _entities.Contains(entity);
 		}
+		
+		
+		
+		
+		
+		
+		// ====================== RENDERING ====================== //
+		
+		internal void AddGraphic(GraphicComponent graphic)
+		{
+			Renderer.AddGraphic(graphic);
+		}
+		
+		
+		internal void RemoveGraphic(GraphicComponent graphic)
+		{
+			Renderer.RemoveGraphic(graphic);
+		}
+
+		internal void AddDrawCommand(IDrawCommand cmd)
+		{
+			_drawCommands.Add(cmd);
+		}
+
+		internal void ClearDrawCommands()
+		{
+			_drawCommands.Clear();
+		}
+		
+		
 	}
 }

@@ -1,12 +1,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MononokeEngine.Graphics.Rendering;
+using MononokeEngine.Graphics.Core.Rendering;
 using MononokeEngine.Scenes;
 using MononokeEngine.Utils;
 
 namespace MononokeEngine.Graphics.Drawing.Commands
 {
-    internal class DrawLine : IDrawCommand
+    internal class DrawLine : AbstractDrawCommand
     {
         private readonly Vector2 _p0;
         private readonly Vector2 _p1;
@@ -20,7 +20,7 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         }
         
         
-        public void Execute()
+        public override void Execute()
         {
             var angle = Math.PointDirection(_p0, _p1);
             var dist = Math.PointDistance(_p0, _p1);
@@ -40,7 +40,7 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         }
         
         
-        public bool Accept(Camera cam, IRenderer renderer)
+        public override bool Accept(Camera cam, IRenderer renderer)
         {
             return renderer.WillDraw(cam, this);
         }
