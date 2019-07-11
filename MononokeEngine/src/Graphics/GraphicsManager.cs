@@ -5,6 +5,7 @@ using System.Xml;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MononokeEngine.Graphics.Drawing;
+using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Graphics
 {
@@ -55,6 +56,16 @@ namespace MononokeEngine.Graphics
 
         internal void Render()
         {
+            Scene scene = Mononoke.Scenes.Current;
+            if (scene == null)
+                return;
+            
+            /* TODO draw every camera
+            foreach (Camera cam in scene.ActiveCameras)
+            {
+                Draw.Render(cam);
+            }
+            */
             Draw.Render();
         }
         

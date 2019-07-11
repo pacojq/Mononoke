@@ -1,4 +1,6 @@
 using Microsoft.Xna.Framework.Graphics;
+using MononokeEngine.Graphics.Rendering;
+using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Graphics.Drawing.Commands
 {
@@ -16,6 +18,11 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         public void Execute()
         {
             _draw.Font = _font;
+        }
+
+        public bool Accept(Camera cam, IRenderer renderer)
+        {
+            return true;
         }
     }
 }

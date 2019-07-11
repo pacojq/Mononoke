@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MononokeEngine.Graphics.Rendering;
+using MononokeEngine.Scenes;
 using MononokeEngine.Utils;
 
 namespace MononokeEngine.Graphics.Drawing.Commands
@@ -35,6 +37,12 @@ namespace MononokeEngine.Graphics.Drawing.Commands
                     SpriteEffects.None, 
                     0
                 );
+        }
+        
+        
+        public bool Accept(Camera cam, IRenderer renderer)
+        {
+            return renderer.WillDraw(cam, this);
         }
     }
 }

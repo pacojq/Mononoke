@@ -76,6 +76,10 @@
         <Compile Include="src\Graphics\Graphic.cs" />
         <Compile Include="src\Graphics\GraphicsManager.cs" />
         <Compile Include="src\Graphics\MononokeGraphicsException.cs" />
+        <Compile Include="src\Graphics\Rendering\BasicRenderer.cs" />
+        <Compile Include="src\Graphics\Rendering\Chunks\Chunk.cs" />
+        <Compile Include="src\Graphics\Rendering\Chunks\ChunkRenderer.cs" />
+        <Compile Include="src\Graphics\Rendering\IRenderer.cs" />
         <Compile Include="src\Graphics\Sprite.cs" />
         <Compile Include="src\Graphics\Atlas.cs" />
         <Compile Include="src\Graphics\Tiles\AnimatedTile.cs" />
@@ -124,6 +128,7 @@
       <Content Include="lib\Microsoft.Xna.Framework.Game.dll" />
       <Content Include="lib\Microsoft.Xna.Framework.Graphics.dll" />
       <Content Include="src\ECS\README.txt" />
+      <Content Include="src\Graphics\TODO.txt" />
       <Content Include="src\README.txt" />
       <Content Include="src\TODO.txt" />
     </ItemGroup>

@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MononokeEngine.Graphics.Rendering;
+using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Graphics.Drawing.Commands
 {
@@ -17,6 +19,11 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         public void Execute()
         {
             _draw.Color = _color;
+        }
+
+        public bool Accept(Camera cam, IRenderer renderer)
+        {
+            return true;
         }
     }
 }

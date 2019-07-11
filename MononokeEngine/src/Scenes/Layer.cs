@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using MononokeEngine.ECS;
+using MononokeEngine.Graphics;
+using MononokeEngine.Graphics.Rendering;
 
 namespace MononokeEngine.Scenes
 {
@@ -15,14 +17,31 @@ namespace MononokeEngine.Scenes
 
 
 		private HashSet<Scene> _scenes;
+
+
+		internal IRenderer _renderer;
 		
 		
 		public Layer(int depth = 0)
 		{
 			Depth = depth;
 			_entities = new List<Entity>();
+			_renderer = new BasicRenderer();
 		}
 
+
+
+
+
+		internal void Update()
+		{
+			_renderer.Update();
+		}
+		
+		
+		
+		
+		
 
 		public void Attach(Scene scene)
 		{
@@ -43,15 +62,36 @@ namespace MononokeEngine.Scenes
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
 		internal void Add(Entity entity)
 		{
 			_entities.Add(entity);
+			foreach (var graphic in entity.Graphics)
+				AddGraphic(graphic);
+		}
+
+		internal void AddGraphic(GraphicComponent graphic)
+		{
+			_renderer.AddGraphic(graphic);
 		}
 		
 		
 		internal bool Remove(Entity entity)
 		{
+			foreach (var graphic in entity.Graphics)
+				RemoveGraphic(graphic);
 			return _entities.Remove(entity);
+		}
+		
+		internal void RemoveGraphic(GraphicComponent graphic)
+		{
+			_renderer.RemoveGraphic(graphic);
 		}
 
 

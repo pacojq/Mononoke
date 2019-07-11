@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MononokeEngine.Graphics.Drawing.Commands;
+using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Graphics.Drawing
 {
@@ -69,6 +70,7 @@ namespace MononokeEngine.Graphics.Drawing
             while (_commands.Count > 0)
             {
                 IDrawCommand cmd = _commands.Dequeue();
+                
                 cmd.Execute();
             }
             

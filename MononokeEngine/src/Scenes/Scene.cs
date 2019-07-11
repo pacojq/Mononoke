@@ -91,10 +91,17 @@ namespace MononokeEngine.Scenes
             
             // Update the space
             Space.Update();
-        
+
+            // ... then the entities
             foreach (Entity e in Entities)
             {
                 e.Update();
+            }
+            
+            // ...and finally the layers
+            foreach (Layer layer in _layers)
+            {
+                layer.Update();
             }
         }
 
@@ -169,6 +176,7 @@ namespace MononokeEngine.Scenes
             entity.Scene = this;
             
             layer.Add(entity);
+            entity.Layer = layer;
             
             Space.AddEntity(entity);
             foreach (var col in entity.Colliders)

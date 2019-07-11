@@ -1,0 +1,13 @@
+
+TODO
+
+    = Binary Space Partitioning
+        - BSP Tree
+        
+    = Chunk rendering
+    
+    = Each scene layer can decide a RenderingType
+        RenderType.BSP
+        RenderType.Chunks
+        RenderType.RenderAll
+        

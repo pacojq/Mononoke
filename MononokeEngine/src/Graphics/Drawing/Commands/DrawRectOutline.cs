@@ -2,9 +2,8 @@ using Microsoft.Xna.Framework;
 
 namespace MononokeEngine.Graphics.Drawing.Commands
 {
-    internal class DrawRectOutline : IDrawCommand
+    internal class DrawRectOutline : DrawRect
     {
-        private readonly Rectangle _rect;
         private readonly Color _color;
         private readonly int _border;
         
@@ -15,9 +14,8 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         private readonly Rectangle _left;
         
 
-        public DrawRectOutline(Rectangle rect, Color color, int border = 1)
+        public DrawRectOutline(Rectangle rect, Color color, int border = 1) : base(rect, color)
         {
-            _rect = rect;
             _color = color;
             
             _top = new Rectangle(rect.X, rect.Y, rect.Width, border);
@@ -27,7 +25,7 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         }
         
         
-        public void Execute()
+        public override void Execute()
         {
             Sprite px = Mononoke.Graphics.Pixel;
             
