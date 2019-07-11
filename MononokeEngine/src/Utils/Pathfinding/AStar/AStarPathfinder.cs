@@ -5,7 +5,7 @@ using MononokeEngine.Utils.DataStructures.Heaps;
 
 namespace MononokeEngine.Utils.Pathfinding.AStar
 {
-	public class AStarPathfinder : IPathfinder
+	internal class AStarPathfinder : IPathfinder
 	{
 
 		private readonly AStarGrid _grid;
@@ -24,74 +24,72 @@ namespace MononokeEngine.Utils.Pathfinding.AStar
 		
 		public List<Vector2> FindPath(Vector2 startPosition, Vector2 targetPosition)
 		{
-			var path = new List<AStarNode>();
-
-			int sx = (int) System.Math.Floor(startPosition.X);
-			int sy = (int) System.Math.Floor(startPosition.Y);
-			AStarNode startNode = _grid[sx, sy];
+			int startX = (int) System.Math.Floor(startPosition.X);
+			int startY = (int) System.Math.Floor(startPosition.Y);
+			AStarNode startNode = _grid[startX, startY];
 			
-			int tx = (int) System.Math.Floor(targetPosition.X);
-			int ty = (int) System.Math.Floor(targetPosition.Y);
-			AStarNode targetNode = _grid[tx, ty];
-			
+			int targetX = (int) System.Math.Floor(targetPosition.X);
+			int targetY = (int) System.Math.Floor(targetPosition.Y);
+			AStarNode targetNode = _grid[targetX, targetY];
 
-			if (startNode != null || targetNode == null)
+
+			if (startNode == null || targetNode == null)
+				return null;
+			
+			// OPEN: set of nodes to be evaluated
+			var openSet = new AStarBinaryHeap();
+			
+			// CLOSED: set of nodes already evaluated
+			var closedSet = new HashSet<AStarNode>();
+			
+			
+			openSet.Add(startNode);
+			while (openSet.Count > 0)
 			{
-				var openSet = new BinaryHeap<AStarNode>();
-				var closedSet = new HashSet<AStarNode>();
+				AStarNode currentNode = openSet.Poll();
+				closedSet.Add(currentNode);
+				
+				if (currentNode == null)
+					continue;
 
-				openSet.Add(startNode);
+				// Reached Target
+				if (currentNode == targetNode)
+					return RetracePath(startNode, targetNode);
 
-				while (openSet.Count > 0)
+				// Add new nodes
+				foreach (var neighbour in _grid.GetNeighbours(currentNode))
 				{
-					AStarNode currentNode = openSet.Poll();
-					closedSet.Add(currentNode);
-					
-					if (currentNode == null)
+					if (neighbour == null)
 						continue;
 
-					// Reached Target
-					if (currentNode == targetNode)
-						return RetracePath(startNode, targetNode);
-
-					// Add new nodes
-					foreach (var neighbour in _grid.GetNeighbours(currentNode))
+					// Target found but not walkable
+					if (neighbour == targetNode && !neighbour.Walkable)
 					{
-						
-						if (neighbour == null)
-							continue;
+						return RetracePath(startNode, currentNode);
+					}
 
-						// Target forund but not walkable
-						if (neighbour == targetNode && !neighbour.Walkable)
-						{
-							return RetracePath(startNode, currentNode);
-						}
+					if (!neighbour.Walkable || closedSet.Contains(neighbour))
+						continue;
 
-						if (!neighbour.Walkable || closedSet.Contains(neighbour))
-							continue;
+					int newCostToNeighbour = currentNode.GCost + GetDistance(currentNode, neighbour);
+					if (newCostToNeighbour < neighbour.GCost || !openSet.Contains(neighbour))
+					{
+						neighbour.GCost = newCostToNeighbour;
+						neighbour.HCost = GetDistance(neighbour, targetNode);
+						neighbour.Parent = currentNode;
 
-						int newCostToNeighbour = currentNode.GCost + GetDistance(currentNode, neighbour);
-						if (newCostToNeighbour < neighbour.GCost || !openSet.Contains(neighbour))
-						{
-							neighbour.GCost = newCostToNeighbour;
-							neighbour.HCost = GetDistance(neighbour, targetNode);
-							neighbour.Parent = currentNode;
-
-							if (!openSet.Contains(neighbour))
-								openSet.Add(neighbour);
-								//openSet.Remove(neighbour);
-								
-							//openSet.Add(neighbour);
-						}
+						if (!openSet.Contains(neighbour))
+							openSet.Add(neighbour);
 					}
 				}
-
 			}
+
+			
 			return null;
 		}
 
-		
-		
+
+
 		private List<Vector2> RetracePath(AStarNode startNode, AStarNode endNode)
 		{
 			var path = new List<Vector2>();

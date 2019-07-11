@@ -18,5 +18,9 @@ namespace MononokeEngine.Utils.Pathfinding.JPS
             throw new NotImplementedException();
         }
 
+        public void InitForGrid(IPathfindingGrid grid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
