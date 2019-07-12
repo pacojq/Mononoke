@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MononokeEngine.ECS;
 using MononokeEngine.Physics.Colliders;
+using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Physics
 {
@@ -16,12 +17,14 @@ namespace MononokeEngine.Physics
 		public virtual float Height { get; protected set; }
 		
 		public bool IsTrigger { get; set; }
+		
+		public Vector2 Center { get; set; }
 
 
-		public virtual float Top { get; protected set; }
-		public virtual float Bottom { get; protected set; }
-		public virtual float Left { get; protected set; }
-		public virtual float Right { get; protected set; }
+		public virtual float Top { get; }
+		public virtual float Bottom { get; }
+		public virtual float Left { get; }
+		public virtual float Right { get; }
 		
 		
 		public virtual float CenterX { get; protected set; }
@@ -46,8 +49,10 @@ namespace MononokeEngine.Physics
 		
 		
 
-		public Collider()
+		public Collider(Vector2 center)
 		{
+			Center = center;
+			
 			_onEnter = new List<Collider>();
 			_onStay = new List<Collider>();
 			_onExit = new List<Collider>();
@@ -58,7 +63,10 @@ namespace MononokeEngine.Physics
 			OnCollisionExit = other => { };
 		}
 
-		
+		public Collider() : this(Vector2.Zero) { }
+
+
+
 		public virtual bool PlaceMeeting(Collider other)
 		{
 			return CollisionChecks.PlaceMeeting(this, other);
@@ -133,10 +141,20 @@ namespace MononokeEngine.Physics
 			foreach (var col in _onExit)
 				OnCollisionExit(col);
 		}
+
+
 		
 		
 		
+		// ================== DEBUG UTILITIES ================== //
 		
-		
+		internal abstract void DebugDraw();
+
+		internal virtual bool IsOnCameraBounds(Camera camera)
+		{
+			return true;
+		}
+
+
 	}
 }

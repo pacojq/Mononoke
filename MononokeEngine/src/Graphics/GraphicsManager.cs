@@ -4,7 +4,9 @@ using System.IO;
 using System.Xml;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MononokeEngine.Graphics.Core;
 using MononokeEngine.Graphics.Drawing;
+using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Graphics
 {
@@ -28,6 +30,8 @@ namespace MononokeEngine.Graphics
         /// Draw helper.
         /// </summary>
         public Draw Draw { get; private set; }
+
+        private GameRenderer _renderer;
        
 
         internal GraphicsManager() { }
@@ -37,6 +41,8 @@ namespace MononokeEngine.Graphics
             GraphicsDevice = graphicsDevice;
             SpriteBatch = new SpriteBatch(graphicsDevice);
             DefaultFont = MononokeGame.Instance.Content.Load<SpriteFont>(@"Mononoke\MononokeDefault");
+            
+            _renderer = new GameRenderer();
             
             Draw = new Draw(GraphicsDevice, SpriteBatch);
             Draw.Font = DefaultFont;
@@ -55,7 +61,17 @@ namespace MononokeEngine.Graphics
 
         internal void Render()
         {
-            Draw.Render();
+            Scene scene = Mononoke.Scenes.Current;
+            if (scene == null)
+                return;
+            
+            SpriteBatch.Begin();
+            
+            _renderer.Render();
+            
+            SpriteBatch.End();
+
+            _renderer.CleanUp();
         }
         
         internal void Close()

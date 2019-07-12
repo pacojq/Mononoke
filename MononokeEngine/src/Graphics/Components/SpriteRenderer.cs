@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Graphics.Components
 {
-    public class SpriteRenderer : Graphic
+    public class SpriteRenderer : GraphicComponent
     {
         public Sprite Sprite;
 
@@ -28,22 +29,13 @@ namespace MononokeEngine.Graphics.Components
         
         
         
-        public override void Render()
+        protected override void Draw()
         {
             if (Sprite == null)
                 return;
 
-            Mononoke.Graphics.Draw.SpriteExt(
-                    Sprite, 
-                    Position, 
-                    Color.White, 
-                    Rotation, 
-                    Vector2.Zero, 
-                    Scale, 
-                    Flip, 
-                    0
-                );
-            
+            Mononoke.Graphics.Draw.SpriteExt(Sprite, Position, Color.White, Rotation, Vector2.Zero, Scale, Flip, 0);
         }
+        
     }
 }

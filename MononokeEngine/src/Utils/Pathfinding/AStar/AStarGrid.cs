@@ -4,14 +4,23 @@
 */
 
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace MononokeEngine.Utils.Pathfinding.AStar
 {
-	public class AStarGrid : IGrid
+	internal class AStarGrid : IPathfindingGrid
 	{
-	
-		private AStarNode[,] _grid;
-		private int _width, _height;
+
+		public int Width => _width;
+		private readonly int _width;
+
+		public int Height => _height;
+		private readonly int _height;
+		
+		private readonly AStarNode[,] _grid;
+
+		private AStarPathfinder _pathfinder;
+		
 	
 		internal AStarNode this[int x, int y] => _grid[x, y];
 		internal AStarNode this[Vec2 pos] => _grid[pos.X, pos.Y];
@@ -26,11 +35,39 @@ namespace MononokeEngine.Utils.Pathfinding.AStar
 			for (var x = 0; x < _width; x++)
 				for (var y = 0; y < _height; y++)
 					_grid[x, y] = new AStarNode(walkable[x, y], x, y);
-            
+			
+			_pathfinder = new AStarPathfinder(this);
 		}
 
 		
+		
+		
+		public void SetWalkable(int x, int y, bool walkable)
+		{
+			_grid[x, y].Walkable = walkable;
+		}
 
+		public bool IsWalkable(int x, int y)
+		{
+			return _grid[x, y].Walkable;
+		}
+		
+		
+		
+		public List<Vector2> FindPath(float xStart, float yStart, float xTarget, float yTarget)
+		{
+			return _pathfinder.FindPath(xStart, yStart, xTarget, yTarget);
+		}
+
+		public List<Vector2> FindPath(Vector2 start, Vector2 target)
+		{
+			return _pathfinder.FindPath(start, target);
+		}
+		
+		
+		
+		
+		
 		internal List<AStarNode> GetNeighbours(AStarNode aStarNode)
 		{
 			List<AStarNode> neighbours = new List<AStarNode>();
@@ -91,6 +128,7 @@ namespace MononokeEngine.Utils.Pathfinding.AStar
 
 			return deltaX + deltaY;
 		}
-	
+
+		
 	}
 }

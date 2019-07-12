@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MononokeEngine.ECS
@@ -15,11 +16,19 @@ namespace MononokeEngine.ECS
         }
         
         
+        public static IEnumerable<T> GetComponents<T>(this Entity e) where T : Component
+        {
+            return e.Components
+                .Where(c => CheckComponent(c, typeof(T)))
+                .Select(c => (T) c);
+        }
+        
+        
         /// <summary>
         /// Determines whether a type is the same as another type.
         /// It will also check inheritance and interface implementation.
         /// </summary>
-        private static bool CheckComponent(Component comp, Type target)
+        public static bool CheckComponent(Component comp, Type target)
         {
             Type actual = comp.GetType();
             

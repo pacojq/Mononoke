@@ -18,7 +18,9 @@ namespace MononokeEngine.Physics.Colliders
         public override float Width => Math.Abs(Position.X - X2);
 
         public override float Height => Math.Abs(Position.Y - Y2);
-        
-        
+        internal override void DebugDraw()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

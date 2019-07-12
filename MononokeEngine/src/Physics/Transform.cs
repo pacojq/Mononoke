@@ -15,10 +15,7 @@ namespace MononokeEngine.Physics
             {
                 if (value == null)
                     throw new ArgumentException("Cannot set Position to null.");
-                
                 _position = value;
-                if (Entity != null)
-                    Entity.Scene.Space.AddEntityToChangeQueue(Entity);
             }
         }
         private Vector2 _position;

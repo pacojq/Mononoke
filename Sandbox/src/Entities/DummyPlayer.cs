@@ -28,12 +28,6 @@ namespace Sandbox.Entities
             Bind(_renderer);
             Bind(_animationComponent);
 
-            var col = new BoxCollider(32, 32);
-            col.OnCollisionEnter += other =>
-            {
-                Console.WriteLine("Collision enter!");
-            }; 
-            
             Bind(new BoxCollider(32, 32));
             Bind(new PlayerComponent());
             Bind(new RectDrawer(32, 32));

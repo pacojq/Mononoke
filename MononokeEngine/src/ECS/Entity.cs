@@ -13,6 +13,8 @@ namespace MononokeEngine.ECS
         
 
         public Scene Scene { get; internal set; }
+        
+        public Layer Layer { get; internal set; }
 
         
         public Transform Transform { get; }
@@ -21,17 +23,36 @@ namespace MononokeEngine.ECS
         /// <summary>
         /// Shortcut to get <see cref="Transform"/>.Position
         /// </summary>
-        public Vector2 Position
+        public virtual Vector2 Position
         {
             get => Transform.Position;
             set => Transform.Position = value;
         }
+        
+        
+        /// <summary>
+        /// The position of the Entity in the previous frame.
+        /// </summary>
+        public Vector2 PreviousPosition { get; private set; }
 
 
+        
         public IEnumerable<Component> Components => _components;
         private readonly List<Component> _components;
         
-        private readonly List<Graphic> _graphics;
+        
+        /// <summary>
+        /// An enumeration of the Graphic components bind to the entity.
+        /// </summary>
+        public IEnumerable<GraphicComponent> Graphics => _graphics;
+        private readonly List<GraphicComponent> _graphics;
+        
+        
+        /// <summary>
+        /// An enumeration of the Collider components bind to the entity.
+        /// </summary>
+        public IEnumerable<Collider> Colliders => _colliders;
+        private readonly List<Collider> _colliders;
 
         
 
@@ -46,30 +67,46 @@ namespace MononokeEngine.ECS
         
         internal int _depth = 0;
 
+        
+        
+        
         /// <summary>
         /// Shortcut to get and set <see cref="Position"/>.X
         /// </summary>
-        public float X
+        public virtual float X
         {
             get => Position.X;
-            set => Position += new Vector2(value, 0);
+            set => Position = new Vector2(value, Position.Y);
         }
+        
+        /// <summary>
+        /// Shortcut to get and set <see cref="PreviousPosition"/>.X
+        /// </summary>
+        public float PreviousX => PreviousPosition.X;
+        
+        
 
         /// <summary>
         /// Shortcut to get and set <see cref="Position"/>.Y
         /// </summary>
-        public float Y
+        public virtual float Y
         {
             get => Position.Y;
-            set => Position += new Vector2(0, value);
+            set => Position = new Vector2(Position.X, value);
         }
+
+        /// <summary>
+        /// Shortcut to get and set <see cref="PreviousPosition"/>.Y
+        /// </summary>
+        public float PreviousY => PreviousPosition.Y;
         
 
 
         
-        public bool Active = true;
-        public bool Visible = true;
-        public bool Collidable = true;
+        public bool Active { get; set; }
+        public bool Visible { get; set; }
+        public bool Collidable { get; set; }
+    
         
 
 
@@ -81,13 +118,19 @@ namespace MononokeEngine.ECS
         public Entity(Vector2 position)
         {
             _components = new List<Component>();
-            _graphics = new List<Graphic>();
+            _graphics = new List<GraphicComponent>();
+            _colliders = new List<Collider>();
             
             
             Transform = new Transform();
             Bind(Transform);
             
             Position = position;
+            PreviousPosition = position;
+
+            Active = true;
+            Visible = true;
+            Collidable = true;
         }
 
         // Util constructor
@@ -130,12 +173,14 @@ namespace MononokeEngine.ECS
                 if (c.Active)
                     c.AfterUpdate();
             }
+
+            PreviousPosition = Position;
         }
         
         
         public void Render()
         {
-            foreach (Graphic g in _graphics)
+            foreach (GraphicComponent g in _graphics)
             {
                 if (g.Visible)
                     g.Render();
@@ -156,11 +201,22 @@ namespace MononokeEngine.ECS
                 throw new InvalidComponentStateException("Cannot add a component that is already bound to an entity.");
 
             Type t = component.GetType();
-            
             _components.Add(component);
-            if (component is Graphic)
-                _graphics.Add((Graphic) component);
-            
+
+            if (component is GraphicComponent)
+            {
+                GraphicComponent graphic = (GraphicComponent) component;
+                Layer?.AddGraphic(graphic);
+                _graphics.Add(graphic);
+            }
+
+            if (component is Collider)
+            {
+                _colliders.Add((Collider) component);
+                if (Scene != null)
+                    Scene.Space.AddCollider((Collider) component);
+            }
+
             component.Entity = this;
         }
         
@@ -171,8 +227,20 @@ namespace MononokeEngine.ECS
             
             Type t = component.GetType();
             _components.Remove(component);
-            if (component is Graphic)
-                _graphics.Remove((Graphic) component);
+
+            if (component is GraphicComponent)
+            {
+                GraphicComponent graphic = (GraphicComponent) component;
+                Layer?.RemoveGraphic(graphic);
+                _graphics.Remove(graphic);
+            }
+
+            if (component is Collider)
+            {
+                _colliders.Remove((Collider) component);
+                if (Scene != null)
+                    Scene.Space.RemoveCollider((Collider) component);
+            }
         }
 
         public void Bind(params Component[] components)
