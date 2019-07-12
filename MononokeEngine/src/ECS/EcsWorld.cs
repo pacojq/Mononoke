@@ -24,7 +24,7 @@ namespace MononokeEngine.ECS
 
         public void AddSystem(ISystem system)
         {
-            Console.WriteLine(system.GetType().Name);
+            Mononoke.Logger.Print(system.GetType().Name);
             Type t = system.GetType().BaseType.GetGenericArguments()[0];
             
             if (_systems.ContainsKey(t))

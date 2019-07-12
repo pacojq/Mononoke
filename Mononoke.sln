@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MononokeEngine.Tests", "MononokeEngine.Tests\MononokeEngine.Tests.csproj", "{D2B0D061-202D-496F-A85F-DBF8B89468D1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{05FDCEEC-96DC-4972-901A-EE943EFDA5E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MononokeEngine.Logging.ConsoleLogger", "MononokeEngine.Logging.ConsoleLogger\MononokeEngine.Logging.ConsoleLogger.csproj", "{0C0849E5-8E0D-46B6-96C1-12F54A254592}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,12 @@ Global
 		{D2B0D061-202D-496F-A85F-DBF8B89468D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2B0D061-202D-496F-A85F-DBF8B89468D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2B0D061-202D-496F-A85F-DBF8B89468D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C0849E5-8E0D-46B6-96C1-12F54A254592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C0849E5-8E0D-46B6-96C1-12F54A254592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C0849E5-8E0D-46B6-96C1-12F54A254592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C0849E5-8E0D-46B6-96C1-12F54A254592}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0C0849E5-8E0D-46B6-96C1-12F54A254592} = {05FDCEEC-96DC-4972-901A-EE943EFDA5E1}
 	EndGlobalSection
 EndGlobal

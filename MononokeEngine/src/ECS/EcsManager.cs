@@ -25,7 +25,7 @@ namespace MononokeEngine.ECS
             
             Current = DefaultWorld();
             
-            Console.WriteLine("MnkEcs initialized!");
+            Mononoke.Logger.Print("MnkEcs initialized!");
         }
         
         

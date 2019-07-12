@@ -45,6 +45,7 @@
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
+        <Reference Include="System.Runtime.Remoting" />
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
@@ -88,6 +89,9 @@
         <Compile Include="src\Graphics\Tiles\TileMap.cs" />
         <Compile Include="src\Input\KeyboardInput.cs" />
         <Compile Include="src\Input\InputManager.cs" />
+        <Compile Include="src\Logging\ConsoleLogger.cs" />
+        <Compile Include="src\Logging\ILogger.cs" />
+        <Compile Include="src\Logging\LoggerProxy.cs" />
         <Compile Include="src\MononokeGame.cs" />
         <Compile Include="src\Mononoke.cs" />
         <Compile Include="src\Physics\Collider.cs" />
@@ -105,6 +109,9 @@
         <Compile Include="src\Scenes\Layer.cs" />
         <Compile Include="src\Scenes\Scene.cs" />
         <Compile Include="src\Scenes\SceneManager.cs" />
+        <Compile Include="src\Terminal\ITerminal.cs" />
+        <Compile Include="src\Terminal\ITerminalCommand.cs" />
+        <Compile Include="src\Terminal\TerminalManager.cs" />
         <Compile Include="src\Utils\DataStructures\Heaps\BinaryHeap.cs" />
         <Compile Include="src\Utils\DataStructures\Heaps\HeapNode.cs" />
         <Compile Include="src\Utils\DataStructures\Heaps\IBinaryHeap.cs" />
@@ -122,8 +129,6 @@
         <Compile Include="src\Utils\Pathfinding\PathfindingManager.cs" />
         <Compile Include="src\Utils\Pathfinding\Vec2.cs" />
         <Compile Include="src\Utils\Random.cs" />
-        <Compile Include="src\Utils\Terminal\ITerminalCommand.cs" />
-        <Compile Include="src\Utils\Terminal\TerminalManager.cs" />
         <Compile Include="src\Utils\Util.cs" />
     </ItemGroup>
     <ItemGroup>

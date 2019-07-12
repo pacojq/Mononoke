@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MononokeEngine.Utils.Terminal
+namespace MononokeEngine.Terminal
 {
     public class TerminalManager
     {

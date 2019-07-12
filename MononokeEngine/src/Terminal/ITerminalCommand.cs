@@ -1,4 +1,4 @@
-namespace MononokeEngine.Utils.Terminal
+namespace MononokeEngine.Terminal
 {
     public interface ITerminalCommand
     {
