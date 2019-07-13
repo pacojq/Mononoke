@@ -1,14 +1,19 @@
 using System;
+#if DEBUG
+/*
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Security.Permissions;
+*/
+#endif
 
 namespace MononokeEngine.Logging
 {
     public class ConsoleLoggerServer : ILogger
     {
 #if DEBUG
+/*
         public static readonly int Port = 9090;
 
         private LoggerProxy _proxy;
@@ -55,12 +60,13 @@ namespace MononokeEngine.Logging
                 Console.WriteLine("The object URI is {0}.", objectUri);
                 Console.WriteLine("The channel URI is {0}.", channelUri);
             }
+*/
         }
 #endif
         public void Print(string msg)
         {
 #if DEBUG
-            _proxy.Enqueue(msg);
+            //_proxy.Enqueue(msg);
 #endif
         }
     }
