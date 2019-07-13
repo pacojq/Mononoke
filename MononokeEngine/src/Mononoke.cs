@@ -90,10 +90,10 @@ namespace MononokeEngine
 
                 if (_logger == null)
                 {
-#if RELEASE
-                    _logger = new DummyLogger();
-#else
+#if DEBUG
                     _logger = new ConsoleLoggerServer();
+#else
+                    _logger = new DummyLogger();
 #endif
                 }
 
