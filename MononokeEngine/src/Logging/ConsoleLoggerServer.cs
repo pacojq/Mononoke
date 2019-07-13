@@ -8,7 +8,7 @@ namespace MononokeEngine.Logging
 {
     public class ConsoleLoggerServer : ILogger
     {
-
+#if DEBUG
         public static readonly int Port = 9090;
 
         private LoggerProxy _proxy;
@@ -56,10 +56,12 @@ namespace MononokeEngine.Logging
                 Console.WriteLine("The channel URI is {0}.", channelUri);
             }
         }
-
+#endif
         public void Print(string msg)
         {
+#if DEBUG
             _proxy.Enqueue(msg);
+#endif
         }
     }
 }
