@@ -7,4 +7,4 @@ install:
   - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
 script:
   - msbuild /p:Configuration=Release Mononoke.sln
-  - mono ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./Mononoke.Tests/bin/Release/Mononoke.Tests.dll
+  - mono ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./MononokeEngine.Tests/bin/Release/MononokeEngine.Tests.dll
