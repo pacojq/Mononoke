@@ -89,7 +89,7 @@
         <Compile Include="src\Graphics\Tiles\TileMap.cs" />
         <Compile Include="src\Input\KeyboardInput.cs" />
         <Compile Include="src\Input\InputManager.cs" />
-        <Compile Include="src\Logging\ConsoleLogger.cs" />
+        <Compile Include="src\Logging\ConsoleLoggerServer.cs" />
         <Compile Include="src\Logging\ILogger.cs" />
         <Compile Include="src\Logging\LoggerProxy.cs" />
         <Compile Include="src\MononokeGame.cs" />

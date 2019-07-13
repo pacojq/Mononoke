@@ -25,7 +25,7 @@ namespace MononokeEngine.Logging
 
 
         private readonly Queue<string> _messages;
-        private object _locker;
+        private readonly object _locker;
 
         public LoggerProxy()
         {

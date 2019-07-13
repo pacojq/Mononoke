@@ -8,7 +8,7 @@ namespace MononokeEngine.Terminal
         
         public bool PauseGameOnOpen { get; set; }
 
-        private Dictionary<string, ITerminalCommand> _commands;
+        private readonly Dictionary<string, ITerminalCommand> _commands;
         
         
         
