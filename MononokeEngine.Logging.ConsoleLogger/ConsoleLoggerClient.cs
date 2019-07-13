@@ -9,6 +9,7 @@ namespace MononokeEngine.Logging.ConsoleLogger
 {
     public class ConsoleLoggerClient
     {
+#if DEBUG
         [DllImport("kernel32")]
         static extern bool AllocConsole();
         
@@ -61,5 +62,6 @@ namespace MononokeEngine.Logging.ConsoleLogger
                 }
             }
         }
+#endif
     }
 }
