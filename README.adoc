@@ -1,5 +1,0 @@
-= Mononoke
-
-image:https://travis-ci.org/pacojq/Mononoke.svg?branch=master["Build Status", link="https://travis-ci.org/pacojq/Mononoke"]
-
-A toy Game Engine based on the MonoGame framework.

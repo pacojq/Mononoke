@@ -6,6 +6,8 @@ namespace MononokeEngine.ECS
     public class EcsManager
     {
 
+        public bool IsReady { get; private set; }
+        
         public EcsWorld Current { get; private set; }
         public IEnumerable<EcsWorld> Worlds { get; }
         
@@ -24,8 +26,10 @@ namespace MononokeEngine.ECS
             _systems = new Dictionary<Type, ISystem>();
             
             Current = DefaultWorld();
-            
+
+            IsReady = true;
             Mononoke.Logger.Print("MnkEcs initialized!");
+
         }
         
         

@@ -9,7 +9,7 @@ using MononokeEngine.Physics;
 
 namespace MononokeEngine.Scenes
 {
-	public abstract class Scene : IEnumerable<Entity>, IEnumerable
+	public class Scene : IEnumerable<Entity>, IEnumerable
     {
 
 
@@ -162,7 +162,8 @@ namespace MononokeEngine.Scenes
             foreach (var col in entity.Colliders)
                 Space.AddCollider(col);
             
-            Mononoke.Ecs.Current.AddEntity(entity);
+            if (Mononoke.Ecs.IsReady)
+                Mononoke.Ecs.Current.AddEntity(entity);
         }
 
         public void Remove(Entity entity)
