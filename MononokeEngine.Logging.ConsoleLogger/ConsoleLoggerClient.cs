@@ -35,7 +35,7 @@ namespace MononokeEngine.Logging.ConsoleLogger
             string objectUri;
             System.Runtime.Remoting.Messaging.IMessageSink messageSink = 
                 clientChannel.CreateMessageSink(
-                    "tcp://localhost:9090/LoggerProxy.rem", null,
+                    "tcp://localhost:" + ConsoleLoggerServer.Port + "/LoggerProxy.rem", null,
                     out objectUri);
             Console.WriteLine("The URI of the message sink is {0}.", 
                 objectUri);

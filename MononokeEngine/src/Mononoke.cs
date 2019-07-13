@@ -87,8 +87,16 @@ namespace MononokeEngine
         {
             get
             {
+
                 if (_logger == null)
-                    _logger = new ConsoleLogger();
+                {
+#if RELEASE
+                    _logger = new DummyLogger();
+#else
+                    _logger = new ConsoleLoggerServer();
+#endif
+                }
+
                 return _logger;
             }
         }

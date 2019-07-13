@@ -1,6 +1,6 @@
 ﻿namespace MononokeEngine.Logging.ConsoleLogger
 {
-    internal class Program
+    internal static class Program
     {
         public static void Main(string[] args)
         {
