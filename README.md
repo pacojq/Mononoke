@@ -5,6 +5,7 @@
 <p align="center">
   <img src="https://img.shields.io/github/license/pacojq/Mononoke.svg?color=%23e03d14" />
   <a href="https://travis-ci.org/pacojq/Mononoke"> <img src="https://travis-ci.org/pacojq/Mononoke.svg?branch=master" /> </a>
+  <a href="https://ci.appveyor.com/project/pacojq/mononoke"> <img src="https://ci.appveyor.com/api/projects/status/5diuauufcfqyd7j9/branch/master?svg=true" /> </a>
   <img src="https://img.shields.io/badge/version-0.0.1-orange.svg" />
 </p>
 
