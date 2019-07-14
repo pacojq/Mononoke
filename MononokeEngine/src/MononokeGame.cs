@@ -38,22 +38,26 @@ namespace MononokeEngine
         #region // - - - - - Fields - - - - - // 
 
         
-        public string Title;       
+        public string Title { get; set; }
 
         public Action OnStart = () => { };
         public Action OnUpdate = () => { };
         public Action OnEnd = () => { };
 
+
+        public float TimeRate => _timeRate;
+        private float _timeRate = 1f;
         
-        public float TimeRate = 1f;
-        public float FreezeTimer;
-        public int FPS;
+        public float FreezeTimer  { get; set; }
+        
+        
+        public int FPS { get; private set; }
         private int _fpsCounter = 0;
         private TimeSpan counterElapsed = TimeSpan.Zero;
 
         
         
-        private GraphicsDeviceManager _graphics;
+        private readonly GraphicsDeviceManager _graphics;
         
 
         #endregion

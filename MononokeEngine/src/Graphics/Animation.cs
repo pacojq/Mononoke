@@ -7,13 +7,13 @@ namespace MononokeEngine.Graphics
         
         public int FrameCount { get; private set; }
         
-        public float Speed;
+        public float Speed { get; private set; }
 
         private readonly Sprite[] _sprites;
         public Sprite this[int index] => _sprites[index];
 
 
-        public Animation(Sprite[] sprites, string name, float speed = .1f)
+        public Animation(Sprite[] sprites, string name, float speed)
         {
             _sprites = sprites;
             FrameCount = _sprites.Length;

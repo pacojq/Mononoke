@@ -29,17 +29,10 @@ namespace Sandbox.Entities
             float deltaX = other.Entity.X - other.Entity.PreviousX;
             float deltaY = other.Entity.Y - other.Entity.PreviousY;
 
-            if (other.Entity.X < this.X && deltaX > 0)
+            if ((other.Entity.X < this.X && deltaX > 0) || (other.Entity.X > this.X && deltaX < 0))
                 X += deltaX;
 
-            else if (other.Entity.X > this.X && deltaX < 0)
-                X += deltaX;
-            
-
-            if (other.Entity.Y < this.Y && deltaY > 0)
-                Y += deltaY;
-                    
-            else if (other.Entity.Y > this.Y && deltaY < 0)
+            if ((other.Entity.Y < this.Y && deltaY > 0) || (other.Entity.Y > this.Y && deltaY < 0))
                 Y += deltaY;
         }
 

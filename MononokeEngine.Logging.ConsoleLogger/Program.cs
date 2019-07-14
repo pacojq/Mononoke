@@ -4,9 +4,7 @@
     {
         public static void Main(string[] args)
         {
-#if DEBUG
             new ConsoleLoggerClient().Run();
-#endif
         }
     }
 }

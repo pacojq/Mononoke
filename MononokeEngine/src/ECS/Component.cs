@@ -47,17 +47,17 @@ namespace MononokeEngine.ECS
 		
 		public virtual void BeforeUpdate()
 		{
-			
+			// Let children components override this method
 		}
 		
 		public virtual void Update()
 		{
-			
+			// Let children components override this method
 		}
 		
 		public virtual void AfterUpdate()
 		{
-			
+			// Let children components override this method
 		}
 
 

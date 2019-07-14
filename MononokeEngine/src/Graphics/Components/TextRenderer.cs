@@ -9,12 +9,12 @@ namespace MononokeEngine.Graphics.Components
         public enum VerticalAlign { Top, Center, Bottom };
 
 
-        public string Text;
-        public SpriteFont Font;
-        public Color Color;
+        public string Text { get; set; }
+        public SpriteFont Font { get; set; }
+        public Color Color { get; set; }
 
-        public HorizontalAlign HorizontalOrigin;
-        public VerticalAlign VerticalOrigin;
+        public HorizontalAlign HorizontalOrigin { get; set; }
+        public VerticalAlign VerticalOrigin { get; set; }
         
         
         public TextRenderer(string text, Vector2 position)

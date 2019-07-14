@@ -22,8 +22,8 @@ namespace MononokeEngine.Physics
         
         
         
-        public Vector2 Scale { get; }
-        public float Rotation { get; }
+        public Vector2 Scale { get; set; }
+        public float Rotation { get; set; }
 
         public bool Active => true;
         public bool Visible => false;
@@ -36,16 +36,5 @@ namespace MononokeEngine.Physics
             _position = Vector2.Zero;
         }
         
-        
-        
-        public void Update()
-        {
-            
-        }
-
-        public void Render()
-        {
-            
-        }
     }
 }

@@ -19,7 +19,7 @@ namespace Sandbox.Entities
             for (int i = 1; i <= 4; i++)
                 sprites[i - 1] = GraphicsManager.LoadSprite("char0" + i);
             
-            Animation anim = new Animation(sprites, "walk");
+            Animation anim = new Animation(sprites, "walk", .1f);
             AnimationController contr = new AnimationController(anim);
             
             _renderer = new SpriteRenderer( sprites[0] );

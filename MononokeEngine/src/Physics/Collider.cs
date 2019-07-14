@@ -36,10 +36,10 @@ namespace MononokeEngine.Physics
 		
 		// =============== Collision events =============== //
 
-		private List<Collider> _onEnter;
-		private List<Collider> _onStay;
-		private List<Collider> _onExit;
-		private List<Collider> _toRemove;
+		private readonly List<Collider> _onEnter;
+		private readonly List<Collider> _onStay;
+		private readonly List<Collider> _onExit;
+		private readonly List<Collider> _toRemove;
 		
 		public CollisionEvent OnCollisionEnter { get; set; }
 		public CollisionEvent OnCollisionStay { get; set; }

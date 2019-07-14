@@ -22,7 +22,7 @@ namespace MononokeEngine.Physics
 
 
 
-		private Scene _scene;
+		private readonly Scene _scene;
 
 		private readonly List<Entity> _entities;
 		private readonly List<Collider> _colliders;

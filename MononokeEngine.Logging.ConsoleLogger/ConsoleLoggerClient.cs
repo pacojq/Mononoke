@@ -1,18 +1,14 @@
 using System;
-
-#if DEBUG
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Security.Permissions;
-#endif
 
 namespace MononokeEngine.Logging.ConsoleLogger
 {
     public class ConsoleLoggerClient
     {
-#if DEBUG
         [DllImport("kernel32")]
         static extern bool AllocConsole();
         
@@ -65,6 +61,5 @@ namespace MononokeEngine.Logging.ConsoleLogger
                 }
             }
         }
-#endif
     }
 }

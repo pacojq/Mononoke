@@ -28,7 +28,7 @@ namespace Sandbox
         {
             base.LoadContent();
             
-            Console.WriteLine("Load content");
+            Mononoke.Logger.Print("Load content");
             
             // TODO: use this.Content to load your game content here
             

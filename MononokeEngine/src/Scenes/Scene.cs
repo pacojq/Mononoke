@@ -36,7 +36,7 @@ namespace MononokeEngine.Scenes
         
         public Space Space { get; }
         
-        public bool Paused;
+        public bool Paused { get; set; }
         
 
 

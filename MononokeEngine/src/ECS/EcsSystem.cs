@@ -6,15 +6,11 @@ namespace MononokeEngine.ECS
         private T[] _entities;
         private int _entityCount;
 
-        
-        //private EcsFilter<T> _ecsFilter;
-
 
         public EcsSystem()
         {
             _entities = new T[256];
             _entityCount = 0;
-            //_ecsFilter = new EcsFilter<T>();
         }
 
 

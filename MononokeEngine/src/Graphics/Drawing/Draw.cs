@@ -16,8 +16,9 @@ namespace MononokeEngine.Graphics.Drawing
         
         public SpriteFont Font { get; internal set; }
         public Color Color { get; internal set; }
-        
-        
+
+
+        public GraphicsDevice GraphicsDevice => _graphicsDevice;
 
         private readonly GraphicsDevice _graphicsDevice;
         private readonly SpriteBatch _spriteBatch;
