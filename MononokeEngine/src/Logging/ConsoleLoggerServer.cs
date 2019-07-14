@@ -10,9 +10,9 @@ namespace MononokeEngine.Logging
 {
     public class ConsoleLoggerServer : ILogger
     {
-#if DEBUG
-        public static readonly int Port = 9090;
 
+        public static readonly int Port = 9090;
+#if DEBUG
         private LoggerProxy _proxy;
         
         internal ConsoleLoggerServer()
