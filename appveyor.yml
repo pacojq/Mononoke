@@ -13,6 +13,5 @@ build:
   verbosity: minimal
 
 test:
-  # only assemblies to test
   assemblies:
-    -'.\*\MononokeEngine.Tests.dll'
+    -'**\*.Tests.dll'
