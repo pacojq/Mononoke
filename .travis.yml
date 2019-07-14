@@ -4,7 +4,7 @@ mono: latest
 solution: Mononoke.sln
 install:
   - nuget restore Mononoke.sln
-  - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
+  - nuget install NUnit.Console -Version 3.10.0 -OutputDirectory testrunner
 script:
   - msbuild /p:Configuration=Release Mononoke.sln
-  - mono ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./MononokeEngine.Tests/bin/x86/Release/MononokeEngine.Tests.dll
+  - mono ./testrunner/NUnit.ConsoleRunner.3.10.0/tools/nunit3-console.exe ./MononokeEngine.Tests/bin/x86/Release/MononokeEngine.Tests.dll
