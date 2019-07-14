@@ -4,10 +4,10 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/license/pacojq/Mononoke.svg?color=%23e03d14" />
-  <a href="https://travis-ci.org/pacojq/Mononoke"> <img src="https://travis-ci.org/pacojq/Mononoke.svg?branch=master" /> </a>
-  <a href="https://ci.appveyor.com/project/pacojq/mononoke"> <img src="https://ci.appveyor.com/api/projects/status/5diuauufcfqyd7j9/branch/master?svg=true" /> </a>
   <img src="https://img.shields.io/badge/version-0.0.1-orange.svg" />
   <a href="https://www.codacy.com/app/pacojq/Mononoke?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pacojq/Mononoke&amp;utm_campaign=Badge_Grade"> <img src="https://api.codacy.com/project/badge/Grade/be280714d0b44e409de9ececc7593e2b" /> </a>
+  <a href="https://travis-ci.org/pacojq/Mononoke"> <img src="https://travis-ci.org/pacojq/Mononoke.svg?branch=master" /> </a>
+  <a href="https://ci.appveyor.com/project/pacojq/mononoke"> <img src="https://ci.appveyor.com/api/projects/status/5diuauufcfqyd7j9/branch/master?svg=true" /> </a>
 </p>
 
 # Mononoke
