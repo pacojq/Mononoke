@@ -5,7 +5,7 @@ namespace MononokeEngine.Graphics
     public class AnimationController
     {
         
-        public Animation CurrentAnimation;
+        public Animation CurrentAnimation { get; set; }
 
         private readonly IDictionary<string, Animation> _animations;
 

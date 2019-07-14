@@ -1,0 +1,20 @@
+version: AppVeyor {branch} Build {build}
+image: Visual Studio 2017
+    
+platform: x86    
+configuration: Release
+
+before_build:
+    - nuget restore Mononoke.sln
+    - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
+
+build:
+  project: Mononoke.sln
+  verbosity: minimal
+
+test:
+  assemblies:
+    -'**\*.Tests.dll'
+    
+test_script:
+    - nunit3-console MononokeEngine.Tests\bin\x86\Release\MononokeEngine.Tests.dll --result=myresults.xml;format=AppVeyor
