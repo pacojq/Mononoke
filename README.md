@@ -1,4 +1,3 @@
-
 <p align="center">
   <img src="./mononoke-logo.png" align="center" height="300"/>
 </p>
@@ -9,7 +8,6 @@
   <img src="https://img.shields.io/badge/version-0.0.1-orange.svg" />
 </p>
 
-
 # Mononoke
 
 Mononoke is a game engine based on the MonoGame framework.
@@ -18,15 +16,14 @@ It's in very early stages, and it's built with learning and experimentation purp
 
 > If you are interested in the project, feel free to contact me to join the development!
 
-
 ## Features
 
 As mentioned above, the Mononoke Engine is in very early development. Right now, it has few features implemented -with more to come. Some of the already existent functionality is the following:
 
-  - Scene-based engine
-  - Entity-Component structure
-  - Simple collision system
-  - Full control of the game for the programmer
+- Scene-based engine
+- Entity-Component structure
+- Simple collision system
+- Full control of the game for the programmer
 
 <br>
 
@@ -34,14 +31,14 @@ As mentioned above, the Mononoke Engine is in very early development. Right now,
 
 In short term, the objective of the project is to create an engine capable of building a commertial game. These are the most important  features planned for the Mononoke project:
 
-  - Scene management
-  - Input handling module
-  - Pathfinding
-  - Coroutine creation and management
-  - Particle system
-  - Audio management
-  - User interface
-  - Entity Component System
+- Scene management
+- Input handling module
+- Pathfinding
+- Coroutine creation and management
+- Particle system
+- Audio management
+- User interface
+- Entity Component System
 
 <br>
 
@@ -49,8 +46,8 @@ In short term, the objective of the project is to create an engine capable of bu
 
 In long term, the Mononoke Engine will grow with more functionality and quality-of-live improvements. These tools are quite important for the Mononoke project, since it has learning purposes. Some examples are listed below:
 
-  - Documentation and examples
-  - In-game editing tools
-  - Remote debugging via HTML / TCP
-  - Multi-threading
+- Documentation and examples
+- In-game editing tools
+- Remote debugging via HTML / TCP
+- Multi-threading
   

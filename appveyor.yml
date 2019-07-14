@@ -1,0 +1,5 @@
+test:
+  # only assemblies to test
+  assemblies:
+    only:
+      - MononokeEngine.Tests\bin\Debug\MononokeEngine.Tests.dll

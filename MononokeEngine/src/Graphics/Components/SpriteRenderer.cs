@@ -6,15 +6,15 @@ namespace MononokeEngine.Graphics.Components
 {
     public class SpriteRenderer : GraphicComponent
     {
-        public Sprite Sprite;
+        public Sprite Sprite { get; set; }
 
-        public Rectangle ClipRect;
+        public Rectangle ClipRect { get; set; }
 
-        public float Rotation;
+        public float Rotation { get; set; }
 
-        public Vector2 Scale;
+        public Vector2 Scale { get; set; }
 
-        public SpriteEffects Flip;
+        public SpriteEffects Flip { get; set; }
         
         
         
