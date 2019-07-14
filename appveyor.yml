@@ -17,4 +17,4 @@ test:
     -'**\*.Tests.dll'
     
 test_script:
-    - dotnet test
+    - nunit3-console MononokeEngine.Tests.dll --result=myresults.xml;format=AppVeyor
