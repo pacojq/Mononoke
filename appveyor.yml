@@ -1,5 +1,5 @@
 version: AppVeyor {branch} Build {build}
-image: Visual Studio 2015
+image: Visual Studio 2017
     
 platform: x86    
 configuration: Release
