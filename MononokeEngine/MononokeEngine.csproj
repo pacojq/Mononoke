@@ -133,7 +133,6 @@
       <Content Include="src\ECS\README.txt" />
       <Content Include="src\Graphics\Core\TODO.txt" />
       <Content Include="src\Graphics\TODO.txt" />
-      <Content Include="src\README.txt" />
       <Content Include="src\TODO.txt" />
     </ItemGroup>
 	
