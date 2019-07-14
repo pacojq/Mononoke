@@ -1,8 +1,5 @@
 version: AppVeyor {branch} Build {build}
 image: Visual Studio 2015
- 
-branches:
-    - master
     
 platform: x86    
 configuration: Release
