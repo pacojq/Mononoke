@@ -1,12 +1,17 @@
-image: 
-    - Visual Studio 2017
-platform:
-    - x86
-configuration:
-    - Release
+version: AppVeyor {branch} Build {build}
+image: Visual Studio 2015
+ 
+branches:
+    - master
+    
+platform: x86    
+configuration: Release
+
+build:
+  project: Mononoke.sln
+  verbosity: minimal
 
 test:
   # only assemblies to test
   assemblies:
-    only:
-      - MononokeEngine.Tests\bin\Debug\MononokeEngine.Tests.dll
+    - MononokeEngine.Tests\bin\Debug\MononokeEngine.Tests.dll
