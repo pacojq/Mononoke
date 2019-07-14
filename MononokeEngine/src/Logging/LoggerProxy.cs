@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MononokeEngine.Logging
 {
-    /*
+
     public class LoggerProxy : MarshalByRefObject
     {
         private int _callCount = 0;
@@ -47,5 +47,5 @@ namespace MononokeEngine.Logging
                 return _messages.Dequeue();
         }
     }
-    */
+    
 }

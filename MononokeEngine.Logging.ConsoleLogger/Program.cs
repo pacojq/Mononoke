@@ -5,7 +5,7 @@
         public static void Main(string[] args)
         {
 #if DEBUG
-            //new ConsoleLoggerClient().Run();
+            new ConsoleLoggerClient().Run();
 #endif
         }
     }
