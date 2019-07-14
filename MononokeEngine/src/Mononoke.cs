@@ -3,6 +3,7 @@ using System.Reflection;
 using MononokeEngine.ECS;
 using MononokeEngine.Graphics;
 using MononokeEngine.Input;
+using MononokeEngine.Logging;
 using MononokeEngine.Scenes;
 
 namespace MononokeEngine
@@ -78,9 +79,30 @@ namespace MononokeEngine
             }
         }
         private static GraphicsManager _graphics;
-        
-        
-        
+
+
+
+
+        public static ILogger Logger
+        {
+            get
+            {
+
+                if (_logger == null)
+                {
+#if DEBUG
+                    _logger = new ConsoleLoggerServer();
+#else
+                    _logger = new DummyLogger();
+#endif
+                }
+
+                return _logger;
+            }
+        }
+
+        private static ILogger _logger;
+
     }
 
 

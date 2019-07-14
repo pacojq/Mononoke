@@ -50,7 +50,7 @@ namespace MononokeEngine.Graphics
             
             Pixel = new Sprite(1, 1, Color.White);
             
-            Console.WriteLine("GraphicsManager initialized!");
+            Mononoke.Logger.Print("GraphicsManager initialized!");
         }
 
         

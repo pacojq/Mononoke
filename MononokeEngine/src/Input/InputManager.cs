@@ -16,7 +16,7 @@ namespace MononokeEngine.Input
 		{
 			Keyboard = new KeyboardInput();
 			
-			Console.WriteLine("InputManager initialized!");
+			Mononoke.Logger.Print("InputManager initialized!");
 		}
 		
 		

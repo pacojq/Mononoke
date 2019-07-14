@@ -111,6 +111,8 @@ namespace MononokeEngine
             Mononoke.Scenes.Initialize();
             Mononoke.Ecs.Initialize();
             Mononoke.Input.Initialize();
+            
+            Mononoke.Logger.Print("Logger hello world");
         }
 
         /// <summary>
@@ -124,7 +126,7 @@ namespace MononokeEngine
             // Create a new SpriteBatch, which can be used to draw textures.
             //spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Console.WriteLine("Content: " + this.Content.RootDirectory);
+            Mononoke.Logger.Print("Content: " + this.Content.RootDirectory);
 
             // TODO load all content with this.Content.Load<>("");
             

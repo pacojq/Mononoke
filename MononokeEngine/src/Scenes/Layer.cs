@@ -59,7 +59,7 @@ namespace MononokeEngine.Scenes
 		{
 			if (_scenes.Contains(scene))
 			{
-				Console.WriteLine("The layer is already attached to this scene");
+				Mononoke.Logger.Print("The layer is already attached to this scene");
 				return;
 			}
 
