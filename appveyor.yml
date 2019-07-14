@@ -15,4 +15,4 @@ build:
 test:
   # only assemblies to test
   assemblies:
-    - MononokeEngine.Tests\bin\Debug\MononokeEngine.Tests.dll
+    -'.\*\MononokeEngine.Tests.dll'
