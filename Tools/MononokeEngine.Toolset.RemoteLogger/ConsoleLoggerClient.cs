@@ -4,6 +4,8 @@ using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Security.Permissions;
+using MononokeEngine.Toolset;
+using MononokeEngine.Toolset.Logging;
 
 namespace MononokeEngine.Logging.ConsoleLogger
 {
@@ -28,14 +30,14 @@ namespace MononokeEngine.Logging.ConsoleLogger
 
             // Register as client for remote object.
             WellKnownClientTypeEntry remoteType = new WellKnownClientTypeEntry(
-                typeof(LoggerProxy),"tcp://localhost:9090/LoggerProxy.rem");
+                typeof(ConsoleLoggerProxy),"tcp://localhost:9090/LoggerProxy.rem");
             RemotingConfiguration.RegisterWellKnownClientType(remoteType);
 
             // Create a message sink.
             string objectUri;
             System.Runtime.Remoting.Messaging.IMessageSink messageSink = 
                 clientChannel.CreateMessageSink(
-                    "tcp://localhost:" + ConsoleLoggerServer.Port + "/LoggerProxy.rem", null,
+                    "tcp://localhost:" + TcpController.Port + "/LoggerProxy.rem", null,
                     out objectUri);
             Console.WriteLine("The URI of the message sink is {0}.", 
                 objectUri);
@@ -46,7 +48,7 @@ namespace MononokeEngine.Logging.ConsoleLogger
             }
 
             // Create an instance of the remote object.
-            LoggerProxy service = new LoggerProxy();
+            ConsoleLoggerProxy service = new ConsoleLoggerProxy();
 
             // Invoke a method on the remote object.
             Console.WriteLine("The client is invoking the remote object.");

@@ -2,6 +2,13 @@ namespace MononokeEngine.Toolset
 {
     public class ToolsetManager
     {
-        private TcpController _tcpController;
+        public TcpController TCP { get; }
+        
+        
+
+        internal ToolsetManager()
+        {
+            TCP = new TcpController();
+        }
     }
 }
