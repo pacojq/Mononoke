@@ -4,11 +4,11 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{0C0849E5-8E0D-46B6-96C1-12F54A254592}</ProjectGuid>
+        <ProjectGuid>{9B8060E2-B2AF-44BA-9A87-E98DB79B5BC8}</ProjectGuid>
         <OutputType>Exe</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>MononokeEngine.Logging.ConsoleLogger</RootNamespace>
-        <AssemblyName>MononokeEngine.Logging.ConsoleLogger</AssemblyName>
+        <RootNamespace>MononokeEngine.Toolset.CameraViewPort</RootNamespace>
+        <AssemblyName>MononokeEngine.Toolset.CameraViewPort</AssemblyName>
         <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
@@ -35,19 +35,11 @@
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
-        <Reference Include="System.Runtime.Remoting" />
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="ConsoleLoggerClient.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\MononokeEngine\MononokeEngine.csproj">
-        <Project>{419d62d0-9ff6-4c89-8e2e-bafd0781fbb1}</Project>
-        <Name>MononokeEngine</Name>
-      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -18,7 +18,7 @@
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
         <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <DefineConstants>DEBUG;TRACE;MONONOKE_TOOLS</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
@@ -30,6 +30,13 @@
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Profiled Release|x86' ">
+      <OutputPath>bin\x86\Profiled Release\</OutputPath>
+      <PlatformTarget>x86</PlatformTarget>
+      <DefineConstants>TRACE;MONONOKE_TOOLS</DefineConstants>
+      <Optimize>true</Optimize>
+      <DebugType>pdbonly</DebugType>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Microsoft.CSharp" />
@@ -89,10 +96,8 @@
         <Compile Include="src\Graphics\Tiles\TileMap.cs" />
         <Compile Include="src\Input\KeyboardInput.cs" />
         <Compile Include="src\Input\InputManager.cs" />
-        <Compile Include="src\Logging\ConsoleLoggerServer.cs" />
         <Compile Include="src\Logging\DummyLogger.cs" />
         <Compile Include="src\Logging\ILogger.cs" />
-        <Compile Include="src\Logging\LoggerProxy.cs" />
         <Compile Include="src\MononokeGame.cs" />
         <Compile Include="src\Mononoke.cs" />
         <Compile Include="src\Physics\Collider.cs" />
@@ -113,6 +118,10 @@
         <Compile Include="src\Terminal\ITerminal.cs" />
         <Compile Include="src\Terminal\ITerminalCommand.cs" />
         <Compile Include="src\Terminal\TerminalManager.cs" />
+        <Compile Include="src\Toolset\Logging\ConsoleLoggerServer.cs" />
+        <Compile Include="src\Toolset\Logging\ConsoleLoggerProxy.cs" />
+        <Compile Include="src\Toolset\TcpController.cs" />
+        <Compile Include="src\Toolset\ToolsetManager.cs" />
         <Compile Include="src\Utils\DataStructures\Heaps\BinaryHeap.cs" />
         <Compile Include="src\Utils\DataStructures\Heaps\HeapNode.cs" />
         <Compile Include="src\Utils\DataStructures\Heaps\IBinaryHeap.cs" />
@@ -148,6 +157,10 @@
 	  <Content Include="Content\**\*">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="src\Logging\LoggerServer" />
 	</ItemGroup>
 	
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

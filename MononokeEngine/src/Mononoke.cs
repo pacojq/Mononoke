@@ -5,6 +5,7 @@ using MononokeEngine.Graphics;
 using MononokeEngine.Input;
 using MononokeEngine.Logging;
 using MononokeEngine.Scenes;
+using MononokeEngine.Toolset;
 
 namespace MononokeEngine
 {
@@ -100,9 +101,25 @@ namespace MononokeEngine
                 return _logger;
             }
         }
-
         private static ILogger _logger;
 
+
+        
+        
+        public static ToolsetManager Toolset
+        {
+            get
+            {
+                if (_toolset == null)
+                    _toolset = new ToolsetManager();
+                return _toolset;
+            }
+        }
+        private static ToolsetManager _toolset;
+        
+        
+        
+        
     }
 
 
