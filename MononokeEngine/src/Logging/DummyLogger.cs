@@ -6,16 +6,6 @@ namespace MononokeEngine.Logging
     /// </summary>
     internal class DummyLogger : ILogger
     {
-        public void Open()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Close()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void Print(string msg)
         {
             // Do nothing
