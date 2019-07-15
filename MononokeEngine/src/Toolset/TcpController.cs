@@ -3,8 +3,6 @@ using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Security.Permissions;
-using MononokeEngine.Logging;
-using MononokeEngine.Toolset.Logging;
 
 namespace MononokeEngine.Toolset
 {

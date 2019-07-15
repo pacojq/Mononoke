@@ -44,7 +44,7 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\MononokeEngine\MononokeEngine.csproj">
+      <ProjectReference Include="..\..\MononokeEngine\MononokeEngine.csproj">
         <Project>{419d62d0-9ff6-4c89-8e2e-bafd0781fbb1}</Project>
         <Name>MononokeEngine</Name>
       </ProjectReference>
