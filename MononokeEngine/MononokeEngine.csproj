@@ -94,8 +94,11 @@
         <Compile Include="src\Graphics\Tiles\AnimatedTile.cs" />
         <Compile Include="src\Graphics\Tiles\Tile.cs" />
         <Compile Include="src\Graphics\Tiles\TileMap.cs" />
+        <Compile Include="src\Graphics\ViewHandler.cs" />
         <Compile Include="src\Input\KeyboardInput.cs" />
         <Compile Include="src\Input\InputManager.cs" />
+        <Compile Include="src\Input\MouseInput.cs" />
+        <Compile Include="src\Logging\ConsoleLogger.cs" />
         <Compile Include="src\Logging\DummyLogger.cs" />
         <Compile Include="src\Logging\ILogger.cs" />
         <Compile Include="src\MononokeGame.cs" />
@@ -157,10 +160,6 @@
 	  <Content Include="Content\**\*">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="src\Logging\LoggerServer" />
 	</ItemGroup>
 	
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
