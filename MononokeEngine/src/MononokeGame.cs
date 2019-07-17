@@ -20,23 +20,15 @@ namespace MononokeEngine
         
         
         public static MononokeGame Instance { get; private set; }
-        
-        public static int Width { get; private set; }
-        public static int Height { get; private set; }
+
+        public static int Width => Mononoke.Graphics.Width;
+        public static int Height => Mononoke.Graphics.Height;
 
         // time
         public static float DeltaTime { get; private set; }
         public static float RawDeltaTime { get; private set; }
         
         
-        
-        
-
-
-
-
-        #region // - - - - - Fields - - - - - // 
-
         
         public string Title { get; set; }
 
@@ -54,47 +46,22 @@ namespace MononokeEngine
         public int FPS { get; private set; }
         private int _fpsCounter = 0;
         private TimeSpan counterElapsed = TimeSpan.Zero;
-
         
-        
-        private readonly GraphicsDeviceManager _graphics;
-        
-
-        #endregion
         
         
 
-
+        // TODO
+        // add a constructor that receives a filename, which contains the
+        // settings to launch the game ?
+        
         public MononokeGame(int width, int height, int windowWidth, int windowHeight, string windowTitle, bool fullscreen)
         {
             Instance = this;
 
             Title = Window.Title = windowTitle;
-            Width = width;
-            Height = height;
             
-            _graphics = new GraphicsDeviceManager(this);
-            //_graphics.DeviceReset += OnGraphicsReset;
-            //_graphics.DeviceCreated += OnGraphicsCreate;
-            
-            Window.AllowUserResizing = true;
-            //Window.ClientSizeChanged += OnClientSizeChanged;
+            Mononoke.Graphics.Initialize(width, height, windowWidth, windowHeight, fullscreen);
 
-            if (fullscreen)
-            {
-                _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-                _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-                _graphics.IsFullScreen = true;
-            }
-            else
-            {
-                _graphics.PreferredBackBufferWidth = windowWidth;
-                _graphics.PreferredBackBufferHeight = windowHeight;
-                _graphics.IsFullScreen = false;
-            }
-            _graphics.ApplyChanges();
-            
-            
             Content.RootDirectory = @"Content";
         }
         
@@ -133,8 +100,9 @@ namespace MononokeEngine
             Mononoke.Logger.Print("Content: " + this.Content.RootDirectory);
 
             // TODO load all content with this.Content.Load<>("");
-            
-            Mononoke.Graphics.Initialize(this.GraphicsDevice);
+
+            Mononoke.Graphics.GraphicsDevice = this.GraphicsDevice;
+            Mononoke.Graphics.LoadContent();
             
             
             // TODO: use this.Content to load your game content here
@@ -197,11 +165,11 @@ namespace MononokeEngine
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            Render();
+            Mononoke.Graphics.Render();
             base.Draw(gameTime);
             
             // Now we actually render
-            Mononoke.Graphics.Render();
+            Mononoke.Graphics.RenderImpl();
             
             
             //Frame counter
@@ -219,32 +187,6 @@ namespace MononokeEngine
             
         }
 
-
-        /// <summary>
-        /// Here's the point well all game components perform render calls
-        /// </summary>
-        private void Render()
-        {
-            Mononoke.Graphics.Open();
-
-            Scene scene = Mononoke.Scenes.Current;
-            
-            if (scene != null)
-                scene.BeforeRender();
-
-            GraphicsDevice.SetRenderTarget(null);
-            //GraphicsDevice.Viewport = Viewport;
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            if (scene != null)
-            {
-                scene.Render();
-                scene.AfterRender();
-            }
-
-
-            Mononoke.Graphics.Close();
-        }
         
 
         

@@ -5,6 +5,7 @@ using MononokeEngine.Graphics;
 using MononokeEngine.Input;
 using MononokeEngine.Logging;
 using MononokeEngine.Scenes;
+using MononokeEngine.Toolset;
 
 namespace MononokeEngine
 {
@@ -87,22 +88,31 @@ namespace MononokeEngine
         {
             get
             {
-
                 if (_logger == null)
-                {
-#if DEBUG
-                    _logger = new ConsoleLoggerServer();
-#else
-                    _logger = new DummyLogger();
-#endif
-                }
+                    _logger = new ConsoleLogger();
 
                 return _logger;
             }
         }
-
         private static ILogger _logger;
 
+
+        
+        
+        public static ToolsetManager Toolset
+        {
+            get
+            {
+                if (_toolset == null)
+                    _toolset = new ToolsetManager();
+                return _toolset;
+            }
+        }
+        private static ToolsetManager _toolset;
+        
+        
+        
+        
     }
 
 

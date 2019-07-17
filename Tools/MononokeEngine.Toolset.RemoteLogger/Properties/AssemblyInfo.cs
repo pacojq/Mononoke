@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MononokeEngine.Logging.ConsoleLogger")]
+[assembly: AssemblyTitle("MononokeEngine.Toolset.RemoteLogger")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MononokeEngine.Logging.ConsoleLogger")]
+[assembly: AssemblyProduct("MononokeEngine.Toolset.RemoteLogger")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

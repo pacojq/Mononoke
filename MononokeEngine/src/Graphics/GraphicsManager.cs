@@ -65,19 +65,29 @@ namespace MononokeEngine.Graphics
 
         private GraphicsDevice _graphicsDevice;
         private GameRenderer _renderer;
-       
+        private ViewHandler _viewHandler;
 
-        internal GraphicsManager() { }
 
-        internal void Initialize(GraphicsDevice graphicsDevice)
+
+        internal GraphicsManager()
         {
-            GraphicsDevice = graphicsDevice;
-            SpriteBatch = new SpriteBatch(graphicsDevice);
-            DefaultFont = MononokeGame.Instance.Content.Load<SpriteFont>(@"Mononoke\MononokeDefault");
             
+        }
+        
+        internal void Initialize(int width, int height, int viewWidth, int viewHeight, bool fullscreen)
+        {
             _renderer = new GameRenderer();
+            _viewHandler = new ViewHandler(width, height, viewWidth, viewHeight, fullscreen);
             
-            Draw = new Draw(GraphicsDevice, SpriteBatch);
+            Mononoke.Logger.Print("GraphicsManager initialized!");
+        }
+
+
+        internal void LoadContent()
+        {
+            Pixel = new Sprite(1, 1, Color.White);
+            DefaultFont = MononokeGame.Instance.Content.Load<SpriteFont>(@"Mononoke\MononokeDefault");
+
             Draw.Font = DefaultFont;
             Draw.Color = Color.White;
 
@@ -86,14 +96,36 @@ namespace MononokeEngine.Graphics
         }
 
         
-        internal void Open()
+        
+        
+        
+        public void SetFullscreen()
+        {
+            _viewHandler.SetFullscreen();
+        }
+
+
+        public void SetWindowed(int width, int height)
+        {
+            _viewHandler.SetWindowed(width, height);
+        }
+
+
+
+
+
+        /// <summary>
+        /// All rendering logic IN THE GAME goes here.
+        /// Entities and GraphicComponents do their stuff.
+        /// </summary>
+        internal void Render()
         {
             Draw.Open();
 
             Scene scene = Mononoke.Scenes.Current;
             
             if (scene != null)
-                scene.BeforeDraw();
+                scene.BeforeRender();
 
             GraphicsDevice.SetRenderTarget(null);
             
@@ -103,15 +135,21 @@ namespace MononokeEngine.Graphics
 
             if (scene != null)
             {
-                scene.Draw();
-                scene.AfterDraw();
+                scene.Render();
+                scene.AfterRender();
             }
 
 
             Draw.Close();
         }
+        
 
-        internal void Render()
+        /// <summary>
+        /// Now that the Entities have done their rendering
+        /// requests, it's time to open the SpriteBatch
+        /// and draw things.
+        /// </summary>
+        internal void RenderImpl()
         {
             Scene scene = Mononoke.Scenes.Current;
             if (scene == null)
@@ -126,10 +164,6 @@ namespace MononokeEngine.Graphics
             _renderer.CleanUp();
         }
         
-        internal void Close()
-        {
-            Draw.Close();
-        }
         
         
         
@@ -183,6 +217,7 @@ namespace MononokeEngine.Graphics
             fileStream.Close();
             return new Sprite(texture);
         }
+
         
     }
 }

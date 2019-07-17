@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-namespace MononokeEngine.Logging
+namespace MononokeEngine.Toolset.Logging
 {
 
-    public class LoggerProxy : MarshalByRefObject
+    public class ConsoleLoggerProxy : MarshalByRefObject
     {
         private int _callCount = 0;
 
@@ -28,7 +28,7 @@ namespace MononokeEngine.Logging
         private readonly Queue<string> _messages;
         private readonly object _locker;
 
-        public LoggerProxy()
+        public ConsoleLoggerProxy()
         {
             _messages = new Queue<string>();
             _locker = new object();
