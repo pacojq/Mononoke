@@ -116,12 +116,12 @@ namespace MononokeEngine.Scenes
 
         
         
-        public virtual void BeforeRender()
+        public virtual void BeforeDraw()
         {
             
         }
 
-        public virtual void Render()
+        public virtual void Draw()
         {
             foreach (Entity e in Entities)
             {
@@ -133,7 +133,7 @@ namespace MononokeEngine.Scenes
 #endif
         }
 
-        public virtual void AfterRender()
+        public virtual void AfterDraw()
         {
             
         }

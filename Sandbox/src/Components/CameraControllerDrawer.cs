@@ -13,6 +13,8 @@ namespace Sandbox.Components
         {
             Camera cam = Mononoke.Scenes.Current.MainCamera;
             Mononoke.Graphics.Draw.RectExt(cam.Position.X, cam.Position.Y, cam.Width, cam.Height, Color.Red, true);
+            
+            Mononoke.Graphics.Draw.Text(cam.Position.ToString(), -cam.Position);
         }
     }
 }

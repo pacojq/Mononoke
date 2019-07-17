@@ -17,11 +17,20 @@ namespace MononokeEngine.Graphics
         /// A texture which is just a white pixel.
         /// </summary>
         public Sprite Pixel { get; private set; }
-        
-        
-        
-       
-        internal GraphicsDevice GraphicsDevice { get; private set; }
+
+
+        internal GraphicsDevice GraphicsDevice
+        {
+            get => _graphicsDevice;
+            set
+            {
+                _graphicsDevice = value;
+                SpriteBatch = new SpriteBatch(_graphicsDevice);
+                Draw = new Draw(GraphicsDevice, SpriteBatch);
+                DrawGUI = new Draw(GraphicsDevice, SpriteBatch);
+            }
+        }
+
         internal SpriteBatch SpriteBatch { get; private set; }
         public SpriteFont DefaultFont { get; private set; }
 
@@ -31,6 +40,30 @@ namespace MononokeEngine.Graphics
         /// </summary>
         public Draw Draw { get; private set; }
 
+
+        /// <summary>
+        /// Draw helper for UI.
+        /// </summary>
+        public Draw DrawGUI { get; private set; }
+
+
+
+        public int Width => _viewHandler.Width;
+        public int Height => _viewHandler.Height;
+
+        public int ViewWidth => _viewHandler.ViewWidth;
+
+        public int ViewHeight => _viewHandler.ViewHeight;
+
+
+        public Viewport Viewport => _viewHandler.Viewport;
+
+        public Matrix ScreenMatrix => _viewHandler.ScreenMatrix;
+
+        public bool Fullscreen => _viewHandler.Fullscreen;
+
+
+        private GraphicsDevice _graphicsDevice;
         private GameRenderer _renderer;
        
 
@@ -47,16 +80,35 @@ namespace MononokeEngine.Graphics
             Draw = new Draw(GraphicsDevice, SpriteBatch);
             Draw.Font = DefaultFont;
             Draw.Color = Color.White;
-            
-            Pixel = new Sprite(1, 1, Color.White);
-            
-            Mononoke.Logger.Print("GraphicsManager initialized!");
+
+            DrawGUI.Font = DefaultFont;
+            DrawGUI.Color = Color.White;
         }
 
         
         internal void Open()
         {
             Draw.Open();
+
+            Scene scene = Mononoke.Scenes.Current;
+            
+            if (scene != null)
+                scene.BeforeDraw();
+
+            GraphicsDevice.SetRenderTarget(null);
+            
+            Mononoke.Logger.Print($"Viewport: {Viewport}");
+            GraphicsDevice.Viewport = Viewport;
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            if (scene != null)
+            {
+                scene.Draw();
+                scene.AfterDraw();
+            }
+
+
+            Draw.Close();
         }
 
         internal void Render()

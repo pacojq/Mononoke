@@ -161,7 +161,20 @@ namespace MononokeEngine.Graphics.Drawing
                     new DrawSprite(sprite, position, color, rotation, origin, scale, effects, layerDepth)
                 );
         }
-
         
+        
+        
+        // ================================ TEXT ================================ //
+
+        public void Text(string text, Vector2 position)
+        {
+            TextExt(text, position, Color);
+        }
+        public void TextExt(string text, Vector2 position, Color color)
+        {
+            Enqueue(
+                new DrawText(Font, text, position, color)
+            );
+        }
     }
 }
