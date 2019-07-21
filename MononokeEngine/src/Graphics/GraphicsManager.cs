@@ -64,6 +64,9 @@ namespace MononokeEngine.Graphics
 
 
         internal Renderer Renderer => _renderer;
+        
+        
+        public bool IsReady { get; internal set; }
 
 
         private GraphicsDevice _graphicsDevice;
@@ -74,14 +77,14 @@ namespace MononokeEngine.Graphics
 
         internal GraphicsManager()
         {
-            
+            _renderer = new Renderer(this);
         }
         
         internal void Initialize(int width, int height, int viewWidth, int viewHeight, bool fullscreen)
         {
             _viewHandler = new ViewHandler(width, height, viewWidth, viewHeight, fullscreen);
-            _renderer = new Renderer(this);
             
+            IsReady = true;
             Mononoke.Logger.Print("GraphicsManager initialized!");
         }
 
