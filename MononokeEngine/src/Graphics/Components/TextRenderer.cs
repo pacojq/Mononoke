@@ -26,10 +26,9 @@ namespace MononokeEngine.Graphics.Components
             HorizontalOrigin = HorizontalAlign.Left;
             VerticalOrigin = VerticalAlign.Top;
         }
-        
-        
-        
-        protected override void Draw()
+
+
+        public override void Draw()
         {
             Mononoke.Graphics.SpriteBatch.DrawString(Font, Text, Position, Color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
         }

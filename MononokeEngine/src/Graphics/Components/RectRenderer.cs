@@ -12,9 +12,9 @@ namespace MononokeEngine.Graphics.Components
     {
         
         public Rectangle Rect { get; set; }
-        
-        
-        protected override void Draw()
+
+
+        public override void Draw()
         {
             throw new System.NotImplementedException();
         }

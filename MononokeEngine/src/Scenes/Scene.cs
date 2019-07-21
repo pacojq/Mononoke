@@ -37,16 +37,25 @@ namespace MononokeEngine.Scenes
         public Space Space { get; }
         
         public bool Paused { get; set; }
-        
+
 
 
         public Scene()
         {
             Entities = new List<Entity>();
             Space = new Space(this);
-            
+
             _cameras = new List<Camera>();
-            MainCamera = new Camera(MononokeGame.Width, MononokeGame.Height);
+            if (Mononoke.Graphics.IsReady)
+            {
+                MainCamera = new Camera(Mononoke.Graphics.Width, Mononoke.Graphics.Height);
+            }
+            else
+            {
+                // TODO log error
+            }
+        
+
             _cameras.Add(MainCamera);
             
             
@@ -116,16 +125,16 @@ namespace MononokeEngine.Scenes
 
         
         
-        public virtual void BeforeRender()
+        public virtual void BeforeDraw()
         {
             
         }
 
-        public virtual void Render()
+        public virtual void Draw()
         {
             foreach (Entity e in Entities)
             {
-                e.Render();
+                e.Draw();
             }
             
 #if DEBUG            
@@ -133,9 +142,18 @@ namespace MononokeEngine.Scenes
 #endif
         }
 
-        public virtual void AfterRender()
+        public virtual void AfterDraw()
         {
             
+        }
+        
+        
+        public virtual void DrawGui()
+        {
+            foreach (Entity e in Entities)
+            {
+                e.DrawGui();
+            }
         }
 
         

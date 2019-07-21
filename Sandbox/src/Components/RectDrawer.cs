@@ -13,8 +13,8 @@ namespace Sandbox.Components
             _width = width;
             _height = height;
         }
-        
-        protected override void Draw()
+
+        public override void Draw()
         {
             Mononoke.Graphics.Draw.Rect(Entity.X, Entity.Y, _width, _height, true);
         }

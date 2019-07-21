@@ -165,7 +165,7 @@ namespace MononokeEngine
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            Mononoke.Graphics.Render();
+            Mononoke.Graphics.DrawPhase();
             base.Draw(gameTime);
             
             // Now we actually render
@@ -184,7 +184,6 @@ namespace MononokeEngine
                 _fpsCounter = 0;
                 counterElapsed -= TimeSpan.FromSeconds(1);
             }
-            
         }
 
         

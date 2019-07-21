@@ -23,7 +23,7 @@ namespace MononokeEngine.Scenes
 		
 		// ====================== RENDERING ====================== //
 		
-		internal IRenderer Renderer { get; private set; }
+		internal IGraphicsCulling GraphicsCulling { get; private set; }
 
 		internal IEnumerable<IDrawCommand> DrawCommands => _drawCommands;
 
@@ -36,8 +36,8 @@ namespace MononokeEngine.Scenes
 		{
 			Depth = depth;
 			_entities = new List<Entity>();
-			
-			Renderer = new BasicRenderer();
+
+			GraphicsCulling = Mononoke.Graphics.Renderer.BasicCulling;
 			_drawCommands = new List<IDrawCommand>();
 		}
 
@@ -47,7 +47,7 @@ namespace MononokeEngine.Scenes
 
 		internal void Update()
 		{
-			Renderer.Update();
+			GraphicsCulling.Update();
 		}
 		
 		
@@ -111,13 +111,13 @@ namespace MononokeEngine.Scenes
 		
 		internal void AddGraphic(GraphicComponent graphic)
 		{
-			Renderer.AddGraphic(graphic);
+			GraphicsCulling.AddGraphic(graphic);
 		}
 		
 		
 		internal void RemoveGraphic(GraphicComponent graphic)
 		{
-			Renderer.RemoveGraphic(graphic);
+			GraphicsCulling.RemoveGraphic(graphic);
 		}
 
 		internal void AddDrawCommand(IDrawCommand cmd)

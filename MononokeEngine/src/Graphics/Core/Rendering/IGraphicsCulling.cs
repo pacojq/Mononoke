@@ -4,7 +4,7 @@ using MononokeEngine.Scenes;
 
 namespace MononokeEngine.Graphics.Core.Rendering
 {
-    internal interface IRenderer
+    internal interface IGraphicsCulling
     {
         IEnumerable<GraphicComponent> GetVisibleGraphics(Camera camera);
         

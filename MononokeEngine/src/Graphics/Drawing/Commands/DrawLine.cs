@@ -48,9 +48,9 @@ namespace MononokeEngine.Graphics.Drawing.Commands
         }
         
         
-        public override bool Accept(Camera cam, IRenderer renderer)
+        public override bool Accept(Camera cam, IGraphicsCulling graphicsCulling)
         {
-            return renderer.WillDraw(cam, this);
+            return graphicsCulling.WillDraw(cam, this);
         }
     }
 }
