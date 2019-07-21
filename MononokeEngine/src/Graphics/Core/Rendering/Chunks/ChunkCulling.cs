@@ -8,7 +8,7 @@ namespace MononokeEngine.Graphics.Core.Rendering.Chunks
     /// <summary>
     /// TODO render entities by chunks
     /// </summary>
-    internal class ChunkRenderer : IRenderer
+    internal class ChunkCulling : IGraphicsCulling
     {
         public float ChunkWidth { get; private set; }
         public float ChunkHeight { get; private set; }
@@ -17,7 +17,7 @@ namespace MononokeEngine.Graphics.Core.Rendering.Chunks
         // TODO resizing stuff
         private Chunk[,] _chunks;
         
-        public ChunkRenderer(float chunkWidth, float chunkHeight)
+        public ChunkCulling(float chunkWidth, float chunkHeight)
         {
             ChunkWidth = chunkWidth;
             ChunkHeight = chunkHeight;

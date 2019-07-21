@@ -38,7 +38,7 @@ namespace MononokeEngine.Graphics.Drawing.Commands
                 );
         }
 
-        public override bool Accept(Camera cam, IRenderer renderer)
+        public override bool Accept(Camera cam, IGraphicsCulling graphicsCulling)
         {
             // TODO
             return true;

@@ -9,13 +9,13 @@ namespace MononokeEngine.Graphics.Core.Rendering
     /// <summary>
     /// Renders everything, with no optimization or culling.
     /// </summary>
-    internal class BasicRenderer : IRenderer
+    internal class BasicCulling : IGraphicsCulling
     {
 
         private readonly List<GraphicComponent> _graphics;
 
 
-        internal BasicRenderer()
+        internal BasicCulling()
         {
             _graphics = new List<GraphicComponent>();
         }

@@ -13,17 +13,19 @@ namespace MononokeEngine.Graphics
             Visible = true;
         }
 
-
-        public void Render()
+        internal bool CanDraw()
         {
-            if (!Active)
-                return;
-
-            Mononoke.Graphics.Draw.SetCurrentGraphicComponent(this);
-            Draw();
+            return Active;
         }
-        
-        protected abstract void Draw();
-        
+
+        public virtual void Draw()
+        {
+            // Let children implement it
+        }
+
+        public virtual void DrawGui()
+        {
+            // Let children implement it
+        }
     }
 }

@@ -178,15 +178,31 @@ namespace MononokeEngine.ECS
         }
         
         
-        public void Render()
+        public void Draw()
         {
+            var draw = Mononoke.Graphics.Draw;
             foreach (GraphicComponent g in _graphics)
             {
-                if (g.Visible)
-                    g.Render();
+                if (g.CanDraw())
+                {
+                    draw.SetCurrentGraphicComponent(g);
+                    g.Draw();
+                }
             }
         }
         
+        public void DrawGui()
+        {
+            var draw = Mononoke.Graphics.Draw;
+            foreach (GraphicComponent g in _graphics)
+            {
+                if (g.CanDraw())
+                {
+                    draw.SetCurrentGraphicComponent(g);
+                    g.DrawGui();
+                }
+            }
+        }
         
         
         
@@ -282,5 +298,7 @@ namespace MononokeEngine.ECS
         {
             // TODO
         }
+
+        
     }
 }

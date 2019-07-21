@@ -73,12 +73,12 @@
         <Compile Include="src\Graphics\Components\RectRenderer.cs" />
         <Compile Include="src\Graphics\Components\SpriteRenderer.cs" />
         <Compile Include="src\Graphics\Components\TextRenderer.cs" />
-        <Compile Include="src\Graphics\Core\GameRenderer.cs" />
-        <Compile Include="src\Graphics\Core\Rendering\BasicRenderer.cs" />
+        <Compile Include="src\Graphics\Core\Renderer.cs" />
+        <Compile Include="src\Graphics\Core\Rendering\BasicCulling.cs" />
         <Compile Include="src\Graphics\Core\Rendering\Chunks\Chunk.cs" />
-        <Compile Include="src\Graphics\Core\Rendering\Chunks\ChunkRenderer.cs" />
-        <Compile Include="src\Graphics\Core\Rendering\IRenderer.cs" />
-        <Compile Include="src\Graphics\Core\Rendering\RenderType.cs" />
+        <Compile Include="src\Graphics\Core\Rendering\Chunks\ChunkCulling.cs" />
+        <Compile Include="src\Graphics\Core\Rendering\IGraphicsCulling.cs" />
+        <Compile Include="src\Graphics\Core\Rendering\CullingType.cs" />
         <Compile Include="src\Graphics\Drawing\AbstractDrawCommand.cs" />
         <Compile Include="src\Graphics\Drawing\Commands\DrawLine.cs" />
         <Compile Include="src\Graphics\Drawing\Commands\DrawRect.cs" />

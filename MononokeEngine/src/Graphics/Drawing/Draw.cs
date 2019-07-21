@@ -39,7 +39,7 @@ namespace MononokeEngine.Graphics.Drawing
             _spriteBatch = spriteBatch;
         }
 
-        private void Enqueue(IDrawCommand cmd)
+        internal virtual void Enqueue(IDrawCommand cmd)
         {
             if (!_open)
                 throw new MononokeGraphicsException("All Draw calls must be executed in the Render events.");

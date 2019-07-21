@@ -27,9 +27,9 @@ namespace MononokeEngine.Graphics.Drawing.Commands
             Mononoke.Graphics.SpriteBatch.Draw(px.Texture, rect, px.ClipRect, _color);
         }
         
-        public override bool Accept(Camera cam, IRenderer renderer)
+        public override bool Accept(Camera cam, IGraphicsCulling graphicsCulling)
         {
-            return renderer.WillDraw(cam, this);
+            return graphicsCulling.WillDraw(cam, this);
         }
     }
 }

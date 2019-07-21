@@ -9,6 +9,6 @@ namespace MononokeEngine.Graphics.Drawing
 
         public abstract void Execute(Camera cam);
 
-        public abstract bool Accept(Camera cam, IRenderer renderer);
+        public abstract bool Accept(Camera cam, IGraphicsCulling graphicsCulling);
     }
 }

@@ -26,10 +26,9 @@ namespace MononokeEngine.Graphics.Components
             Rotation = 0;
             Flip = SpriteEffects.None;
         }
-        
-        
-        
-        protected override void Draw()
+
+
+        public override void Draw()
         {
             if (Sprite == null)
                 return;

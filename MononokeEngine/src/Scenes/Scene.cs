@@ -125,7 +125,7 @@ namespace MononokeEngine.Scenes
         {
             foreach (Entity e in Entities)
             {
-                e.Render();
+                e.Draw();
             }
             
 #if DEBUG            
@@ -136,6 +136,15 @@ namespace MononokeEngine.Scenes
         public virtual void AfterDraw()
         {
             
+        }
+        
+        
+        public virtual void DrawGui()
+        {
+            foreach (Entity e in Entities)
+            {
+                e.DrawGui();
+            }
         }
 
         
